@@ -371,12 +371,11 @@ export default async function HomePage() {
             {[...tickerItems, ...tickerItems].map((c, i) => (
               <div key={i} className={`collab-chip${c.logo ? ' chip-logo' : ''}`}>
                 {c.logo ? (
-                  <Image
-                    src={urlFor(c.logo as SanityImageSource).height(32).fit('max').auto('format').url()}
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={urlFor(c.logo as SanityImageSource).width(320).height(80).fit('max').auto('format').url()}
                     alt={c.name}
-                    height={32}
-                    width={120}
-                    style={{ height: '32px', width: 'auto', maxWidth: '120px', objectFit: 'contain' }}
+                    style={{ maxHeight: '30px', maxWidth: '110px', width: 'auto', height: 'auto' }}
                   />
                 ) : (
                   <><span className="dot" />{c.name}</>

@@ -207,12 +207,11 @@ export default async function AboutPage() {
                 c.website ? (
                   <a key={c._id} href={c.website} target="_blank" rel="noopener noreferrer" className="collab-logo-item">
                     {c.logo ? (
-                      <Image
-                        src={urlFor(c.logo as SanityImageSource).width(200).height(80).fit('max').auto('format').url()}
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={urlFor(c.logo as SanityImageSource).width(480).height(160).fit('max').auto('format').url()}
                         alt={c.name}
-                        width={200}
-                        height={80}
-                        style={{ objectFit: 'contain', width: '100%', height: '100%', maxHeight: '64px' }}
+                        style={{ maxWidth: '100%', maxHeight: '60px', width: 'auto', height: 'auto' }}
                       />
                     ) : (
                       <span>{c.name}</span>
@@ -221,12 +220,11 @@ export default async function AboutPage() {
                 ) : (
                   <div key={c._id} className="collab-logo-item">
                     {c.logo ? (
-                      <Image
-                        src={urlFor(c.logo as SanityImageSource).width(200).height(80).fit('max').auto('format').url()}
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={urlFor(c.logo as SanityImageSource).width(480).height(160).fit('max').auto('format').url()}
                         alt={c.name}
-                        width={200}
-                        height={80}
-                        style={{ objectFit: 'contain', width: '100%', height: '100%', maxHeight: '64px' }}
+                        style={{ maxWidth: '100%', maxHeight: '60px', width: 'auto', height: 'auto' }}
                       />
                     ) : (
                       <span>{c.name}</span>
