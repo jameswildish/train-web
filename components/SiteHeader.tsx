@@ -21,6 +21,7 @@ const SCIENCE_LINKS = [
   { href: '/about#publications',  label: 'Publications',  tag: 'Peer-reviewed research' },
   { href: '/about#collaborate',   label: 'Collaborators', tag: 'Partners & institutions' },
   { href: '/team',                label: 'Team',          tag: 'Founders & researchers' },
+  { href: '/blog',                label: 'Blog',          tag: 'Insights & articles' },
 ]
 
 const NAV_FLAT = [
@@ -28,7 +29,6 @@ const NAV_FLAT = [
   { href: '/activity',      key: 'activity',  label: 'Activity' },
   { href: '/mental-health', key: 'mental',    label: 'Mental Health' },
   { href: '/nutrition',     key: 'nutrition', label: 'Nutrition' },
-  { href: '/blog',          key: 'blog',      label: 'Blog' },
 ]
 
 function getActiveKey(pathname: string): string {
@@ -37,7 +37,7 @@ function getActiveKey(pathname: string): string {
   if (pathname.startsWith('/activity')) return 'activity'
   if (pathname.startsWith('/mental-health')) return 'mental'
   if (pathname.startsWith('/nutrition')) return 'nutrition'
-  if (pathname.startsWith('/blog')) return 'blog'
+  if (pathname.startsWith('/blog')) return 'science'
   if (pathname.startsWith('/about')) return 'science'
   if (pathname.startsWith('/science')) return 'science'
   if (pathname.startsWith('/team')) return 'science'

@@ -15,30 +15,38 @@ export default function SiteFooter() {
             <p>Science-driven, medically grounded lifestyle. Built by surgeons. Driven by research.</p>
           </div>
           <div>
-            <h5>Pillars</h5>
+            <h5>Projects</h5>
             <ul>
-              <li><Link href="/sleep">Sleep</Link></li>
-              <li><Link href="/activity">Activity</Link></li>
-              <li><Link href="/mental-health">Mental Health</Link></li>
-              <li><Link href="/nutrition">Nutrition</Link></li>
+              <li><Link href="/projects/ddm">Data Donation Platform</Link></li>
+              <li><Link href="/projects/gen-taad">GEN-TAAD</Link></li>
+              <li><Link href="/projects/genie-ta">GENIE-TA</Link></li>
+              <li><Link href="/projects/apecx">APECx Study</Link></li>
+              <li><Link href="/projects/after-the-storm">After the Storm</Link></li>
+              <li><Link href="/projects/sukh">SUKH Healing Garden</Link></li>
+              <li><Link href="/projects/diversity-prevention">Diversity & Prevention</Link></li>
+              <li><Link href="/projects/trainletic">TRAINletic</Link></li>
+              <li><Link href="/projects/aviation">Aviation & Aortic</Link></li>
             </ul>
           </div>
           <div>
             <h5>Science</h5>
             <ul>
+              <li><Link href="/about">About</Link></li>
               <li><Link href="/about#target">TARGet group</Link></li>
               <li><Link href="/about#publications">Publications</Link></li>
-              <li><Link href="/projects">Projects</Link></li>
-              <li><Link href="/about#collaborate">Collaborate</Link></li>
+              <li><Link href="/about#collaborate">Collaborators</Link></li>
+              <li><Link href="/team">Team</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
             </ul>
           </div>
           <div>
-            <h5>Organisation</h5>
+            <h5>Contact</h5>
             <ul>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/team">Team</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/contact">Get in touch</Link></li>
+              <li><Link href="/sleep">Sleep</Link></li>
+              <li><Link href="/activity">Activity</Link></li>
+              <li><Link href="/mental-health">Mental Health</Link></li>
+              <li><Link href="/nutrition">Nutrition</Link></li>
             </ul>
           </div>
           <div>
