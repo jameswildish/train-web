@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getAllPosts } from '@/sanity/lib/queries'
 import BlogContent from './BlogContent'
 
-export const revalidate = 60
+export const revalidate = 0
 
 export const metadata = { title: 'Blog — TRAIN' }
 

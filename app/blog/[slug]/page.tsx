@@ -7,7 +7,7 @@ import { getPostBySlug, getAllPosts } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
 
-export const revalidate = 60
+export const revalidate = 0
 
 export async function generateStaticParams() {
   try {
