@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getFeaturedPublications } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
+import type { SanityImageSource } from '@sanity/image-url'
 
 export const revalidate = 0
 
@@ -200,7 +201,7 @@ export default async function SciencePage() {
                   {pub.coverImage && (
                     <div className="pub-cover">
                       <Image
-                        src={urlFor(pub.coverImage).width(120).height(160).url()}
+                        src={urlFor(pub.coverImage as SanityImageSource).width(120).height(160).url()}
                         alt={pub.title}
                         width={120}
                         height={160}
