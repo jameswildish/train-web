@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { PortableText } from 'next-sanity'
 import { getProjectBySlug, getAllProjects } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
@@ -27,123 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-// ─── Custom block renderers ─────────────────────────────────────────────────
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function renderBlock(block: any, i: number) {
-  switch (block._type) {
-    case 'sectionHeading':
-      return (
-        <section key={block._key ?? i} className="proj-intro">
-          <div className="wrap">
-            {block.eyebrow && <div className="eyebrow" style={{ marginBottom: '18px' }}>{block.eyebrow}</div>}
-            {block.heading && <h2>{block.heading}</h2>}
-            {block.body && <p style={{ marginTop: '16px' }}>{block.body}</p>}
-          </div>
-        </section>
-      )
-
-    case 'twoColumn':
-      return (
-        <section key={block._key ?? i} className="proj-why">
-          <div className="wrap">
-            <div className="grid">
-              <div>
-                {block.eyebrow && <div className="eyebrow" style={{ marginBottom: '18px' }}>{block.eyebrow}</div>}
-                {block.heading && <h2>{block.heading}</h2>}
-                {block.leftBody && <p style={{ marginTop: '16px' }}>{block.leftBody}</p>}
-              </div>
-              <div>
-                {block.rightEyebrow && <div className="eyebrow">{block.rightEyebrow}</div>}
-                {block.rightHeading && <h4>{block.rightHeading}</h4>}
-                {block.rightBody && <p>{block.rightBody}</p>}
-              </div>
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'bulletList':
-      return (
-        <section key={block._key ?? i} className="proj-do">
-          <div className="wrap">
-            <div className="block">
-              {block.eyebrow && <div className="eyebrow">{block.eyebrow}</div>}
-              {block.heading && <h3>{block.heading}</h3>}
-              {block.items?.length > 0 && (
-                <ul>
-                  {block.items.map((item: string, j: number) => <li key={j}>{item}</li>)}
-                </ul>
-              )}
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'impactGrid':
-      return (
-        <section key={block._key ?? i} className="proj-impact">
-          <div className="wrap">
-            {block.eyebrow && <div className="eyebrow" style={{ marginBottom: '18px' }}>{block.eyebrow}</div>}
-            {block.heading && <h2>{block.heading}</h2>}
-            <div className="impact-grid" style={{ marginTop: '32px' }}>
-              {block.cells?.map((cell: { tag?: string; heading?: string; body?: string }, j: number) => (
-                <div key={j} className="impact-cell">
-                  {cell.tag && <div className="tag">{cell.tag}</div>}
-                  {cell.heading && <h4>{cell.heading}</h4>}
-                  {cell.body && <p>{cell.body}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-
-    case 'block':
-      return null // handled by PortableText below
-
-    case 'image':
-      if (!block.asset) return null
-      return (
-        <div key={block._key ?? i} className="wrap" style={{ margin: '40px auto' }}>
-          <Image
-            src={urlFor(block as SanityImageSource).width(1100).url()}
-            alt={block.alt ?? ''}
-            width={1100}
-            height={600}
-            style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-          />
-        </div>
-      )
-
-    default:
-      return null
-  }
+// Split text into paragraphs on blank lines
+function paras(text: string) {
+  return text?.split(/\n\n+/).filter(Boolean).map((p, i) => <p key={i}>{p}</p>)
 }
 
-// Separate out pure text blocks for PortableText, everything else rendered custom
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function splitBody(body: any[]) {
-  const sections: Array<{ type: 'pt'; blocks: unknown[] } | { type: 'custom'; block: unknown; i: number }> = []
-  let ptBuffer: unknown[] = []
-
-  body.forEach((block, i) => {
-    if (block._type === 'block' || block._type === 'image') {
-      ptBuffer.push(block)
-    } else {
-      if (ptBuffer.length) {
-        sections.push({ type: 'pt', blocks: ptBuffer })
-        ptBuffer = []
-      }
-      sections.push({ type: 'custom', block, i })
-    }
-  })
-  if (ptBuffer.length) sections.push({ type: 'pt', blocks: ptBuffer })
-  return sections
-}
-
-// ─── Page ───────────────────────────────────────────────────────────────────
-
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
@@ -157,7 +45,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   if (!project) notFound()
 
-  const bodySections = project.body ? splitBody(project.body) : []
+  const hasOverview = project.overviewHeading || project.overviewBody || project.missionStatement
+  const hasWhy = project.whyHeading || project.whyBody
+  const hasWork = project.whatWeDoItems?.length > 0 || project.scienceBody
+  const hasImpact = project.impactCells?.length > 0
+  const hasStats = project.stats?.length > 0
+  const hasTeam = project.teamMembers?.length > 0
+  const hasRelated = project.related?.length > 0
 
   return (
     <>
@@ -203,38 +97,92 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* ─── Overview ─────────────────────────────────────────────── */}
-      {project.summary && (
+      {hasOverview && (
         <section className="proj-intro">
           <div className="wrap">
             <div className="grid">
               <div>
                 <div className="eyebrow" style={{ marginBottom: '18px' }}>Overview</div>
-                <h2>About this project</h2>
-                <p style={{ marginTop: '16px' }}>{project.summary}</p>
+                {project.overviewHeading && <h2>{project.overviewHeading}</h2>}
+                {project.overviewBody && paras(project.overviewBody)}
+              </div>
+              {project.missionStatement && (
+                <aside>
+                  <div className="eyebrow">Our mission</div>
+                  <h4>{project.missionStatement}</h4>
+                </aside>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ─── Why this matters ─────────────────────────────────────── */}
+      {hasWhy && (
+        <section className="proj-why">
+          <div className="wrap">
+            <div className="grid">
+              <div>
+                <div className="eyebrow" style={{ marginBottom: '18px' }}>Why this matters</div>
+                {project.whyHeading && <h2>{project.whyHeading}</h2>}
+              </div>
+              <div>
+                {project.whyBody && paras(project.whyBody)}
               </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* ─── Flexible body sections ───────────────────────────────── */}
-      {bodySections.map((section, i) => {
-        if (section.type === 'pt') {
-          return (
-            <section key={i} style={{ padding: '0 0 48px' }}>
-              <div className="wrap">
-                <div className="article-prose">
-                  <PortableText value={section.blocks as Parameters<typeof PortableText>[0]['value']} />
+      {/* ─── What we do + Scientific foundation ───────────────────── */}
+      {hasWork && (
+        <section className="proj-do">
+          <div className="wrap">
+            <div className="grid">
+              {project.whatWeDoItems?.length > 0 && (
+                <div className="block">
+                  <div className="eyebrow">What we do</div>
+                  {project.whatWeDoHeading && <h3>{project.whatWeDoHeading}</h3>}
+                  <ul>
+                    {project.whatWeDoItems.map((item: string, i: number) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            </section>
-          )
-        }
-        return renderBlock(section.block, section.i)
-      })}
+              )}
+              {project.scienceBody && (
+                <div className="block">
+                  <div className="eyebrow">Scientific foundation</div>
+                  {project.scienceHeading && <h3>{project.scienceHeading}</h3>}
+                  {paras(project.scienceBody)}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
-      {/* ─── Stats ────────────────────────────────────────────────── */}
-      {project.stats?.length > 0 && (
+      {/* ─── Impact ───────────────────────────────────────────────── */}
+      {hasImpact && (
+        <section className="proj-impact">
+          <div className="wrap">
+            <div className="eyebrow" style={{ marginBottom: '18px' }}>Impact</div>
+            <h2>{project.impactHeading || 'Who benefits — and how.'}</h2>
+            <div className="impact-grid" style={{ marginTop: '32px' }}>
+              {project.impactCells.map((cell: { tag?: string; heading?: string; body?: string }, i: number) => (
+                <div key={i} className="impact-cell">
+                  {cell.tag && <div className="tag">{cell.tag}</div>}
+                  {cell.heading && <h4>{cell.heading}</h4>}
+                  {cell.body && <p>{cell.body}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ─── Key facts ────────────────────────────────────────────── */}
+      {hasStats && (
         <section className="proj-facts">
           <div className="wrap">
             <div className="eyebrow">Key facts</div>
@@ -252,7 +200,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* ─── Team ─────────────────────────────────────────────────── */}
-      {project.teamMembers?.length > 0 && (
+      {hasTeam && (
         <section className="proj-related">
           <div className="wrap">
             <div className="eyebrow" style={{ marginBottom: '18px' }}>Team</div>
@@ -278,7 +226,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* ─── Related projects ─────────────────────────────────────── */}
-      {project.related?.length > 0 && (
+      {hasRelated && (
         <section className="proj-related">
           <div className="wrap">
             <div className="sec-head">
