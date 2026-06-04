@@ -15,7 +15,7 @@ export default function SiteFooter() {
             <p>Science-driven, medically grounded lifestyle. Built by surgeons. Driven by research.</p>
           </div>
           <div>
-            <h5>App</h5>
+            <h5>Pillars</h5>
             <ul>
               <li><Link href="/sleep">Sleep</Link></li>
               <li><Link href="/activity">Activity</Link></li>
@@ -24,21 +24,19 @@ export default function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h5>Research</h5>
+            <h5>Science</h5>
             <ul>
-              <li><Link href="/science">TARGet group</Link></li>
-              <li><Link href="/science#publications">Publications</Link></li>
+              <li><Link href="/about#target">TARGet group</Link></li>
+              <li><Link href="/about#publications">Publications</Link></li>
               <li><Link href="/projects">Projects</Link></li>
-              <li><Link href="/science#collaborate">Collaborate</Link></li>
+              <li><Link href="/about#collaborate">Collaborate</Link></li>
             </ul>
           </div>
           <div>
-            <h5>Company</h5>
+            <h5>Organisation</h5>
             <ul>
-              <li><Link href="/science#about">About</Link></li>
-              <li><Link href="/science#team">Team</Link></li>
-              <li><Link href="/team">Researchers</Link></li>
-              <li><Link href="/collaborators">Collaborators</Link></li>
+              <li><Link href="/about">About</Link></li>
+              <li><Link href="/team">Team</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>

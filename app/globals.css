@@ -157,6 +157,8 @@ nav.main .nav-item.open > .nav-trigger .caret { transform: rotate(180deg); opaci
 /* === Dropdowns === */
 nav.main .nav-item {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 nav.main .dropdown {
   position: absolute;

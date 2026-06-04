@@ -16,12 +16,11 @@ const PROJECT_LINKS = [
   { href: '/projects/aviation',             label: 'Aviation & Aortic',      tag: 'Clinical' },
 ]
 
-const RESOURCES_LINKS = [
-  { href: '/blog',              label: 'Blog',          tag: 'Insights & articles' },
-  { href: '/team',              label: 'Team',          tag: 'Founders & TARGet group' },
-  { href: '/collaborators',     label: 'Collaborators', tag: 'Partners & institutions' },
-  { href: '/science#about',     label: 'About us',      tag: 'Mission · vision · approach' },
-  { href: '/science#publications', label: 'Publications', tag: 'Peer-reviewed research' },
+const SCIENCE_LINKS = [
+  { href: '/about',               label: 'About',         tag: 'Mission · vision · approach' },
+  { href: '/about#publications',  label: 'Publications',  tag: 'Peer-reviewed research' },
+  { href: '/about#collaborate',   label: 'Collaborators', tag: 'Partners & institutions' },
+  { href: '/team',                label: 'Team',          tag: 'Founders & researchers' },
 ]
 
 const NAV_FLAT = [
@@ -29,7 +28,7 @@ const NAV_FLAT = [
   { href: '/activity',      key: 'activity',  label: 'Activity' },
   { href: '/mental-health', key: 'mental',    label: 'Mental Health' },
   { href: '/nutrition',     key: 'nutrition', label: 'Nutrition' },
-  { href: '/science',       key: 'science',   label: 'Science' },
+  { href: '/blog',          key: 'blog',      label: 'Blog' },
 ]
 
 function getActiveKey(pathname: string): string {
@@ -38,11 +37,12 @@ function getActiveKey(pathname: string): string {
   if (pathname.startsWith('/activity')) return 'activity'
   if (pathname.startsWith('/mental-health')) return 'mental'
   if (pathname.startsWith('/nutrition')) return 'nutrition'
-  if (pathname.startsWith('/science')) return 'science'
-  if (pathname.startsWith('/projects')) return 'projects'
   if (pathname.startsWith('/blog')) return 'blog'
-  if (pathname.startsWith('/team')) return 'team'
-  if (pathname.startsWith('/collaborators')) return 'collaborators'
+  if (pathname.startsWith('/about')) return 'science'
+  if (pathname.startsWith('/science')) return 'science'
+  if (pathname.startsWith('/team')) return 'science'
+  if (pathname.startsWith('/collaborators')) return 'science'
+  if (pathname.startsWith('/projects')) return 'projects'
   if (pathname.startsWith('/contact')) return 'contact'
   return ''
 }
@@ -53,9 +53,7 @@ export default function SiteHeader() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [projectsOpen, setProjectsOpen] = useState(activeKey === 'projects')
-  const [resourcesOpen, setResourcesOpen] = useState(['blog', 'team', 'collaborators'].includes(activeKey))
-
-  const isResources = ['blog', 'blog-article', 'team', 'collaborators'].includes(activeKey)
+  const [scienceOpen, setScienceOpen] = useState(activeKey === 'science')
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -130,28 +128,28 @@ export default function SiteHeader() {
             </div>
           </div>
 
-          {/* Resources dropdown */}
+          {/* Science dropdown */}
           <div
-            className={`nav-item has-dd${isResources ? ' active' : ''}${openDropdown === 'resources' ? ' open' : ''}`}
-            onMouseEnter={() => setOpenDropdown('resources')}
+            className={`nav-item has-dd${activeKey === 'science' ? ' active' : ''}${openDropdown === 'science' ? ' open' : ''}`}
+            onMouseEnter={() => setOpenDropdown('science')}
             onMouseLeave={() => setOpenDropdown(null)}
           >
             <button
               className="nav-trigger"
               type="button"
-              aria-expanded={openDropdown === 'resources'}
+              aria-expanded={openDropdown === 'science'}
               aria-haspopup="true"
               onClick={(e) => {
                 e.stopPropagation()
-                setOpenDropdown(openDropdown === 'resources' ? null : 'resources')
+                setOpenDropdown(openDropdown === 'science' ? null : 'science')
               }}
             >
-              Resources <span className="caret">▾</span>
+              Science <span className="caret">▾</span>
             </button>
-            <div className="dropdown app-dd" role="menu">
-              <div className="dd-heading">Explore TRAIN</div>
-              <div className="dd-grid pillars-grid">
-                {RESOURCES_LINKS.map(l => (
+            <div className="dropdown resources-dd" role="menu">
+              <div className="dd-heading">Research & organisation</div>
+              <div className="dd-grid resources-grid">
+                {SCIENCE_LINKS.map(l => (
                   <Link key={l.href} href={l.href} className="dd-item">
                     <span className="dd-label">{l.label}</span>
                     <span className="dd-tag">{l.tag}</span>
@@ -207,12 +205,12 @@ export default function SiteHeader() {
             </div>
           </details>
 
-          <details className="m-group" open={isResources || resourcesOpen}>
-            <summary onClick={() => setResourcesOpen(!resourcesOpen)}>
-              Resources <span className="caret">▾</span>
+          <details className="m-group" open={activeKey === 'science' || scienceOpen}>
+            <summary onClick={() => setScienceOpen(!scienceOpen)}>
+              Science <span className="caret">▾</span>
             </summary>
             <div className="m-links">
-              {RESOURCES_LINKS.map(l => (
+              {SCIENCE_LINKS.map(l => (
                 <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
               ))}
             </div>
@@ -223,8 +221,7 @@ export default function SiteHeader() {
           </Link>
 
           <div className="m-cta">
-            <a href="#login" className="btn btn-ghost">Log in</a>
-            <a href="#try" className="btn btn-primary">Try TRAIN free <span className="arrow">→</span></a>
+            <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
           </div>
         </div>
       </div>
