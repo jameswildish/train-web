@@ -85,7 +85,7 @@ export async function getProjectBySlug(slug: string) {
 
 export async function getSiteSettings() {
   if (!client) return null
-  return client.fetch(`*[_type == "siteSettings"][0]{ heroImage }`)
+  return client.fetch(`*[_type == "siteSettings"][0]{ heroImage, scienceHeroImage }`)
 }
 
 // ─── Publications ────────────────────────────────────────────────────────────

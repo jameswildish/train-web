@@ -12,6 +12,13 @@ export const siteSettings = defineType({
       type: 'image',
       options: { hotspot: true },
     }),
+    defineField({
+      name: 'scienceHeroImage',
+      title: 'Science page hero image',
+      description: 'Image shown beside the "The art of living healthy" heading.',
+      type: 'image',
+      options: { hotspot: true },
+    }),
   ],
   preview: {
     prepare: () => ({ title: 'Site Settings' }),
