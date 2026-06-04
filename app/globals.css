@@ -2823,6 +2823,12 @@ nav.main a.active::after {
   padding-top: 12px;
 }
 .pub-card .read .arrow { color: var(--teal); }
+.pub-card .pub-cover { margin-bottom: 4px; }
+.pub-card .pub-authors {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
 
 /* Responsive */
 @media (max-width: 1100px) {

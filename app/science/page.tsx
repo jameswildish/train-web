@@ -1,10 +1,50 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getFeaturedPublications } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
+
+export const revalidate = 0
 
 export const metadata = {
   title: 'Science — TRAIN',
 }
 
-export default function SciencePage() {
+type Publication = {
+  _id: string
+  title: string
+  authors?: string
+  journal?: string
+  year?: string
+  category?: string
+  coverImage?: unknown
+  abstract?: string
+  externalUrl?: string
+  downloadUrl?: string
+}
+
+const STATIC_PUBS = [
+  { _id: 's1', title: 'Mendelian Randomization Suggests a Causal Link Between Glycemic Traits and Thoracic Aortic Structures and Diseases.', category: 'Genomics' },
+  { _id: 's2', title: 'Establishing reference values for aortic dimensions in the general Indian population — implications for global standards.', category: 'Population' },
+  { _id: 's3', title: 'Beyond the tear: the enduring role of aortic pathology in the era of genomic medicine.', category: 'Review' },
+  { _id: 's4', title: 'APECx — Anaesthesia, Perfusion and Surgical Practices in Cardiac Surgery: a modular multiphase prospective international observational study.', category: 'Multi-centre' },
+  { _id: 's5', title: 'Diversity and Representation in Cardiovascular Research: Evidence Gaps, Emerging Models, and Policy Implications.', category: 'Equity' },
+  { _id: 's6', title: 'Aortic wall lamellar structure in phylogeny and in humans — insights from bicuspid and tricuspid aortic valve morphology.', category: 'Histopathology' },
+  { _id: 's7', title: 'Comparison of cardiovascular risk profiles of patients with type A aortic dissection and thoracic aortic aneurysm.', category: 'Risk factors' },
+  { _id: 's8', title: 'The TRAIN Health Awareness Clinical Trial — Baseline Findings and Cardiovascular Risk Management in Aortic Dissection Patients.', category: 'Clinical trial' },
+  { _id: 's9', title: 'From Survival to Recovery: Understanding the Life Impact of an Acute Aortic Dissection through Activity, Sleep, and Quality of Life.', category: 'Patient experience' },
+  { _id: 's10', title: 'Sex Differences in the Histopathology of Acute Type A Aortic Dissections.', category: 'Sex differences' },
+  { _id: 's11', title: 'Aortic root replacement for bicuspid aortic valve dysfunction does not impair survival rates.', category: 'Outcomes' },
+  { _id: 's12', title: 'Wall Shear Stress Directional Abnormalities in BAV Aortas — Toward a New Hemodynamic Predictor of Aortopathy?', category: 'Hemodynamics' },
+]
+
+export default async function SciencePage() {
+  let publications: Publication[] = []
+  try {
+    publications = await getFeaturedPublications()
+  } catch {
+    // Sanity not configured yet
+  }
+  const pubs: Publication[] = publications.length > 0 ? publications : STATIC_PUBS as Publication[]
   return (
     <>
       {/* ============ SCIENCE HERO ============ */}
@@ -152,66 +192,36 @@ export default function SciencePage() {
           </div>
 
           <div className="pubs-grid">
-            <a href="#" className="pub-card">
-              <span className="tag">Genomics</span>
-              <h4>Mendelian Randomization Suggests a Causal Link Between Glycemic Traits and Thoracic Aortic Structures and Diseases.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Population</span>
-              <h4>Establishing reference values for aortic dimensions in the general Indian population — implications for global standards.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Review</span>
-              <h4>Beyond the tear: the enduring role of aortic pathology in the era of genomic medicine.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Multi-centre</span>
-              <h4>APECx — Anaesthesia, Perfusion and Surgical Practices in Cardiac Surgery: a modular multiphase prospective international observational study.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Equity</span>
-              <h4>Diversity and Representation in Cardiovascular Research: Evidence Gaps, Emerging Models, and Policy Implications.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Histopathology</span>
-              <h4>Aortic wall lamellar structure in phylogeny and in humans — insights from bicuspid and tricuspid aortic valve morphology.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Risk factors</span>
-              <h4>Comparison of cardiovascular risk profiles of patients with type A aortic dissection and thoracic aortic aneurysm.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Clinical trial</span>
-              <h4>The TRAIN Health Awareness Clinical Trial — Baseline Findings and Cardiovascular Risk Management in Aortic Dissection Patients.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Patient experience</span>
-              <h4>From Survival to Recovery: Understanding the Life Impact of an Acute Aortic Dissection through Activity, Sleep, and Quality of Life.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Sex differences</span>
-              <h4>Sex Differences in the Histopathology of Acute Type A Aortic Dissections.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Outcomes</span>
-              <h4>Aortic root replacement for bicuspid aortic valve dysfunction does not impair survival rates.</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
-            <a href="#" className="pub-card">
-              <span className="tag">Hemodynamics</span>
-              <h4>Wall Shear Stress Directional Abnormalities in BAV Aortas — Toward a New Hemodynamic Predictor of Aortopathy?</h4>
-              <span className="read">Read the paper <span className="arrow">→</span></span>
-            </a>
+            {pubs.map(pub => {
+              const href = pub.externalUrl || pub.downloadUrl
+              const label = pub.downloadUrl && !pub.externalUrl ? 'Download' : 'Read the paper'
+              const card = (
+                <>
+                  {pub.coverImage && (
+                    <div className="pub-cover">
+                      <Image
+                        src={urlFor(pub.coverImage).width(120).height(160).url()}
+                        alt={pub.title}
+                        width={120}
+                        height={160}
+                        style={{ objectFit: 'cover', borderRadius: '4px' }}
+                      />
+                    </div>
+                  )}
+                  {pub.category && <span className="tag">{pub.category}</span>}
+                  <h4>{pub.title}</h4>
+                  {pub.authors && <span className="pub-authors">{pub.authors}{pub.year ? ` · ${pub.year}` : ''}</span>}
+                  {href && <span className="read">{label} <span className="arrow">→</span></span>}
+                </>
+              )
+              return href ? (
+                <a key={pub._id} href={href} target="_blank" rel="noopener noreferrer" className="pub-card">
+                  {card}
+                </a>
+              ) : (
+                <div key={pub._id} className="pub-card">{card}</div>
+              )
+            })}
           </div>
         </div>
       </section>

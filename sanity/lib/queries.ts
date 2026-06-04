@@ -81,6 +81,30 @@ export async function getProjectBySlug(slug: string) {
   `, { slug })
 }
 
+// ─── Publications ────────────────────────────────────────────────────────────
+
+export async function getAllPublications() {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "publication"] | order(order asc, year desc) {
+      _id, title, authors, journal, year, category, coverImage, abstract,
+      externalUrl,
+      "downloadUrl": downloadFile.asset->url
+    }
+  `)
+}
+
+export async function getFeaturedPublications() {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "publication" && featured == true] | order(order asc) {
+      _id, title, authors, journal, year, category, coverImage, abstract,
+      externalUrl,
+      "downloadUrl": downloadFile.asset->url
+    }
+  `)
+}
+
 // ─── Collaborators ───────────────────────────────────────────────────────────
 
 export async function getAllCollaborators() {
