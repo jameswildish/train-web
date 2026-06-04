@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getLatestPosts } from '@/sanity/lib/queries'
+import { getLatestPosts, getFeaturedProjects } from '@/sanity/lib/queries'
+import type { SanityImageSource } from '@sanity/image-url'
 import { urlFor } from '@/sanity/lib/image'
 
 export const revalidate = 0
@@ -26,8 +27,9 @@ function formatDate(iso: string) {
 
 export default async function HomePage() {
   let posts: Post[] = []
+  let featuredProjects: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: unknown }[] = []
   try {
-    posts = await getLatestPosts(5)
+    ;[posts, featuredProjects] = await Promise.all([getLatestPosts(5), getFeaturedProjects(6)])
   } catch {
     // Sanity not configured
   }
@@ -294,62 +296,85 @@ export default async function HomePage() {
           </div>
 
           <div className="projects-grid">
-            <Link href="/projects/ddm" className="project">
-              <div className="thumb anemone"></div>
-              <div className="body">
-                <span className="tag">Data infrastructure · 2026</span>
-                <h3>Data Donation Platform (DDM)</h3>
-                <p>Building inclusive, real-world health data from diverse populations — to make prevention and research more representative.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
-            <Link href="/projects/gen-taad" className="project">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(-15deg) brightness(.9)' }}></div>
-              <div className="body">
-                <span className="tag">Genomics · 2024</span>
-                <h3>GEN-TAAD</h3>
-                <p>Genetic and molecular mechanisms behind thoracic aortic disease. 600,000+ individuals studied, polygenic risk scoring under development.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
-            <Link href="/projects/sukh" className="project dark">
-              <div className="thumb">
-                <div className="placeholder-stripe"><span>SUKH Healing Garden</span></div>
-              </div>
-              <div className="body">
-                <span className="tag">Wellbeing · 2025</span>
-                <h3>SUKH Healing Garden</h3>
-                <p>Nature-inspired, multi-sensory environments designed to support recovery, wellbeing, and resilience in demanding settings.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
-            <Link href="/projects/after-the-storm" className="project">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(20deg) brightness(.85)' }}></div>
-              <div className="body">
-                <span className="tag">Patient experience · 2026</span>
-                <h3>After the Storm</h3>
-                <p>A research and artistic project translating life after aortic dissection into sound — making the invisible recovery experience shareable.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
-            <Link href="/projects/genie-ta" className="project">
-              <div className="thumb anemone" style={{ filter: 'saturate(.7) brightness(.95)' }}></div>
-              <div className="body">
-                <span className="tag">Genomics · 2025</span>
-                <h3>GENIE-TA</h3>
-                <p>Whole genome sequencing combined with epigenomic analysis to uncover hidden causes of aortic disease beyond standard testing.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
-            <Link href="/projects/trainletic" className="project">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(40deg)' }}></div>
-              <div className="body">
-                <span className="tag">Performance · Active</span>
-                <h3>TRAINLetic</h3>
-                <p>With the Koninklijke Nederlandse Cricket Bond — optimising athletic performance and long-term health in professional cricketers.</p>
-                <span className="more">Learn more <span className="arrow">→</span></span>
-              </div>
-            </Link>
+            {featuredProjects.length > 0 ? featuredProjects.map(p => (
+              <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
+                {p.mainImage ? (
+                  <Image
+                    className="thumb"
+                    src={urlFor(p.mainImage as SanityImageSource).width(600).height(320).url()}
+                    alt={p.title}
+                    width={600}
+                    height={320}
+                    style={{ objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div className="thumb anemone" />
+                )}
+                <div className="body">
+                  <span className="tag">{[p.tag, p.year].filter(Boolean).join(' · ')}</span>
+                  <h3>{p.title}</h3>
+                  {p.summary && <p>{p.summary}</p>}
+                  <span className="more">Learn more <span className="arrow">→</span></span>
+                </div>
+              </Link>
+            )) : (
+              <>
+                <Link href="/projects/ddm" className="project">
+                  <div className="thumb anemone"></div>
+                  <div className="body">
+                    <span className="tag">Data infrastructure · 2026</span>
+                    <h3>Data Donation Platform (DDM)</h3>
+                    <p>Building inclusive, real-world health data from diverse populations — to make prevention and research more representative.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+                <Link href="/projects/gen-taad" className="project">
+                  <div className="thumb anemone" style={{ filter: 'hue-rotate(-15deg) brightness(.9)' }}></div>
+                  <div className="body">
+                    <span className="tag">Genomics · 2024</span>
+                    <h3>GEN-TAAD</h3>
+                    <p>Genetic and molecular mechanisms behind thoracic aortic disease. 600,000+ individuals studied, polygenic risk scoring under development.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+                <Link href="/projects/sukh" className="project dark">
+                  <div className="thumb"><div className="placeholder-stripe"><span>SUKH Healing Garden</span></div></div>
+                  <div className="body">
+                    <span className="tag">Wellbeing · 2025</span>
+                    <h3>SUKH Healing Garden</h3>
+                    <p>Nature-inspired, multi-sensory environments designed to support recovery, wellbeing, and resilience in demanding settings.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+                <Link href="/projects/after-the-storm" className="project">
+                  <div className="thumb anemone" style={{ filter: 'hue-rotate(20deg) brightness(.85)' }}></div>
+                  <div className="body">
+                    <span className="tag">Patient experience · 2026</span>
+                    <h3>After the Storm</h3>
+                    <p>A research and artistic project translating life after aortic dissection into sound — making the invisible recovery experience shareable.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+                <Link href="/projects/genie-ta" className="project">
+                  <div className="thumb anemone" style={{ filter: 'saturate(.7) brightness(.95)' }}></div>
+                  <div className="body">
+                    <span className="tag">Genomics · 2025</span>
+                    <h3>GENIE-TA</h3>
+                    <p>Whole genome sequencing combined with epigenomic analysis to uncover hidden causes of aortic disease beyond standard testing.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+                <Link href="/projects/trainletic" className="project">
+                  <div className="thumb anemone" style={{ filter: 'hue-rotate(40deg)' }}></div>
+                  <div className="body">
+                    <span className="tag">Performance · Active</span>
+                    <h3>TRAINLetic</h3>
+                    <p>With the Koninklijke Nederlandse Cricket Bond — optimising athletic performance and long-term health in professional cricketers.</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>

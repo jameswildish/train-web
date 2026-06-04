@@ -62,6 +62,16 @@ export async function getAllProjects() {
   `)
 }
 
+export async function getFeaturedProjects(limit = 6) {
+  if (!client) return []
+  return client.fetch(
+    `*[_type == "project" && featured == true] | order(order asc) [0...$limit] {
+      _id, title, slug, tag, year, summary, mainImage
+    }`,
+    { limit: limit - 1 }
+  )
+}
+
 export async function getProjectBySlug(slug: string) {
   if (!client) return null
   return client.fetch(`
