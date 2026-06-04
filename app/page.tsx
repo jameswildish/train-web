@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getLatestPosts, getFeaturedProjects } from '@/sanity/lib/queries'
+import { getLatestPosts, getFeaturedProjects, getAllCollaborators } from '@/sanity/lib/queries'
 import type { SanityImageSource } from '@sanity/image-url'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -8,6 +8,13 @@ export const revalidate = 0
 
 export const metadata = {
   title: 'TRAIN — Science-driven, medically grounded lifestyle',
+}
+
+type Collaborator = {
+  _id: string
+  name: string
+  logo?: unknown
+  website?: string
 }
 
 type Post = {
@@ -41,11 +48,20 @@ function formatDate(iso: string) {
 export default async function HomePage() {
   let posts: Post[] = []
   let featuredProjects: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: unknown }[] = []
+  let collaborators: Collaborator[] = []
   try {
-    ;[posts, featuredProjects] = await Promise.all([getLatestPosts(5), getFeaturedProjects(6)])
+    ;[posts, featuredProjects, collaborators] = await Promise.all([
+      getLatestPosts(5),
+      getFeaturedProjects(6),
+      getAllCollaborators(),
+    ])
   } catch {
     // Sanity not configured
   }
+
+  const tickerItems: Collaborator[] = collaborators.length > 0
+    ? collaborators
+    : COLLABS.map((name, i) => ({ _id: String(i), name }))
 
   const [featured, ...rest] = posts
 
@@ -352,9 +368,19 @@ export default async function HomePage() {
         </div>
         <div className="collab-ticker">
           <div className="collab-ticker-inner">
-            {[...COLLABS, ...COLLABS].map((name, i) => (
-              <div key={i} className="collab-chip">
-                <span className="dot"></span>{name}
+            {[...tickerItems, ...tickerItems].map((c, i) => (
+              <div key={i} className={`collab-chip${c.logo ? ' chip-logo' : ''}`}>
+                {c.logo ? (
+                  <Image
+                    src={urlFor(c.logo as SanityImageSource).height(32).fit('max').auto('format').url()}
+                    alt={c.name}
+                    height={32}
+                    width={120}
+                    style={{ height: '32px', width: 'auto', maxWidth: '120px', objectFit: 'contain' }}
+                  />
+                ) : (
+                  <><span className="dot" />{c.name}</>
+                )}
               </div>
             ))}
           </div>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getFeaturedPublications } from '@/sanity/lib/queries'
+import { getFeaturedPublications, getAllCollaborators } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
 
@@ -9,6 +9,22 @@ export const revalidate = 0
 export const metadata = {
   title: 'About — TRAIN',
 }
+
+type Collaborator = {
+  _id: string
+  name: string
+  logo?: unknown
+  website?: string
+  type?: string
+  location?: string
+}
+
+const STATIC_COLLABS = [
+  'Amsterdam UMC', 'Leiden University Medical Center', 'Erasmus MC',
+  'AIIMS New Delhi', 'KEM Hospital Mumbai', 'KNCB',
+  'European Society of Cardiology', 'American Heart Association',
+  'Oxford Cardiovascular', 'Karolinska Institutet', 'Mayo Clinic', 'Cleveland Clinic',
+]
 
 type Publication = {
   _id: string
@@ -40,8 +56,12 @@ const STATIC_PUBS = [
 
 export default async function AboutPage() {
   let publications: Publication[] = []
+  let collaborators: Collaborator[] = []
   try {
-    publications = await getFeaturedPublications()
+    ;[publications, collaborators] = await Promise.all([
+      getFeaturedPublications(),
+      getAllCollaborators(),
+    ])
   } catch {
     // Sanity not configured yet
   }
@@ -181,20 +201,47 @@ export default async function AboutPage() {
 
         <div className="wrap collab" id="collaborate">
           <div className="label">Collaborators · Academic institutions &amp; public partners</div>
-          <div className="collab-row">
-            <div className="collab-chip"><span className="dot"></span>Amsterdam UMC</div>
-            <div className="collab-chip"><span className="dot"></span>Leiden University Medical Center</div>
-            <div className="collab-chip"><span className="dot"></span>Erasmus MC</div>
-            <div className="collab-chip"><span className="dot"></span>AIIMS New Delhi</div>
-            <div className="collab-chip"><span className="dot"></span>KEM Hospital Mumbai</div>
-            <div className="collab-chip"><span className="dot"></span>KNCB</div>
-            <div className="collab-chip"><span className="dot"></span>European Society of Cardiology</div>
-            <div className="collab-chip"><span className="dot"></span>American Heart Association</div>
-            <div className="collab-chip"><span className="dot"></span>Oxford Cardiovascular</div>
-            <div className="collab-chip"><span className="dot"></span>Karolinska Institutet</div>
-            <div className="collab-chip"><span className="dot"></span>Mayo Clinic</div>
-            <div className="collab-chip"><span className="dot"></span>Cleveland Clinic</div>
-          </div>
+          {collaborators.length > 0 ? (
+            <div className="collab-logo-grid">
+              {collaborators.map(c => (
+                c.website ? (
+                  <a key={c._id} href={c.website} target="_blank" rel="noopener noreferrer" className="collab-logo-item">
+                    {c.logo ? (
+                      <Image
+                        src={urlFor(c.logo as SanityImageSource).width(200).height(80).fit('max').auto('format').url()}
+                        alt={c.name}
+                        width={200}
+                        height={80}
+                        style={{ objectFit: 'contain', width: '100%', height: '100%', maxHeight: '64px' }}
+                      />
+                    ) : (
+                      <span>{c.name}</span>
+                    )}
+                  </a>
+                ) : (
+                  <div key={c._id} className="collab-logo-item">
+                    {c.logo ? (
+                      <Image
+                        src={urlFor(c.logo as SanityImageSource).width(200).height(80).fit('max').auto('format').url()}
+                        alt={c.name}
+                        width={200}
+                        height={80}
+                        style={{ objectFit: 'contain', width: '100%', height: '100%', maxHeight: '64px' }}
+                      />
+                    ) : (
+                      <span>{c.name}</span>
+                    )}
+                  </div>
+                )
+              ))}
+            </div>
+          ) : (
+            <div className="collab-row">
+              {STATIC_COLLABS.map(name => (
+                <div key={name} className="collab-chip"><span className="dot"></span>{name}</div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

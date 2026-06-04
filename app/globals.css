@@ -2975,6 +2975,53 @@ nav.main a.active::after {
   .pubs-band-inner { flex-direction: column; gap: 32px; }
 }
 
+/* ── Collaborator logo grid (about page) ───────────── */
+.collab-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+.collab-logo-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+a.collab-logo-item:hover {
+  border-color: var(--line-2);
+  box-shadow: 0 4px 16px rgba(20,24,28,0.07);
+}
+.collab-logo-item span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Logo variant of ticker chip */
+.collab-chip.chip-logo {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 10px 20px;
+  min-width: 120px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .collab-logo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ── Feature card CTAs ─────────────────────────────── */
 .feature-cta {
   display: inline-flex;

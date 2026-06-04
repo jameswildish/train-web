@@ -121,7 +121,9 @@ export async function getAllCollaborators() {
   if (!client) return []
   return client.fetch(`
     *[_type == "collaborator"] | order(order asc) {
-      _id, name, type, location, description, logo, website
+      _id, name, type, location, description,
+      "logo": logo { ..., asset-> },
+      website
     }
   `)
 }
