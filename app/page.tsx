@@ -21,6 +21,19 @@ type Post = {
   mainImage?: Parameters<typeof urlFor>[0]
 }
 
+const COLLABS = [
+  'Amsterdam UMC', 'Leiden University Medical Center', 'Erasmus MC',
+  'AIIMS New Delhi', 'KEM Hospital Mumbai', 'KNCB',
+  'European Society of Cardiology', 'American Heart Association',
+  'Oxford Cardiovascular', 'Karolinska Institutet', 'Mayo Clinic',
+  'Cleveland Clinic', 'Johns Hopkins', 'Yale School of Medicine',
+  'University of Cambridge', 'Cardiothoracic Surgery Network',
+  'World Heart Federation', 'Society of Thoracic Surgeons',
+  'Public Health NL', 'Cricket Netherlands',
+  'Sukh Community Foundation', 'Centre for Diversity in Health',
+  'Patient Advisory Network', 'European Association for Cardio-Thoracic Surgery',
+]
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
@@ -52,64 +65,16 @@ export default async function HomePage() {
               />
               <div className="bg-overlay" />
             </div>
-            <span className="corner-tag"><span className="dot"></span> Built by surgeons · Driven by science</span>
 
             <div className="panel">
-              <div className="eyebrow">Welcome to TRAIN Health</div>
-              <h1>
-                The science-driven, medically grounded <span className="quiet">personalised lifestyle app for real life.</span>
+              <h1 style={{ fontWeight: 700, color: '#fff' }}>
+                The science-driven, medically grounded personalised lifestyle app for real life.
               </h1>
               <p className="lead">
                 TRAIN translates medical and scientific knowledge into practical, daily habits — built by surgeons, grounded in research, designed for how you actually live.
               </p>
               <div className="actions">
-                <a href="#try" className="btn-primary btn">Start your free trial <span className="arrow">→</span></a>
-                <a href="#team" className="btn-outline">Meet the team</a>
-              </div>
-              <div className="cert-row">
-                <span className="label">Backed by</span>
-                <span className="pill">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg>
-                  20+ years of research
-                </span>
-                <span className="pill">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg>
-                  Peer-reviewed
-                </span>
-                <span className="pill">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-                  Privacy-by-design
-                </span>
-              </div>
-            </div>
-
-            <div className="stage">
-              <a href="#insights" className="featured-article">
-                <span className="thumb anemone"></span>
-                <span className="body">
-                  <span className="row">
-                    <span className="pill">Latest · Sleep</span>
-                    <span className="date">May 12, 2026</span>
-                  </span>
-                  <span className="title">Why sleep is your best medicine — the science of recovery.</span>
-                  <span className="read">Read article <span className="arrow">→</span></span>
-                </span>
-              </a>
-
-              <div className="floating-card">
-                <span className="title">The case for prevention</span>
-                <div className="big-num">85<span className="pct">%</span></div>
-                <p className="desc">of chronic lifestyle diseases are preventable through evidence-based daily habits.</p>
-                <div className="micro">
-                  <div className="m">
-                    <div className="v">75%</div>
-                    <div className="l">Of global deaths from chronic disease</div>
-                  </div>
-                  <div className="m">
-                    <div className="v">1 in 7</div>
-                    <div className="l">Experience mental-health conditions</div>
-                  </div>
-                </div>
+                <a href="/contact" className="btn-primary btn">TRAIN App — Coming Soon</a>
               </div>
             </div>
           </div>
@@ -118,53 +83,34 @@ export default async function HomePage() {
 
       {/* ============ STATS ============ */}
       <section className="stats">
-        <div className="wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'end', padding: '0 0 32px' }}>
-            <div>
-              <div className="eyebrow" style={{ marginBottom: '16px' }}>Why this matters</div>
-              <h2 style={{ maxWidth: '760px' }}>We&apos;re here to help you live a healthier life.</h2>
-            </div>
-            <p className="muted" style={{ maxWidth: '320px', fontSize: '14px' }}>
-              TRAIN supports you in building habits that improve your health, your energy, and your overall wellbeing.
-            </p>
-          </div>
-        </div>
         <div className="wrap" style={{ paddingLeft: 0, paddingRight: 0 }}>
           <div className="stats-grid">
             <div className="stat">
-              <div className="mono" style={{ color: 'var(--teal)' }}>01 — Chronic</div>
               <div className="num">75<span style={{ fontSize: '36px', color: 'var(--muted)' }}>%</span></div>
               <p>of deaths worldwide are caused by chronic lifestyle diseases.</p>
             </div>
             <div className="stat">
-              <div className="mono" style={{ color: 'var(--teal)' }}>02 — Cardiovascular</div>
               <div className="num">35<span style={{ fontSize: '36px', color: 'var(--muted)' }}>%</span></div>
               <p>of deaths worldwide are caused by cardiovascular disease.</p>
             </div>
             <div className="stat">
-              <div className="mono" style={{ color: 'var(--teal)' }}>03 — Inactivity</div>
               <div className="num">33<span style={{ fontSize: '36px', color: 'var(--muted)' }}>%</span></div>
               <p>of people worldwide do not get enough physical activity.</p>
             </div>
             <div className="stat">
-              <div className="mono" style={{ color: 'var(--teal)' }}>04 — Mental</div>
               <div className="num">1<span className="in">in</span>7</div>
               <p>people worldwide experience mental-health conditions.</p>
             </div>
             <div className="stat">
-              <div className="mono" style={{ color: 'var(--teal)' }}>05 — Musculoskeletal</div>
               <div className="num">1<span className="in">in</span>8</div>
               <p>people are affected by joint, muscle and tendon disorders.</p>
             </div>
           </div>
         </div>
         <div className="wrap">
-          <div className="preventable">
-            <div className="big">
-              Medical science shows up to <em>85%</em> of these diseases are preventable through lifestyle changes.
-            </div>
-            <div className="pct">85%</div>
-          </div>
+          <p className="preventable-text">
+            Medical science shows up to <em>85%</em> of these diseases are preventable through lifestyle changes.
+          </p>
         </div>
       </section>
 
@@ -173,43 +119,50 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="head">
             <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>The four pillars</div>
               <h2>The foundation of long-term health.</h2>
             </div>
             <p>Every habit in TRAIN connects back to one of four scientifically grounded pillars — the systems that, together, determine how you feel, function, and age.</p>
           </div>
           <div className="pillar-grid">
             <Link href="/sleep" className="pillar">
-              <div className="num">01 / Sleep</div>
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                </svg>
               </div>
               <h3>Sleep</h3>
               <p>Recovery, repair, and resilience. Quality sleep regulates hormones, restores the immune system, and protects long-term cardiovascular health.</p>
               <div className="arrow">Learn more →</div>
             </Link>
             <Link href="/activity" className="pillar">
-              <div className="num">02 / Movement</div>
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 18l4-6 4 4 4-8 4 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
               <h3>Movement</h3>
               <p>Strength, energy, and cardiovascular health. Physical activity regulates metabolism, muscle, and brain — the strongest predictor of healthy ageing.</p>
               <div className="arrow">Learn more →</div>
             </Link>
             <Link href="/mental-health" className="pillar">
-              <div className="num">03 / Mental Health</div>
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="6" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M6 18c0-5 2.5-8 6-8s6 3 6 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M3 15c1-2.5 3-3.5 4.5-3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                  <path d="M21 15c-1-2.5-3-3.5-4.5-3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                </svg>
               </div>
               <h3>Mental Health</h3>
-              <p>Focus, stress regulation, and emotional balance. Mindfulness shifts the nervous system from &quot;fight-or-flight&quot; to rest-and-recover.</p>
+              <p>Focus, stress regulation, and emotional balance. Mindfulness shifts the nervous system from fight-or-flight to rest-and-recover.</p>
               <div className="arrow">Learn more →</div>
             </Link>
             <Link href="/nutrition" className="pillar">
-              <div className="num">04 / Nutrition</div>
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3c4 0 7 3 7 7 0 6-7 11-7 11S5 16 5 10c0-4 3-7 7-7Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3c4 0 7 3 7 7 0 6-7 11-7 11S5 16 5 10c0-4 3-7 7-7Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M15 3c0-1.5-1.5-2.5-3-2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                </svg>
               </div>
               <h3>Nutrition</h3>
               <p>Fuelling body and brain. Heart-healthy dietary patterns lower blood pressure, improve cholesterol, and reduce systemic inflammation.</p>
@@ -232,22 +185,25 @@ export default async function HomePage() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
               <div className="tag">
-                <strong>Prof. Dr. Nimrat Grewal</strong> · cardiothoracic surgeon<br />
-                <strong>Dr. Simran Grewal</strong> · orthopaedic trauma surgeon
+                <strong>Prof. Dr. Nimrat Grewal</strong> · cardiothoracic surgeon (left)<br />
+                <strong>Dr. Simran Grewal</strong> · orthopaedic trauma surgeon (right)
               </div>
             </div>
             <div>
               <div className="eyebrow" style={{ marginBottom: '18px' }}>Built by surgeons, driven by science</div>
               <h2>The art of living healthy, guided by science and medicine.</h2>
-              <div className="quote">
+              <p style={{ marginTop: '20px', maxWidth: '480px', color: 'var(--ink-2)', lineHeight: 1.6 }}>
+                TRAIN was founded by two surgeon sisters combining clinical care, scientific research, and a mission to improve long-term health.
+              </p>
+              <div className="quote" style={{ marginTop: '28px' }}>
                 As doctors, we see preventable health risks every day. TRAIN helps you understand your body, improve your daily habits, and stay healthier — using science and data.
               </div>
               <p className="by">
                 — <strong>Prof. Dr. Nimrat Grewal</strong> &amp; <strong>Dr. Simran Grewal</strong>, founders.
               </p>
               <div style={{ display: 'flex', gap: '12px', marginTop: '32px', flexWrap: 'wrap' }}>
-                <Link href="/projects" className="btn btn-primary">Explore our work <span className="arrow">→</span></Link>
-                <Link href="/about" className="btn btn-ghost">Read the science</Link>
+                <Link href="/projects" className="btn btn-primary">Explore our research <span className="arrow">→</span></Link>
+                <Link href="/about" className="btn btn-ghost">About TRAIN</Link>
               </div>
             </div>
           </div>
@@ -260,24 +216,34 @@ export default async function HomePage() {
           <div className="mission-grid">
             <div className="mission-card">
               <div className="ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" strokeWidth="1.6"/></svg>
+                {/* Microscope / flask - research */}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 3h6M10 9l-4 9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l-4-9"/>
+                  <path d="M10 3v6M14 3v6"/>
+                </svg>
               </div>
               <h4>20+ years of research</h4>
               <p>Two decades of clinical experience and translational research in cardiovascular and preventive health.</p>
             </div>
             <div className="mission-card">
               <div className="ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.4"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18" stroke="currentColor" strokeWidth="1.4"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
+                </svg>
               </div>
               <h4>Worldwide collaboration</h4>
               <p>Partnerships with leading medical and research institutions across academia, hospitals, and industry.</p>
             </div>
             <div className="mission-card">
               <div className="ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.4"/><path d="M3 9h18M8 14h4" stroke="currentColor" strokeWidth="1.4"/></svg>
+                {/* Heart */}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
               </div>
-              <h4>Data Donation Platform</h4>
-              <p>An inclusive, real-world health data infrastructure designed for diverse, longitudinal research.</p>
+              <h4>Built for your health</h4>
+              <p>TRAIN helps you build the lifestyle habits that protect your health — grounded in evidence, designed for real life.</p>
             </div>
           </div>
         </div>
@@ -379,49 +345,37 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ============ TARGet / Scientific Output ============ */}
-      <section className="target" id="science">
-        <div className="wrap">
-          <div className="target-grid">
-            <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>TARGet Research Group</div>
-              <h2>Advancing knowledge in cardiovascular disease and preventive health.</h2>
-              <p>An internationally active academic research initiative led by clinician-scientists — bringing together surgeons, physicians, data scientists and researchers to translate science into clinical and societal impact.</p>
-              <div style={{ marginTop: '28px' }}>
-                <Link href="/about#publications" className="btn btn-primary">View all publications <span className="arrow">→</span></Link>
+      {/* ============ SCROLLING COLLABORATORS ============ */}
+      <section className="collab-ticker-section">
+        <div className="wrap" style={{ marginBottom: '24px' }}>
+          <div className="eyebrow" style={{ textAlign: 'center' }}>Global partners</div>
+        </div>
+        <div className="collab-ticker">
+          <div className="collab-ticker-inner">
+            {[...COLLABS, ...COLLABS].map((name, i) => (
+              <div key={i} className="collab-chip">
+                <span className="dot"></span>{name}
               </div>
-            </div>
-            <div className="nums">
-              <div className="n">
-                <div className="v">20+</div>
-                <div className="l"><strong>PhDs</strong><br />driving translational and clinical research</div>
-              </div>
-              <div className="n">
-                <div className="v">5+</div>
-                <div className="l"><strong>Postdocs</strong><br />advancing genetic, clinical, and data-driven insights</div>
-              </div>
-              <div className="n">
-                <div className="v">100+</div>
-                <div className="l"><strong>Publications</strong><br />contributing to international research and innovation</div>
-              </div>
-              <div className="n">
-                <div className="v">50+</div>
-                <div className="l"><strong>Collaborations</strong><br />with leading academic and clinical institutions worldwide</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div className="wrap collab">
-          <div className="label">Collaborators · Academic institutions &amp; public partners</div>
-          <div className="collab-row">
-            <div className="collab-chip"><span className="dot"></span>Amsterdam UMC</div>
-            <div className="collab-chip"><span className="dot"></span>Leiden University Medical Center</div>
-            <div className="collab-chip"><span className="dot"></span>Erasmus MC</div>
-            <div className="collab-chip"><span className="dot"></span>AIIMS New Delhi</div>
-            <div className="collab-chip"><span className="dot"></span>KEM Hospital Mumbai</div>
-            <div className="collab-chip"><span className="dot"></span>KNCB</div>
-            <div className="collab-chip"><span className="dot"></span>European Society of Cardiology</div>
-            <div className="collab-chip"><span className="dot"></span>American Heart Association</div>
+      </section>
+
+      {/* ============ PUBLICATIONS ============ */}
+      <section className="pubs-band">
+        <div className="wrap">
+          <div className="pubs-band-inner">
+            <div className="stat-block">
+              <div className="stat-num">100+</div>
+              <div className="stat-sub">Publications</div>
+            </div>
+            <div className="text-block">
+              <h2>Peer-reviewed research in cardiovascular and preventive health.</h2>
+              <p>From genomics and aortic disease to lifestyle medicine and patient experience — published across leading international journals.</p>
+              <Link href="/about#publications" className="btn btn-primary" style={{ display: 'inline-flex', marginTop: '8px' }}>
+                View publications <span className="arrow" style={{ marginLeft: '6px' }}>→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -491,8 +445,8 @@ export default async function HomePage() {
             <div className="right">
               <p>Join thousands of people building lifestyle habits that protect their long-term health. Free to start, science to back it up.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <a href="#" className="btn btn-primary">Try TRAIN free <span className="arrow">→</span></a>
-                <a href="#" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Talk to the team</a>
+                <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+                <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Learn about TRAIN</Link>
               </div>
             </div>
           </div>
