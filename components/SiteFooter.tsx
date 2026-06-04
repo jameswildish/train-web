@@ -15,6 +15,15 @@ export default function SiteFooter() {
             <p>Science-driven, medically grounded lifestyle. Built by surgeons. Driven by research.</p>
           </div>
           <div>
+            <h5>Pillars</h5>
+            <ul>
+              <li><Link href="/sleep">Sleep</Link></li>
+              <li><Link href="/activity">Activity</Link></li>
+              <li><Link href="/mental-health">Mental Health</Link></li>
+              <li><Link href="/nutrition">Nutrition</Link></li>
+            </ul>
+          </div>
+          <div>
             <h5>Projects</h5>
             <ul>
               <li><Link href="/projects/ddm">Data Donation Platform</Link></li>
@@ -38,15 +47,8 @@ export default function SiteFooter() {
               <li><Link href="/team">Team</Link></li>
               <li><Link href="/blog">Blog</Link></li>
             </ul>
-          </div>
-          <div>
-            <h5>Contact</h5>
-            <ul>
-              <li><Link href="/contact">Get in touch</Link></li>
-              <li><Link href="/sleep">Sleep</Link></li>
-              <li><Link href="/activity">Activity</Link></li>
-              <li><Link href="/mental-health">Mental Health</Link></li>
-              <li><Link href="/nutrition">Nutrition</Link></li>
+            <ul style={{ marginTop: '28px' }}>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
           <div>
