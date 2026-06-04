@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getFeaturedPublications, getSiteSettings } from '@/sanity/lib/queries'
+import { getFeaturedPublications } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
 
@@ -40,9 +40,8 @@ const STATIC_PUBS = [
 
 export default async function SciencePage() {
   let publications: Publication[] = []
-  let settings: { scienceHeroImage?: SanityImageSource } | null = null
   try {
-    ;[publications, settings] = await Promise.all([getFeaturedPublications(), getSiteSettings()])
+    publications = await getFeaturedPublications()
   } catch {
     // Sanity not configured yet
   }
@@ -57,24 +56,22 @@ export default async function SciencePage() {
             <span className="sep">/</span>
             <span className="current">Science</span>
           </div>
-          <div className={settings?.scienceHeroImage ? 'science-hero-inner' : ''}>
+          <div className="science-hero-inner">
             <div>
               <div style={{ margin: '40px 0 24px' }} className="eyebrow">About · Research · Publications</div>
               <h1>The art of living healthy — guided by science and medicine.</h1>
               <p className="lead">TRAIN is built on years of academic research and clinical experience. Our founders lead the TARGet research group — an international initiative advancing cardiovascular and preventive health through translational science.</p>
             </div>
-            {settings?.scienceHeroImage && (
-              <div className="science-hero-image">
-                <Image
-                  src={urlFor(settings.scienceHeroImage).width(900).height(680).url()}
-                  alt="TRAIN research team"
-                  width={900}
-                  height={680}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  priority
-                />
-              </div>
-            )}
+            <div className="science-hero-image">
+              <Image
+                src="/images/science-hero.jpg"
+                alt="TRAIN research team"
+                width={900}
+                height={680}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>

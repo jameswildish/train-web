@@ -81,13 +81,6 @@ export async function getProjectBySlug(slug: string) {
   `, { slug })
 }
 
-// ─── Site Settings ───────────────────────────────────────────────────────────
-
-export async function getSiteSettings() {
-  if (!client) return null
-  return client.fetch(`*[_type == "siteSettings"][0]{ heroImage, scienceHeroImage }`)
-}
-
 // ─── Publications ────────────────────────────────────────────────────────────
 
 export async function getAllPublications() {

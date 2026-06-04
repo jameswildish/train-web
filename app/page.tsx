@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getLatestPosts, getSiteSettings } from '@/sanity/lib/queries'
-import type { SanityImageSource } from '@sanity/image-url'
+import { getLatestPosts } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 
 export const revalidate = 0
@@ -27,9 +26,8 @@ function formatDate(iso: string) {
 
 export default async function HomePage() {
   let posts: Post[] = []
-  let settings: { heroImage?: unknown } | null = null
   try {
-    ;[posts, settings] = await Promise.all([getLatestPosts(5), getSiteSettings()])
+    posts = await getLatestPosts(5)
   } catch {
     // Sanity not configured
   }
@@ -42,20 +40,16 @@ export default async function HomePage() {
       <section className="hero">
         <div className="wrap">
           <div className="hero-card">
-            {settings?.heroImage ? (
-              <div className="bg">
-                <Image
-                  src={urlFor(settings.heroImage as SanityImageSource).width(1600).height(700).url()}
-                  alt=""
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                  priority
-                />
-                <div className="bg-overlay" />
-              </div>
-            ) : (
-              <div className="bg anemone" />
-            )}
+            <div className="bg">
+              <Image
+                src="/images/hero-bg.jpg"
+                alt=""
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                priority
+              />
+              <div className="bg-overlay" />
+            </div>
             <span className="corner-tag"><span className="dot"></span> Built by surgeons · Driven by science</span>
 
             <div className="panel">
