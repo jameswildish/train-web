@@ -247,7 +247,7 @@ export default async function HomePage() {
               </p>
               <div style={{ display: 'flex', gap: '12px', marginTop: '32px', flexWrap: 'wrap' }}>
                 <Link href="/projects" className="btn btn-primary">Explore our work <span className="arrow">→</span></Link>
-                <Link href="/science" className="btn btn-ghost">Read the science</Link>
+                <Link href="/about" className="btn btn-ghost">Read the science</Link>
               </div>
             </div>
           </div>
@@ -288,7 +288,7 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>Our work</div>
+              <div className="eyebrow" style={{ marginBottom: '18px' }}>Projects</div>
               <h2>From research to real-world impact.</h2>
             </div>
             <p>TRAIN builds on years of academic research and clinical experience. Its founders lead the TARGet research group — translating science into prevention, products, and policy.</p>
@@ -388,7 +388,7 @@ export default async function HomePage() {
               <h2>Advancing knowledge in cardiovascular disease and preventive health.</h2>
               <p>An internationally active academic research initiative led by clinician-scientists — bringing together surgeons, physicians, data scientists and researchers to translate science into clinical and societal impact.</p>
               <div style={{ marginTop: '28px' }}>
-                <Link href="/science#publications" className="btn btn-primary">View all publications <span className="arrow">→</span></Link>
+                <Link href="/about#publications" className="btn btn-primary">View all publications <span className="arrow">→</span></Link>
               </div>
             </div>
             <div className="nums">
