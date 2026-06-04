@@ -1,40 +1,44 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = { title: 'Nutrition — TRAIN' }
 
 export default function NutritionPage() {
   return (
     <>
-      <section className="pillar-hero" data-screen-label="01 Nutrition Hero">
+      <section className="pillar-hero pillar-hero-photo" data-screen-label="01 Nutrition Hero">
         <div className="wrap">
-          <div className="crumbs">
-            <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="current">Nutrition</span>
-          </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Pillar 04 — Nutrition</div>
-          <div className="grid">
-            <h1>
-              Balanced nutrition <span className="quiet">fuels the body and brain,</span> supporting long-term health and reducing the risk of cardiovascular and metabolic disease.
-            </h1>
-            <div>
+          <div className="pillar-hero-photo-inner">
+            <div className="pillar-hero-photo-text">
+              <div className="crumbs">
+                <Link href="/">Home</Link>
+                <span className="sep">/</span>
+                <span className="current">Nutrition</span>
+              </div>
+              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 04 — Nutrition</div>
+              <h1>
+                Balanced nutrition <span className="quiet">fuels the body and brain,</span> supporting long-term health.
+              </h1>
               <p className="lead">Patterns over perfection. Built around dietary patterns shown to lower blood pressure, improve cholesterol, and reduce systemic inflammation — not fad diets.</p>
               <div className="hero-actions">
-                <a href="#try" className="btn btn-primary">Start your health journey free <span className="arrow">→</span></a>
+                <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
                 <a href="#science" className="btn btn-ghost">Read the science</a>
               </div>
-            </div>
-          </div>
-          <div className="media">
-            <div className="frame">
-              <div className="placeholder-stripe"><span>Photo placeholder</span></div>
-            </div>
-            <div className="frame anemone" style={{ filter: 'hue-rotate(80deg) brightness(.85)' }}>
-              <div className="badges">
+              <div className="pillar-badges">
                 <span className="badge"><span className="dot"></span> Pattern-based</span>
                 <span className="badge"><span className="dot"></span> AHA-aligned</span>
                 <span className="badge"><span className="dot"></span> Mediterranean</span>
               </div>
+            </div>
+            <div className="pillar-hero-photo-img">
+              <Image
+                src="/images/nutrition-hero.jpg"
+                alt="Nutrition — whole foods"
+                width={700}
+                height={560}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
             </div>
           </div>
         </div>

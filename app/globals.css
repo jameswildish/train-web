@@ -2032,6 +2032,35 @@ nav.main a.active::after {
   padding: 56px 0 80px;
   position: relative;
 }
+.pillar-hero.pillar-hero-photo { padding: 40px 0 0; }
+.pillar-hero-photo-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  margin-top: 24px;
+}
+.pillar-hero-photo-text { padding-bottom: 56px; }
+.pillar-hero-photo-text h1 {
+  font-size: clamp(36px, 4.2vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  margin-bottom: 20px;
+}
+.pillar-hero-photo-text h1 .quiet { color: var(--muted); font-style: italic; font-weight: 400; }
+.pillar-hero-photo-img {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+  align-self: stretch;
+}
+.pillar-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
 .pillar-hero .grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
