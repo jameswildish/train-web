@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { getLatestPosts } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 
+export const revalidate = 60
+
 export const metadata = {
   title: 'TRAIN — Science-driven, medically grounded lifestyle',
 }

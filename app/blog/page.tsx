@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { getAllPosts } from '@/sanity/lib/queries'
 import BlogContent from './BlogContent'
 
+export const revalidate = 60
+
 export const metadata = { title: 'Blog — TRAIN' }
 
 export default async function BlogPage() {
