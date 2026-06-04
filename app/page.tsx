@@ -222,9 +222,13 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="founders-grid">
             <div className="founders-photo">
-              <div className="placeholder-stripe">
-                <span>Founders portrait — Prof. Dr. Nimrat Grewal &amp; Dr. Simran Grewal</span>
-              </div>
+              <Image
+                src="/images/founders.jpg"
+                alt="Prof. Dr. Nimrat Grewal & Dr. Simran Grewal"
+                width={600}
+                height={700}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+              />
               <div className="tag">
                 <strong>Prof. Dr. Nimrat Grewal</strong> · cardiothoracic surgeon<br />
                 <strong>Dr. Simran Grewal</strong> · orthopaedic trauma surgeon
