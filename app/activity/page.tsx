@@ -75,7 +75,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Why move</div>
             <div>
               <h3>Why do we need physical activity?</h3>
               <p>During movement, the body activates multiple systems simultaneously: musculoskeletal adaptation, cardiovascular efficiency, metabolic regulation, and neurochemical balance.</p>
@@ -93,7 +92,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Longevity</div>
             <div>
               <h3>What is the role of movement in long-term health and longevity?</h3>
               <p>Muscle tissue is a key predictor of healthy ageing. Muscle is not only for strength — it functions as a metabolic and endocrine organ that regulates glucose uptake, supports insulin sensitivity, and produces myokines that influence inflammation and immune function.</p>
@@ -102,7 +100,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Brain</div>
             <div>
               <h3>How does physical activity affect the brain?</h3>
               <p>Exercise has direct effects on brain structure and function. Physical activity increases cerebral blood flow, the release of <strong>brain-derived neurotrophic factor (BDNF)</strong> which supports neuroplasticity, and dopamine, serotonin, and norepinephrine activity.</p>
@@ -111,7 +108,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">The body</div>
             <div>
               <h3>What happens in the body during physical activity?</h3>
               <ul className="steps">
@@ -124,7 +120,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Dose</div>
             <div>
               <h3>How much movement do we actually need?</h3>
               <p>Current guidelines from global health organisations suggest at least <strong>150 minutes of moderate activity per week</strong>, or 75 minutes of vigorous activity, plus strength training twice per week.</p>
@@ -133,7 +128,6 @@ export default function ActivityPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Strength</div>
             <div>
               <h3>Why is strength training especially important for ageing?</h3>
               <p>From a longevity perspective, resistance training is critical. After approximately age 30, muscle mass naturally declines without intervention. Strength training helps maintain muscle mass and strength, preserve bone density, improve insulin sensitivity, and reduce the risk of falls and frailty in later life.</p>

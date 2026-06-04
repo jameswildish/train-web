@@ -59,7 +59,6 @@ export default function SleepPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Function</div>
             <div>
               <h3>Why do we actually need sleep?</h3>
               <p>Sleep is not just rest — it's essential for your physical and mental health. While you sleep, your brain processes information and clears waste products. Your body repairs cells, strengthens your immune system, and regulates important hormones like cortisol (stress), insulin (blood sugar), and growth hormone.</p>
@@ -78,7 +77,6 @@ export default function SleepPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Rhythm</div>
             <div>
               <h3>What is the circadian rhythm?</h3>
               <p>Your body's natural internal clock that runs on an approximately 24-hour cycle. It helps regulate sleep and wake timing, body temperature, hormone release (such as melatonin and cortisol), energy levels and alertness, and metabolism and digestion.</p>
@@ -88,7 +86,6 @@ export default function SleepPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Stages</div>
             <div>
               <h3>What happens in my body while I sleep?</h3>
               <p>Sleep consists of four stages, each with unique patterns of brain activity, eye movements, and hormonal changes.</p>
@@ -119,7 +116,6 @@ export default function SleepPage() {
       <section className="awareness awareness-alt">
         <div className="wrap">
           <div className="qa" style={{ borderTop: 'none' }}>
-            <div className="anchor">Practice</div>
             <div>
               <h3>Eight evidence-based habits to improve your sleep.</h3>
               <p>None of these are theory — each is grounded in circadian biology, autonomic regulation, or sleep-architecture research. Build them in slowly; consistency beats intensity.</p>

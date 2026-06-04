@@ -75,7 +75,6 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Why practice</div>
             <div>
               <h3>Why do we actually need mindfulness and meditation?</h3>
               <p>From a biological perspective, these practices influence the autonomic nervous system — shifting activity away from a chronic "fight-or-flight" state (sympathetic activation) toward a more balanced "rest-and-recover" state (parasympathetic activation).</p>
@@ -92,7 +91,6 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">The body</div>
             <div>
               <h3>What happens in the body during meditation?</h3>
               <p>Meditation produces measurable physiological changes across multiple systems.</p>
@@ -106,7 +104,6 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Sleep</div>
             <div>
               <h3>Can mindfulness improve sleep?</h3>
               <p>Yes — mindfulness can improve sleep primarily by reducing cognitive and physiological arousal before bedtime. It helps by reducing rumination, lowering sympathetic nervous system activity, and supporting faster transition into sleep states.</p>
@@ -115,7 +112,6 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Dose</div>
             <div>
               <h3>Do you need long meditation sessions to benefit?</h3>
               <p>No. Studies show that even short daily practices of <strong>5–10 minutes</strong> can produce measurable benefits when done consistently.</p>
@@ -124,7 +120,6 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="qa">
-            <div className="anchor">Mechanism</div>
             <div>
               <h3>What is the key scientific principle behind mindfulness?</h3>
               <p>Mindfulness works through three main mechanisms — each reinforcing the others over time.</p>
