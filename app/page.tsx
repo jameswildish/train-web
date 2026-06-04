@@ -373,9 +373,8 @@ export default async function HomePage() {
                 {c.logo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={urlFor(c.logo as SanityImageSource).width(320).height(80).fit('max').auto('format').url()}
+                    src={urlFor(c.logo as SanityImageSource).width(480).auto('format').url()}
                     alt={c.name}
-                    style={{ maxHeight: '30px', maxWidth: '110px', width: 'auto', height: 'auto' }}
                   />
                 ) : (
                   <><span className="dot" />{c.name}</>

@@ -209,9 +209,8 @@ export default async function AboutPage() {
                     {c.logo ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={urlFor(c.logo as SanityImageSource).width(480).height(160).fit('max').auto('format').url()}
+                        src={urlFor(c.logo as SanityImageSource).width(600).auto('format').url()}
                         alt={c.name}
-                        style={{ maxWidth: '100%', maxHeight: '60px', width: 'auto', height: 'auto' }}
                       />
                     ) : (
                       <span>{c.name}</span>
@@ -222,9 +221,8 @@ export default async function AboutPage() {
                     {c.logo ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={urlFor(c.logo as SanityImageSource).width(480).height(160).fit('max').auto('format').url()}
+                        src={urlFor(c.logo as SanityImageSource).width(600).auto('format').url()}
                         alt={c.name}
-                        style={{ maxWidth: '100%', maxHeight: '60px', width: 'auto', height: 'auto' }}
                       />
                     ) : (
                       <span>{c.name}</span>
