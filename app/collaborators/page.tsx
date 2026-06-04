@@ -75,8 +75,7 @@ export default async function CollaboratorsPage() {
             <span className="sep">/</span>
             <span className="current">Collaborators</span>
           </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Worldwide partnerships</div>
-          <h1>Built with the best in the field.</h1>
+          <h1 style={{ marginTop: '40px' }}>Built with the best in the field.</h1>
           <p className="lead">
             TRAIN and the TARGet Research Group work with leading medical, academic, and public-partner
             institutions worldwide. Together, we advance evidence-based health and translate research

@@ -25,10 +25,7 @@ export default async function TeamPage() {
             <span className="sep">/</span>
             <span className="current">Team</span>
           </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">
-            Clinicians · Researchers · Data scientists
-          </div>
-          <h1>The people behind TRAIN.</h1>
+          <h1 style={{ marginTop: '40px' }}>The people behind TRAIN.</h1>
           <p className="lead">
             A multidisciplinary team of surgeons, clinician-scientists, researchers, and data
             specialists — translating medical science into practical, daily habits and advancing

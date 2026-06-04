@@ -15,8 +15,7 @@ export default function MentalHealthPage() {
                 <span className="sep">/</span>
                 <span className="current">Mental Health</span>
               </div>
-              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 03 — Mental Health</div>
-              <h1>
+              <h1 style={{ marginTop: '32px' }}>
                 Mindfulness <span className="quiet">helps reduce stress, improve focus and concentration,</span> and support overall mental health.
               </h1>
               <p className="lead">A nervous-system toolkit grounded in attention regulation, emotion regulation, and body-state awareness — adapted to how you're actually doing today.</p>

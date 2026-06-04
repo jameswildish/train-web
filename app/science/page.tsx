@@ -58,8 +58,7 @@ export default async function SciencePage() {
                 <span className="sep">/</span>
                 <span className="current">Science</span>
               </div>
-              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>About · Research · Publications</div>
-              <h1>The art of living healthy — guided by science and medicine.</h1>
+              <h1 style={{ marginTop: '32px' }}>The art of living healthy — guided by science and medicine.</h1>
               <p className="lead">TRAIN is built on years of academic research and clinical experience. Our founders lead the TARGet research group — an international initiative advancing cardiovascular and preventive health through translational science.</p>
             </div>
             <div className="pillar-hero-photo-img">

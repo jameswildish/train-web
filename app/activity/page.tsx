@@ -15,8 +15,7 @@ export default function ActivityPage() {
                 <span className="sep">/</span>
                 <span className="current">Activity</span>
               </div>
-              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 02 — Movement</div>
-              <h1>
+              <h1 style={{ marginTop: '32px' }}>
                 Movement is medicine — <span className="quiet">physical activity is one of the most powerful tools</span> supporting muscle, metabolism, and resilience as we age.
               </h1>
               <p className="lead">Strength, cardio, mobility — adapted to your readiness. Built around the science of movement as a systemic regulator, not just exercise.</p>

@@ -23,8 +23,7 @@ export default async function BlogPage() {
             <span className="sep">/</span>
             <span className="current">Blog</span>
           </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Insights · Plain-language explainers</div>
-          <h1>From science to daily life.</h1>
+          <h1 style={{ marginTop: '40px' }}>From science to daily life.</h1>
           <p className="lead">Plain-language explainers from our clinician-scientists. What the latest research actually means for your sleep, energy, stress, and long-term health — without the jargon.</p>
         </div>
       </section>

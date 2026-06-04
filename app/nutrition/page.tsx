@@ -15,8 +15,7 @@ export default function NutritionPage() {
                 <span className="sep">/</span>
                 <span className="current">Nutrition</span>
               </div>
-              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 04 — Nutrition</div>
-              <h1>
+              <h1 style={{ marginTop: '32px' }}>
                 Balanced nutrition <span className="quiet">fuels the body and brain,</span> supporting long-term health.
               </h1>
               <p className="lead">Patterns over perfection. Built around dietary patterns shown to lower blood pressure, improve cholesterol, and reduce systemic inflammation — not fad diets.</p>

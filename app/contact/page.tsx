@@ -12,8 +12,7 @@ export default function ContactPage() {
             <span className="sep">/</span>
             <span className="current">Contact</span>
           </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Get in touch</div>
-          <h1>Let's talk.</h1>
+          <h1 style={{ marginTop: '40px' }}>Let's talk.</h1>
           <p className="lead">Press, partnerships, research collaborations, or general questions — we'd love to hear from you.</p>
         </div>
       </section>

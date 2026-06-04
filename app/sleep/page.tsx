@@ -16,8 +16,7 @@ export default function SleepPage() {
                 <span className="sep">/</span>
                 <span className="current">Sleep</span>
               </div>
-              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 01 — Sleep</div>
-              <h1>
+              <h1 style={{ marginTop: '32px' }}>
                 Quality sleep <span className="quiet">reduces the risk of heart disease, diabetes, anxiety, and depression</span> while improving the immune system.
               </h1>
               <p className="lead">A practical toolkit designed to support healthy sleep habits — synced to your wearable, grounded in circadian science.</p>
