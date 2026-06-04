@@ -24,6 +24,17 @@ export default function SiteFooter() {
             </ul>
           </div>
           <div>
+            <h5>Science</h5>
+            <ul>
+              <li><Link href="/about">About</Link></li>
+              <li><Link href="/about#target">TARGet group</Link></li>
+              <li><Link href="/about#publications">Publications</Link></li>
+              <li><Link href="/about#collaborate">Collaborators</Link></li>
+              <li><Link href="/team">Team</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+            </ul>
+          </div>
+          <div>
             <h5>Projects</h5>
             <ul>
               <li><Link href="/projects/ddm">Data Donation Platform</Link></li>
@@ -35,17 +46,6 @@ export default function SiteFooter() {
               <li><Link href="/projects/diversity-prevention">Diversity & Prevention</Link></li>
               <li><Link href="/projects/trainletic">TRAINletic</Link></li>
               <li><Link href="/projects/aviation">Aviation & Aortic</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h5>Science</h5>
-            <ul>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/about#target">TARGet group</Link></li>
-              <li><Link href="/about#publications">Publications</Link></li>
-              <li><Link href="/about#collaborate">Collaborators</Link></li>
-              <li><Link href="/team">Team</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
             </ul>
             <ul style={{ marginTop: '28px' }}>
               <li><Link href="/contact">Contact</Link></li>

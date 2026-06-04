@@ -94,6 +94,37 @@ export default function SiteHeader() {
             </Link>
           ))}
 
+          {/* Science dropdown */}
+          <div
+            className={`nav-item has-dd${activeKey === 'science' ? ' active' : ''}${openDropdown === 'science' ? ' open' : ''}`}
+            onMouseEnter={() => setOpenDropdown('science')}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <button
+              className="nav-trigger"
+              type="button"
+              aria-expanded={openDropdown === 'science'}
+              aria-haspopup="true"
+              onClick={(e) => {
+                e.stopPropagation()
+                setOpenDropdown(openDropdown === 'science' ? null : 'science')
+              }}
+            >
+              Science <span className="caret">▾</span>
+            </button>
+            <div className="dropdown resources-dd" role="menu">
+              <div className="dd-heading">Research & organisation</div>
+              <div className="dd-grid resources-grid">
+                {SCIENCE_LINKS.map(l => (
+                  <Link key={l.href} href={l.href} className="dd-item">
+                    <span className="dd-label">{l.label}</span>
+                    <span className="dd-tag">{l.tag}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
           {/* Projects dropdown */}
           <div
             className={`nav-item has-dd${activeKey === 'projects' ? ' active' : ''}${openDropdown === 'projects' ? ' open' : ''}`}
@@ -127,41 +158,6 @@ export default function SiteHeader() {
               </Link>
             </div>
           </div>
-
-          {/* Science dropdown */}
-          <div
-            className={`nav-item has-dd${activeKey === 'science' ? ' active' : ''}${openDropdown === 'science' ? ' open' : ''}`}
-            onMouseEnter={() => setOpenDropdown('science')}
-            onMouseLeave={() => setOpenDropdown(null)}
-          >
-            <button
-              className="nav-trigger"
-              type="button"
-              aria-expanded={openDropdown === 'science'}
-              aria-haspopup="true"
-              onClick={(e) => {
-                e.stopPropagation()
-                setOpenDropdown(openDropdown === 'science' ? null : 'science')
-              }}
-            >
-              Science <span className="caret">▾</span>
-            </button>
-            <div className="dropdown resources-dd" role="menu">
-              <div className="dd-heading">Research & organisation</div>
-              <div className="dd-grid resources-grid">
-                {SCIENCE_LINKS.map(l => (
-                  <Link key={l.href} href={l.href} className="dd-item">
-                    <span className="dd-label">{l.label}</span>
-                    <span className="dd-tag">{l.tag}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <Link href="/contact" className={activeKey === 'contact' ? 'active' : ''}>
-            Contact
-          </Link>
         </nav>
 
         <div className="nav-cta">
