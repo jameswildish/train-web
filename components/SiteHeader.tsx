@@ -167,8 +167,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className="nav-cta">
-          <a href="#login" className="btn btn-ghost">Log in</a>
-          <a href="#try" className="btn btn-primary">Try TRAIN free <span className="arrow">→</span></a>
+          <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
         </div>
 
         <button
