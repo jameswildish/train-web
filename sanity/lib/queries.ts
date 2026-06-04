@@ -45,7 +45,8 @@ export async function getAllTeamMembers() {
   if (!client) return []
   return client.fetch(`
     *[_type == "teamMember"] | order(order asc) {
-      _id, name, role, department, bio, image, linkedin, twitter
+      _id, name, role, department, isFounder, bio, image,
+      linkedin, twitter, email, publications, github
     }
   `)
 }

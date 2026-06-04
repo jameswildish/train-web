@@ -4,6 +4,8 @@ import { getAllCollaborators } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
 
+export const revalidate = 0
+
 export const metadata = { title: 'Collaborators — TRAIN' }
 
 type Collaborator = {

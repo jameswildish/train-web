@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { getAllTeamMembers } from '@/sanity/lib/queries'
 import TeamContent from './TeamContent'
 
+export const revalidate = 0
+
 export const metadata = { title: 'Team — TRAIN' }
 
 export default async function TeamPage() {

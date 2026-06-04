@@ -11,9 +11,13 @@ type SanityMember = {
   role: string
   bio: string
   department: string
+  isFounder?: boolean
   image?: unknown
   linkedin?: string
   twitter?: string
+  email?: string
+  publications?: string
+  github?: string
 }
 
 const LinkedInIcon = (
@@ -72,9 +76,11 @@ const STATIC_MEMBERS: StaticMember[] = [
 
 const DEPT_TO_CATS: Record<string, string[]> = {
   'Founders': ['founders'],
-  'Clinical': ['clinical', 'surgeons'],
-  'Research': ['researchers'],
+  'Surgeons': ['surgeons'],
+  'Researchers': ['researchers'],
+  'Postdocs': ['postdocs'],
   'Technology': ['data-ai'],
+  'Clinical': ['clinical'],
   'Advisory': ['clinical'],
 }
 
@@ -93,7 +99,11 @@ export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMe
   const hasSanity = sanityMembers.length > 0
 
   if (hasSanity) {
-    const getMemberCats = (m: SanityMember) => DEPT_TO_CATS[m.department] ?? ['researchers']
+    const getMemberCats = (m: SanityMember) => {
+      const base = DEPT_TO_CATS[m.department] ?? ['researchers']
+      if (m.isFounder && !base.includes('founders')) return ['founders', ...base]
+      return base
+    }
     const filtered = activeFilter === 'all'
       ? sanityMembers
       : sanityMembers.filter(m => getMemberCats(m).includes(activeFilter))
@@ -110,10 +120,13 @@ export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMe
           role: m.role,
           bio: m.bio,
           cats: getMemberCats(m),
-          isFounder: getMemberCats(m).includes('founders'),
+          isFounder: m.isFounder || getMemberCats(m).includes('founders'),
           image: m.image,
           linkedin: m.linkedin,
           twitter: m.twitter,
+          email: m.email,
+          publications: m.publications,
+          github: m.github,
         }))}
         counts={counts}
         activeFilter={activeFilter}
@@ -150,6 +163,9 @@ type GridMember = {
   image?: unknown
   linkedin?: string
   twitter?: string
+  email?: string
+  publications?: string
+  github?: string
   socials?: { label: string; icon: React.ReactNode }[]
 }
 
@@ -197,8 +213,11 @@ function MemberGrid({ filtered, counts, activeFilter, setActiveFilter }: {
                     ))}
                     {!member.socials && (
                       <>
-                        {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">{LinkedInIcon}</a>}
-                        {member.twitter && <a href={member.twitter} target="_blank" rel="noopener" aria-label="X">{XIcon}</a>}
+                        {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{LinkedInIcon}</a>}
+                        {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" aria-label="X">{XIcon}</a>}
+                        {member.email && <a href={`mailto:${member.email}`} aria-label="Email">{EmailIcon}</a>}
+                        {member.publications && <a href={member.publications} target="_blank" rel="noopener noreferrer" aria-label="Publications">{PublicationsIcon}</a>}
+                        {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">{GitHubIcon}</a>}
                       </>
                     )}
                   </div>
