@@ -1,40 +1,35 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = { title: 'Activity — TRAIN' }
 
 export default function ActivityPage() {
   return (
     <>
-      <section className="pillar-hero" data-screen-label="01 Activity Hero">
+      <section className="pillar-hero pillar-hero-photo" data-screen-label="01 Activity Hero">
         <div className="wrap">
-          <div className="crumbs">
-            <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="current">Activity</span>
-          </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Pillar 02 — Movement</div>
-          <div className="grid">
-            <h1>
-              Movement is medicine — <span className="quiet">physical activity is one of the most powerful tools</span> supporting muscle, metabolism, and resilience as we age.
-            </h1>
-            <div>
+          <div className="pillar-hero-photo-inner">
+            <div className="pillar-hero-photo-text">
+              <div className="crumbs">
+                <Link href="/">Home</Link>
+                <span className="sep">/</span>
+                <span className="current">Activity</span>
+              </div>
+              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 02 — Movement</div>
+              <h1>
+                Movement is medicine — <span className="quiet">physical activity is one of the most powerful tools</span> supporting muscle, metabolism, and resilience as we age.
+              </h1>
               <p className="lead">Strength, cardio, mobility — adapted to your readiness. Built around the science of movement as a systemic regulator, not just exercise.</p>
-              <div className="hero-actions">
-                <a href="#try" className="btn btn-primary">Start your health journey free <span className="arrow">→</span></a>
-                <a href="#science" className="btn btn-ghost">Read the science</a>
-              </div>
             </div>
-          </div>
-          <div className="media">
-            <div className="frame">
-              <div className="placeholder-stripe"><span>Photo placeholder</span></div>
-            </div>
-            <div className="frame anemone" style={{ filter: 'hue-rotate(40deg) brightness(.9)' }}>
-              <div className="badges">
-                <span className="badge"><span className="dot"></span> Activity sync</span>
-                <span className="badge"><span className="dot"></span> Personalised sessions</span>
-                <span className="badge"><span className="dot"></span> Recovery aware</span>
-              </div>
+            <div className="pillar-hero-photo-img">
+              <Image
+                src="/images/nutrition-hero.jpg"
+                alt="Physical activity and movement"
+                width={700}
+                height={560}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
             </div>
           </div>
         </div>

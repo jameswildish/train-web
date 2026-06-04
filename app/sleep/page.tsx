@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = { title: 'Sleep — TRAIN' }
 
@@ -6,36 +7,30 @@ export default function SleepPage() {
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="pillar-hero" data-screen-label="01 Sleep Hero">
+      <section className="pillar-hero pillar-hero-photo" data-screen-label="01 Sleep Hero">
         <div className="wrap">
-          <div className="crumbs">
-            <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="current">Sleep</span>
-          </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Pillar 01 — Sleep</div>
-          <div className="grid">
-            <h1>
-              Quality sleep <span className="quiet">reduces the risk of heart disease, diabetes, anxiety, and depression</span> while improving the immune system.
-            </h1>
-            <div>
+          <div className="pillar-hero-photo-inner">
+            <div className="pillar-hero-photo-text">
+              <div className="crumbs">
+                <Link href="/">Home</Link>
+                <span className="sep">/</span>
+                <span className="current">Sleep</span>
+              </div>
+              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 01 — Sleep</div>
+              <h1>
+                Quality sleep <span className="quiet">reduces the risk of heart disease, diabetes, anxiety, and depression</span> while improving the immune system.
+              </h1>
               <p className="lead">A practical toolkit designed to support healthy sleep habits — synced to your wearable, grounded in circadian science.</p>
-              <div className="hero-actions">
-                <a href="#try" className="btn btn-primary">Start your health journey free <span className="arrow">→</span></a>
-                <a href="#science" className="btn btn-ghost">Read the science</a>
-              </div>
             </div>
-          </div>
-          <div className="media">
-            <div className="frame">
-              <div className="placeholder-stripe"><span>Photo placeholder</span></div>
-            </div>
-            <div className="frame anemone" style={{ filter: 'hue-rotate(180deg) brightness(0.55) saturate(.7)' }}>
-              <div className="badges">
-                <span className="badge"><span className="dot"></span> MySleep tracking</span>
-                <span className="badge"><span className="dot"></span> Soundscapes</span>
-                <span className="badge"><span className="dot"></span> Guided meditation</span>
-              </div>
+            <div className="pillar-hero-photo-img">
+              <Image
+                src="/images/nutrition-hero.jpg"
+                alt="Sleep and rest"
+                width={700}
+                height={560}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
             </div>
           </div>
         </div>

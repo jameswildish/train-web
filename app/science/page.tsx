@@ -49,16 +49,30 @@ export default async function SciencePage() {
   return (
     <>
       {/* ============ SCIENCE HERO ============ */}
-      <section className="science-hero">
+      <section className="pillar-hero pillar-hero-photo science-hero">
         <div className="wrap">
-          <div className="crumbs">
-            <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="current">Science</span>
+          <div className="pillar-hero-photo-inner">
+            <div className="pillar-hero-photo-text">
+              <div className="crumbs">
+                <Link href="/">Home</Link>
+                <span className="sep">/</span>
+                <span className="current">Science</span>
+              </div>
+              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>About · Research · Publications</div>
+              <h1>The art of living healthy — guided by science and medicine.</h1>
+              <p className="lead">TRAIN is built on years of academic research and clinical experience. Our founders lead the TARGet research group — an international initiative advancing cardiovascular and preventive health through translational science.</p>
+            </div>
+            <div className="pillar-hero-photo-img">
+              <Image
+                src="/images/nutrition-hero.jpg"
+                alt="Science and medicine"
+                width={700}
+                height={560}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
+            </div>
           </div>
-          <div className="eyebrow" style={{ margin: '40px 0 24px' }}>About · Research · Publications</div>
-          <h1>The art of living healthy — guided by science and medicine.</h1>
-          <p className="lead">TRAIN is built on years of academic research and clinical experience. Our founders lead the TARGet research group — an international initiative advancing cardiovascular and preventive health through translational science.</p>
         </div>
       </section>
 

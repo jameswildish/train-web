@@ -20,15 +20,6 @@ export default function NutritionPage() {
                 Balanced nutrition <span className="quiet">fuels the body and brain,</span> supporting long-term health.
               </h1>
               <p className="lead">Patterns over perfection. Built around dietary patterns shown to lower blood pressure, improve cholesterol, and reduce systemic inflammation — not fad diets.</p>
-              <div className="hero-actions">
-                <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
-                <a href="#science" className="btn btn-ghost">Read the science</a>
-              </div>
-              <div className="pillar-badges">
-                <span className="badge"><span className="dot"></span> Pattern-based</span>
-                <span className="badge"><span className="dot"></span> AHA-aligned</span>
-                <span className="badge"><span className="dot"></span> Mediterranean</span>
-              </div>
             </div>
             <div className="pillar-hero-photo-img">
               <Image

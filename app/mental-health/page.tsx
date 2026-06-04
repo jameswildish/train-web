@@ -1,40 +1,35 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata = { title: 'Mental Health — TRAIN' }
 
 export default function MentalHealthPage() {
   return (
     <>
-      <section className="pillar-hero" data-screen-label="01 Mental Health Hero">
+      <section className="pillar-hero pillar-hero-photo" data-screen-label="01 Mental Health Hero">
         <div className="wrap">
-          <div className="crumbs">
-            <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="current">Mental Health</span>
-          </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Pillar 03 — Mental Health</div>
-          <div className="grid">
-            <h1>
-              Mindfulness <span className="quiet">helps reduce stress, improve focus and concentration,</span> and support overall mental health.
-            </h1>
-            <div>
+          <div className="pillar-hero-photo-inner">
+            <div className="pillar-hero-photo-text">
+              <div className="crumbs">
+                <Link href="/">Home</Link>
+                <span className="sep">/</span>
+                <span className="current">Mental Health</span>
+              </div>
+              <div className="eyebrow" style={{ margin: '32px 0 20px' }}>Pillar 03 — Mental Health</div>
+              <h1>
+                Mindfulness <span className="quiet">helps reduce stress, improve focus and concentration,</span> and support overall mental health.
+              </h1>
               <p className="lead">A nervous-system toolkit grounded in attention regulation, emotion regulation, and body-state awareness — adapted to how you're actually doing today.</p>
-              <div className="hero-actions">
-                <a href="#try" className="btn btn-primary">Start your health journey free <span className="arrow">→</span></a>
-                <a href="#science" className="btn btn-ghost">Read the science</a>
-              </div>
             </div>
-          </div>
-          <div className="media">
-            <div className="frame">
-              <div className="placeholder-stripe"><span>Photo placeholder</span></div>
-            </div>
-            <div className="frame anemone" style={{ filter: 'hue-rotate(-20deg) brightness(.85)' }}>
-              <div className="badges">
-                <span className="badge"><span className="dot"></span> Personalised practice</span>
-                <span className="badge"><span className="dot"></span> HRV-aware</span>
-                <span className="badge"><span className="dot"></span> Breathwork</span>
-              </div>
+            <div className="pillar-hero-photo-img">
+              <Image
+                src="/images/nutrition-hero.jpg"
+                alt="Mindfulness and mental health"
+                width={700}
+                height={560}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                priority
+              />
             </div>
           </div>
         </div>

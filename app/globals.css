@@ -2032,7 +2032,7 @@ nav.main a.active::after {
   padding: 56px 0 80px;
   position: relative;
 }
-.pillar-hero.pillar-hero-photo { padding: 40px 0 0; }
+.pillar-hero.pillar-hero-photo { padding: 40px 0 72px; }
 .pillar-hero-photo-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2052,8 +2052,9 @@ nav.main a.active::after {
 .pillar-hero-photo-img {
   border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 5 / 4;
-  align-self: stretch;
+  aspect-ratio: 4 / 3;
+  max-height: 440px;
+  align-self: center;
 }
 .pillar-badges {
   display: flex;
