@@ -386,6 +386,11 @@ section.tight { padding: 64px 0; }
   inset: 0;
   z-index: 0;
 }
+.hero-card .bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(4,43,48,0.88) 0%, rgba(4,43,48,0.65) 55%, rgba(4,43,48,0.45) 100%);
+}
 .hero-card .panel {
   position: relative;
   z-index: 2;
