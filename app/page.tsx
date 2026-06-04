@@ -1,10 +1,37 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getLatestPosts } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = {
   title: 'TRAIN — Science-driven, medically grounded lifestyle',
 }
 
-export default function HomePage() {
+type Post = {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt: string
+  category: string
+  readTime: number
+  publishedAt: string
+  mainImage?: Parameters<typeof urlFor>[0]
+}
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+export default async function HomePage() {
+  let posts: Post[] = []
+  try {
+    posts = await getLatestPosts(5)
+  } catch {
+    // Sanity not configured
+  }
+
+  const [featured, ...rest] = posts
+
   return (
     <>
       {/* ============ HERO ============ */}
@@ -360,6 +387,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ INSIGHTS ============ */}
+      {posts.length > 0 && (
       <section id="insights">
         <div className="wrap">
           <div className="sec-head">
@@ -372,50 +400,48 @@ export default function HomePage() {
           </div>
 
           <div className="insights-grid">
-            <article className="article feature">
-              <div className="thumb anemone"></div>
-              <div className="body">
-                <div className="meta"><span className="pill">Sleep</span><span className="date">May 12, 2026</span><span className="muted">· 6 min read</span></div>
-                <h3>Why sleep is your best medicine — the science of recovery.</h3>
-                <p>How your circadian rhythm regulates everything from blood sugar to immune function — and the eight evidence-based habits that protect it.</p>
-                <span className="more" style={{ fontFamily: 'IBM Plex Mono', fontSize: '12px', letterSpacing: '.08em', textTransform: 'uppercase', paddingTop: '12px' }}>Read article →</span>
-              </div>
-            </article>
-            <article className="article">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(40deg)' }}></div>
-              <div className="body">
-                <div className="meta"><span className="pill">Mental Health</span><span className="date">May 04, 2026</span></div>
-                <h3>Stress less, live more — managing stress for heart health.</h3>
-                <p>The biology of chronic stress, and short daily practices proven to shift you into rest-and-recover.</p>
-              </div>
-            </article>
-            <article className="article">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(-20deg) saturate(.9)' }}></div>
-              <div className="body">
-                <div className="meta"><span className="pill">Movement</span><span className="date">Apr 22, 2026</span></div>
-                <h3>The power of small changes — building habits that last.</h3>
-                <p>Why daily movement quality and consistency may matter more than structured exercise alone.</p>
-              </div>
-            </article>
-            <article className="article">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(15deg) brightness(.9)' }}></div>
-              <div className="body">
-                <div className="meta"><span className="pill">Nutrition</span><span className="date">Apr 08, 2026</span></div>
-                <h3>Beyond diets: dietary patterns and cardiovascular risk.</h3>
-                <p>How long-term eating patterns — not individual foods — shape your metabolic health.</p>
-              </div>
-            </article>
-            <article className="article">
-              <div className="thumb anemone" style={{ filter: 'hue-rotate(60deg) brightness(.85)' }}></div>
-              <div className="body">
-                <div className="meta"><span className="pill">Clinical</span><span className="date">Mar 27, 2026</span></div>
-                <h3>Aortic surgery and the patient experience.</h3>
-                <p>From survival to recovery — understanding life beyond an acute aortic event.</p>
-              </div>
-            </article>
+            {featured && (
+              <article className="article feature">
+                <Link href={`/blog/${featured.slug.current}`} className="thumb">
+                  {featured.mainImage
+                    ? <Image src={urlFor(featured.mainImage).width(800).height(480).url()} alt={featured.title} width={800} height={480} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <div className="anemone" style={{ width: '100%', height: '100%' }}></div>
+                  }
+                </Link>
+                <div className="body">
+                  <div className="meta">
+                    <span className="pill">{featured.category}</span>
+                    <span className="date">{formatDate(featured.publishedAt)}</span>
+                    {featured.readTime && <span className="muted">· {featured.readTime} min read</span>}
+                  </div>
+                  <h3><Link href={`/blog/${featured.slug.current}`}>{featured.title}</Link></h3>
+                  <p>{featured.excerpt}</p>
+                  <Link href={`/blog/${featured.slug.current}`} className="more" style={{ fontFamily: 'IBM Plex Mono', fontSize: '12px', letterSpacing: '.08em', textTransform: 'uppercase', paddingTop: '12px', display: 'block' }}>Read article →</Link>
+                </div>
+              </article>
+            )}
+            {rest.map((post, i) => (
+              <article key={post._id} className="article">
+                <Link href={`/blog/${post.slug.current}`} className="thumb">
+                  {post.mainImage
+                    ? <Image src={urlFor(post.mainImage).width(400).height(240).url()} alt={post.title} width={400} height={240} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <div className="anemone" style={{ width: '100%', height: '100%', filter: `hue-rotate(${(i + 1) * 40}deg)` }}></div>
+                  }
+                </Link>
+                <div className="body">
+                  <div className="meta">
+                    <span className="pill">{post.category}</span>
+                    <span className="date">{formatDate(post.publishedAt)}</span>
+                  </div>
+                  <h3><Link href={`/blog/${post.slug.current}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
+      )}
 
       {/* ============ CTA ============ */}
       <section className="cta">
