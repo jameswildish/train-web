@@ -21,14 +21,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <div id="google_translate_element" style={{ position: 'absolute', top: '-9999px', visibility: 'hidden' }} />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
-        <div id="google_translate_element" style={{ display: 'none' }} />
         <Script id="gt-init" strategy="afterInteractive">{`
           window.googleTranslateElementInit = function() {
             new window.google.translate.TranslateElement(
-              { pageLanguage: 'en', autoDisplay: false },
+              { pageLanguage: 'en', autoDisplay: false, layout: 0 },
               'google_translate_element'
             );
           };

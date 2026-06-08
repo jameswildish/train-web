@@ -14,14 +14,38 @@ const LANGUAGES = [
   { code: 'zh-CN', label: '中文' },
 ]
 
-function setCookies(value: string) {
-  const host = window.location.hostname
-  document.cookie = `googtrans=${value}; path=/`
-  document.cookie = `googtrans=${value}; path=/; domain=${host}`
-  // Also set for parent domain
-  const parts = host.split('.')
-  if (parts.length > 2) {
-    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
+function suppressToolbar() {
+  const frame = document.querySelector<HTMLElement>(
+    'iframe.goog-te-banner-frame, iframe[src*="translate.google"]'
+  )
+  if (frame) {
+    frame.style.setProperty('display', 'none', 'important')
+    frame.style.setProperty('visibility', 'hidden', 'important')
+  }
+  if (document.body.style.top && document.body.style.top !== '0px') {
+    document.body.style.setProperty('top', '0px', 'important')
+  }
+  const tt = document.querySelector<HTMLElement>('#goog-gt-tt, .goog-te-balloon-frame')
+  if (tt) tt.style.setProperty('display', 'none', 'important')
+}
+
+function triggerTranslate(langCode: string) {
+  const attempt = () => {
+    const select = document.querySelector<HTMLSelectElement>('.goog-te-combo')
+    if (select) {
+      select.value = langCode
+      select.dispatchEvent(new Event('change'))
+      return true
+    }
+    return false
+  }
+
+  if (!attempt()) {
+    let tries = 0
+    const iv = setInterval(() => {
+      tries++
+      if (attempt() || tries > 30) clearInterval(iv)
+    }, 100)
   }
 }
 
@@ -30,36 +54,30 @@ function TranslatePicker() {
   const [activeLang, setActiveLang] = useState<string | null>(null)
 
   useEffect(() => {
-    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
-    setActiveLang(match ? match[1] : null)
-  }, [])
+    suppressToolbar()
 
-  useEffect(() => {
-    function hideToolbar() {
-      const frame = document.querySelector<HTMLElement>('iframe.goog-te-banner-frame')
-      if (frame) frame.style.setProperty('display', 'none', 'important')
-      if (document.body.style.top && document.body.style.top !== '0px') {
-        document.body.style.setProperty('top', '0', 'important')
-      }
+    const styleObserver = new MutationObserver(suppressToolbar)
+    styleObserver.observe(document.body, { attributes: true, attributeFilter: ['style'] })
+
+    const childObserver = new MutationObserver(suppressToolbar)
+    childObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      styleObserver.disconnect()
+      childObserver.disconnect()
     }
-    hideToolbar()
-    const observer = new MutationObserver(hideToolbar)
-    observer.observe(document.body, { childList: true, subtree: false, attributes: true, attributeFilter: ['style'] })
-    return () => observer.disconnect()
   }, [])
 
   function translate(code: string) {
-    setCookies(`/en/${code}`)
     setActiveLang(code)
     setOpen(false)
-    window.location.reload()
+    triggerTranslate(code)
   }
 
   function resetToEnglish() {
-    setCookies('')
     setActiveLang(null)
     setOpen(false)
-    window.location.reload()
+    triggerTranslate('en')
   }
 
   const activeLabel = LANGUAGES.find(l => l.code === activeLang)?.label
