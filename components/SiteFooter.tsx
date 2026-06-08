@@ -16,25 +16,29 @@ const LANGUAGES = [
 
 function TranslatePicker() {
   const [open, setOpen] = useState(false)
+  const [isTranslated, setIsTranslated] = useState(false)
+  const [originalUrl, setOriginalUrl] = useState('')
 
-  function getOriginalUrl(): string {
-    if (typeof window === 'undefined') return ''
+  useState(() => {
+    if (typeof window === 'undefined') return
     const { hostname, pathname, search } = window.location
     if (hostname.endsWith('.translate.goog')) {
-      // Decode Google Translate proxy hostname back to original
-      // Encoding: hyphens → double-hyphen, dots → single hyphen
+      setIsTranslated(true)
       const encoded = hostname.replace('.translate.goog', '')
       const original = encoded
-        .replace(/--/g, '\x00')   // protect real hyphens
-        .replace(/-/g, '.')        // single hyphens were dots
-        .replace(/\x00/g, '-')     // restore real hyphens
-      // Strip translation params from query string
+        .replace(/--/g, '\x00')
+        .replace(/-/g, '.')
+        .replace(/\x00/g, '-')
       const params = new URLSearchParams(search)
       ;['_x_tr_sl', '_x_tr_tl', '_x_tr_hl', '_x_tr_hist', '_x_tr_pto'].forEach(p => params.delete(p))
       const qs = params.toString() ? `?${params.toString()}` : ''
-      return `https://${original}${pathname}${qs}`
+      setOriginalUrl(`https://${original}${pathname}${qs}`)
     }
-    return window.location.href
+  })
+
+  function getOriginalUrl(): string {
+    if (originalUrl) return originalUrl
+    return typeof window !== 'undefined' ? window.location.href : ''
   }
 
   function translate(code: string) {
@@ -54,6 +58,11 @@ function TranslatePicker() {
       </button>
       {open && (
         <div className="translate-dropdown">
+          {isTranslated && (
+            <a href={originalUrl} className="translate-back">
+              English (original)
+            </a>
+          )}
           {LANGUAGES.map(l => (
             <button key={l.code} onClick={() => translate(l.code)}>
               {l.label}
