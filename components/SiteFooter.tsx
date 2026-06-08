@@ -29,6 +29,16 @@ function suppressToolbar() {
   if (tt) tt.style.setProperty('display', 'none', 'important')
 }
 
+function setCookie(value: string) {
+  const host = window.location.hostname
+  document.cookie = `googtrans=${value}; path=/`
+  document.cookie = `googtrans=${value}; path=/; domain=${host}`
+  const parts = host.split('.')
+  if (parts.length > 2) {
+    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
+  }
+}
+
 function triggerTranslate(langCode: string) {
   const attempt = () => {
     const select = document.querySelector<HTMLSelectElement>('.goog-te-combo')
@@ -44,7 +54,10 @@ function triggerTranslate(langCode: string) {
     let tries = 0
     const iv = setInterval(() => {
       tries++
-      if (attempt() || tries > 30) clearInterval(iv)
+      if (attempt() || tries > 50) {
+        clearInterval(iv)
+        if (tries > 50) window.location.reload()
+      }
     }, 100)
   }
 }
@@ -52,6 +65,12 @@ function triggerTranslate(langCode: string) {
 function TranslatePicker() {
   const [open, setOpen] = useState(false)
   const [activeLang, setActiveLang] = useState<string | null>(null)
+
+  useEffect(() => {
+    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
+    const lang = match ? match[1] : null
+    if (lang && lang !== 'en') setActiveLang(lang)
+  }, [])
 
   useEffect(() => {
     suppressToolbar()
@@ -69,12 +88,14 @@ function TranslatePicker() {
   }, [])
 
   function translate(code: string) {
+    setCookie(`/en/${code}`)
     setActiveLang(code)
     setOpen(false)
     triggerTranslate(code)
   }
 
   function resetToEnglish() {
+    setCookie('/en/en')
     setActiveLang(null)
     setOpen(false)
     triggerTranslate('en')
