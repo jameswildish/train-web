@@ -14,32 +14,23 @@ const LANGUAGES = [
   { code: 'zh-CN', label: '中文' },
 ]
 
-function encodeHost(host: string) {
-  return host.replace(/-/g, '--').replace(/\./g, '-')
+function setCookie(langCode: string) {
+  const value = langCode ? `/en/${langCode}` : ''
+  const host = window.location.hostname
+  document.cookie = `googtrans=${value}; path=/`
+  document.cookie = `googtrans=${value}; path=/; domain=${host}`
+  const parts = host.split('.')
+  if (parts.length > 2) {
+    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
+  }
 }
 
-function decodeHost(encoded: string) {
-  return encoded.replace(/--/g, '\x00').replace(/-/g, '.').replace(/\x00/g, '-')
-}
-
-function getOriginalUrl(): string {
-  const { hostname, pathname, search } = window.location
-  if (!hostname.endsWith('.translate.goog')) return window.location.href
-  const original = decodeHost(hostname.replace('.translate.goog', ''))
-  const params = new URLSearchParams(search)
-  params.delete('_x_tr_sl')
-  params.delete('_x_tr_tl')
-  params.delete('_x_tr_hl')
-  params.delete('_x_tr_hist')
-  const qs = params.toString()
-  return `https://${original}${pathname}${qs ? '?' + qs : ''}`
-}
-
-function buildGoogUrl(langCode: string): string {
-  const original = new URL(getOriginalUrl())
-  const encoded = encodeHost(original.hostname)
-  const qs = original.search ? original.search + '&' : '?'
-  return `https://${encoded}.translate.goog${original.pathname}${qs}_x_tr_sl=en&_x_tr_tl=${langCode}&_x_tr_hl=en-GB`
+function triggerSelect(langCode: string): boolean {
+  const select = document.querySelector<HTMLSelectElement>('.goog-te-combo')
+  if (!select) return false
+  select.value = langCode
+  select.dispatchEvent(new Event('change', { bubbles: true }))
+  return true
 }
 
 function TranslatePicker() {
@@ -47,40 +38,27 @@ function TranslatePicker() {
   const [activeLang, setActiveLang] = useState<string | null>(null)
 
   useEffect(() => {
-    const { hostname, search } = window.location
-    if (!hostname.endsWith('.translate.goog')) return
-
-    const tl = new URLSearchParams(search).get('_x_tr_tl')
-    if (tl) setActiveLang(tl)
-
-    // Next.js intercepts link clicks for client-side routing, which breaks the
-    // translate.goog proxy. Capture all internal link clicks first and force
-    // a full page load to the proxy URL instead.
-    function interceptLinks(e: MouseEvent) {
-      const anchor = (e.target as Element).closest('a')
-      if (!anchor) return
-      const href = anchor.getAttribute('href')
-      if (!href || href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('mailto:')) return
-
-      e.preventDefault()
-      e.stopImmediatePropagation()
-
-      const lang = new URLSearchParams(window.location.search).get('_x_tr_tl') || 'en'
-      window.location.href = `https://${hostname}${href}?_x_tr_sl=en&_x_tr_tl=${lang}&_x_tr_hl=en-GB`
-    }
-
-    document.addEventListener('click', interceptLinks, true)
-    return () => document.removeEventListener('click', interceptLinks, true)
+    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
+    if (match) setActiveLang(match[1])
   }, [])
 
   function translate(code: string) {
+    setCookie(code)
+    setActiveLang(code)
     setOpen(false)
-    window.location.href = buildGoogUrl(code)
+    if (!triggerSelect(code)) {
+      // Widget still loading — reload so cookie is picked up on next mount
+      window.location.reload()
+    }
   }
 
   function resetToEnglish() {
+    setCookie('')
+    setActiveLang(null)
     setOpen(false)
-    window.location.href = getOriginalUrl()
+    if (!triggerSelect('')) {
+      window.location.reload()
+    }
   }
 
   const activeLabel = LANGUAGES.find(l => l.code === activeLang)?.label
