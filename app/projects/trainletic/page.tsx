@@ -152,7 +152,7 @@ export default function TrainleticPage() {
             <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
           </div>
           <div className="projects-grid">
-            <Link href="/projects/ddm" className="project">
+            <Link href="/projects/data-donation-monitoring-ddm" className="project">
               <div className="thumb anemone" style={{}}></div>
               <div className="body">
                 <span className="tag">Data infrastructure · 2026</span>

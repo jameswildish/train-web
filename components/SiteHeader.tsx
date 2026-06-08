@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 const PROJECT_LINKS = [
-  { href: '/projects/ddm',                  label: 'Data Donation Platform', tag: 'Data infrastructure' },
+  { href: '/projects/data-donation-monitoring-ddm',                  label: 'Data Donation Platform', tag: 'Data infrastructure' },
   { href: '/projects/gen-taad',             label: 'GEN-TAAD',               tag: 'Genomics' },
   { href: '/projects/genie-ta',             label: 'GENIE-TA',               tag: 'Genomics' },
   { href: '/projects/apecx',               label: 'APECx Study',            tag: 'Clinical' },

@@ -37,7 +37,7 @@ export default function SiteFooter() {
           <div>
             <h5>Projects</h5>
             <ul>
-              <li><Link href="/projects/ddm">Data Donation Platform</Link></li>
+              <li><Link href="/projects/data-donation-monitoring-ddm">Data Donation Platform</Link></li>
               <li><Link href="/projects/gen-taad">GEN-TAAD</Link></li>
               <li><Link href="/projects/genie-ta">GENIE-TA</Link></li>
               <li><Link href="/projects/apecx">APECx Study</Link></li>

@@ -301,7 +301,7 @@ export default async function HomePage() {
               </Link>
             )) : (
               <>
-                <Link href="/projects/ddm" className="project">
+                <Link href="/projects/data-donation-monitoring-ddm" className="project">
                   <div className="thumb anemone"></div>
                   <div className="body">
                     <span className="tag">Data infrastructure · 2026</span>
