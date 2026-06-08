@@ -52,7 +52,7 @@ export default async function HomePage() {
   try {
     ;[posts, featuredProjects, collaborators] = await Promise.all([
       getLatestPosts(5),
-      getFeaturedProjects(6),
+      getFeaturedProjects(9),
       getAllCollaborators(),
     ])
   } catch {
