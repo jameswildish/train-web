@@ -1,94 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
-
-const LANGUAGES = [
-  { code: 'nl', label: 'Nederlands' },
-  { code: 'de', label: 'Deutsch' },
-  { code: 'fr', label: 'Français' },
-  { code: 'es', label: 'Español' },
-  { code: 'it', label: 'Italiano' },
-  { code: 'ar', label: 'العربية' },
-  { code: 'hi', label: 'हिंदी' },
-  { code: 'zh-CN', label: '中文' },
-]
-
-function setCookie(langCode: string) {
-  const value = langCode ? `/en/${langCode}` : ''
-  const host = window.location.hostname
-  document.cookie = `googtrans=${value}; path=/`
-  document.cookie = `googtrans=${value}; path=/; domain=${host}`
-  const parts = host.split('.')
-  if (parts.length > 2) {
-    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
-  }
-}
-
-function triggerSelect(langCode: string): boolean {
-  const select = document.querySelector<HTMLSelectElement>('.goog-te-combo')
-  if (!select) return false
-  select.value = langCode
-  select.dispatchEvent(new Event('change', { bubbles: true }))
-  return true
-}
-
-function TranslatePicker() {
-  const [open, setOpen] = useState(false)
-  const [activeLang, setActiveLang] = useState<string | null>(null)
-
-  useEffect(() => {
-    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
-    if (match) setActiveLang(match[1])
-  }, [])
-
-  function translate(code: string) {
-    setCookie(code)
-    setActiveLang(code)
-    setOpen(false)
-    if (!triggerSelect(code)) {
-      // Widget still loading — reload so cookie is picked up on next mount
-      window.location.reload()
-    }
-  }
-
-  function resetToEnglish() {
-    setCookie('')
-    setActiveLang(null)
-    setOpen(false)
-    if (!triggerSelect('')) {
-      window.location.reload()
-    }
-  }
-
-  const activeLabel = LANGUAGES.find(l => l.code === activeLang)?.label
-
-  return (
-    <div className="translate-picker">
-      <button className="translate-btn" onClick={() => setOpen(!open)} aria-expanded={open}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
-        </svg>
-        {activeLabel ?? 'Translate'}
-      </button>
-      {open && (
-        <div className="translate-dropdown">
-          {activeLang && (
-            <button className="translate-back-btn" onClick={resetToEnglish}>
-              English (original)
-            </button>
-          )}
-          {LANGUAGES.map(l => (
-            <button key={l.code} onClick={() => translate(l.code)} className={activeLang === l.code ? 'active' : ''}>
-              {l.label}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
 
 export default function SiteFooter() {
   return (
@@ -152,27 +64,24 @@ export default function SiteFooter() {
         </div>
         <div className="foot-bottom">
           <div>© 2026 TRAIN Health Awareness · Built by surgeons · Driven by science.</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <TranslatePicker />
-            <div className="socials">
-              <a href="#" aria-label="LinkedIn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.5 18H6V10h2.5v8zM7.25 8.8a1.45 1.45 0 1 1 0-2.9 1.45 1.45 0 0 1 0 2.9zM18 18h-2.5v-4.2c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V18H10V10h2.4v1.1h.03a2.65 2.65 0 0 1 2.4-1.3c2.55 0 3.02 1.7 3.02 3.9V18z"/>
-                </svg>
-              </a>
-              <a href="#" aria-label="X">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18 3h3l-7.5 8.6L22 21h-6.7l-5-6.5L4.5 21H1.5l8-9.2L1.5 3h6.8l4.5 6 5.2-6zm-1 16h1.7L7.1 4.9H5.2L17 19z"/>
-                </svg>
-              </a>
-              <a href="#" aria-label="Instagram">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <rect x="3" y="3" width="18" height="18" rx="4"/>
-                  <circle cx="12" cy="12" r="4"/>
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-                </svg>
-              </a>
-            </div>
+          <div className="socials">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.5 18H6V10h2.5v8zM7.25 8.8a1.45 1.45 0 1 1 0-2.9 1.45 1.45 0 0 1 0 2.9zM18 18h-2.5v-4.2c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V18H10V10h2.4v1.1h.03a2.65 2.65 0 0 1 2.4-1.3c2.55 0 3.02 1.7 3.02 3.9V18z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="X">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 3h3l-7.5 8.6L22 21h-6.7l-5-6.5L4.5 21H1.5l8-9.2L1.5 3h6.8l4.5 6 5.2-6zm-1 16h1.7L7.1 4.9H5.2L17 19z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
