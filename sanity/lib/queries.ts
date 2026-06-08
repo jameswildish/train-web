@@ -23,7 +23,7 @@ export async function getAllPosts() {
 
 export async function getLatestPosts(limit = 5) {
   if (!client) return []
-  return client.fetch(`*[_type == "post"] | order(publishedAt desc) [0...$limit] { ${POST_FIELDS} }`, { limit: limit - 1 })
+  return client.fetch(`*[_type == "post"] | order(publishedAt desc) [0...$limit] { ${POST_FIELDS} }`, { limit })
 }
 
 export async function getPostBySlug(slug: string) {
