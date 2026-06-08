@@ -279,18 +279,18 @@ export default async function HomePage() {
           <div className="projects-grid">
             {featuredProjects.map(p => (
               <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
-                {p.mainImage ? (
-                  <Image
-                    className="thumb"
-                    src={urlFor(p.mainImage as SanityImageSource).width(600).height(320).url()}
-                    alt={p.title}
-                    width={600}
-                    height={320}
-                    style={{ objectFit: 'cover' }}
-                  />
-                ) : (
-                  <div className="thumb anemone" />
-                )}
+                <div className="thumb">
+                  {p.mainImage ? (
+                    <Image
+                      src={urlFor(p.mainImage as SanityImageSource).width(800).height(480).url()}
+                      alt={p.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div className="anemone" style={{ width: '100%', height: '100%' }} />
+                  )}
+                </div>
                 <div className="body">
                   <span className="tag">{[p.tag, p.year].filter(Boolean).join(' · ')}</span>
                   <h3>{p.title}</h3>

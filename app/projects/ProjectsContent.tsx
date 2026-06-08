@@ -98,17 +98,18 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
                 .filter(p => activeFilter === 'all' || TAG_TO_CAT[p.tag] === activeFilter)
                 .map(p => (
                   <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
-                    {p.mainImage ? (
-                      <Image
-                        className="thumb"
-                        src={urlFor(p.mainImage).width(600).height(320).url()}
-                        alt={p.title}
-                        width={600}
-                        height={320}
-                      />
-                    ) : (
-                      <div className="thumb anemone"></div>
-                    )}
+                    <div className="thumb">
+                      {p.mainImage ? (
+                        <Image
+                          src={urlFor(p.mainImage).width(800).height(480).url()}
+                          alt={p.title}
+                          fill
+                          style={{ objectFit: 'cover' }}
+                        />
+                      ) : (
+                        <div className="anemone" style={{ width: '100%', height: '100%' }} />
+                      )}
+                    </div>
                     <div className="body">
                       <span className="tag">{p.tag} · {p.status}</span>
                       <h3>{p.title}</h3>

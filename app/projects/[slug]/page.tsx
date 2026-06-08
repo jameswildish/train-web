@@ -74,15 +74,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="media">
             {project.mainImage ? (
               <Image
-                src={urlFor(project.mainImage as SanityImageSource).width(1200).height(500).url()}
+                src={urlFor(project.mainImage as SanityImageSource).width(1600).height(700).url()}
                 alt={project.title}
-                width={1200}
-                height={500}
-                style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                fill
+                style={{ objectFit: 'cover' }}
                 priority
               />
             ) : (
-              <div className="anemone" style={{ height: '400px', borderRadius: '8px' }}>
+              <div className="anemone" style={{ width: '100%', height: '100%' }}>
                 {project.badges?.length > 0 && (
                   <div className="badges">
                     {project.badges.map((b: string) => (
@@ -240,10 +239,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div className="projects-grid">
               {project.related.map((r: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: SanityImageSource }) => (
                 <Link key={r._id} href={`/projects/${r.slug.current}`} className="project">
-                  {r.mainImage
-                    ? <Image className="thumb" src={urlFor(r.mainImage).width(600).height(320).url()} alt={r.title} width={600} height={320} style={{ objectFit: 'cover' }} />
-                    : <div className="thumb anemone"></div>
-                  }
+                  <div className="thumb">
+                    {r.mainImage
+                      ? <Image src={urlFor(r.mainImage).width(800).height(480).url()} alt={r.title} fill style={{ objectFit: 'cover' }} />
+                      : <div className="anemone" style={{ width: '100%', height: '100%' }} />
+                    }
+                  </div>
                   <div className="body">
                     <span className="tag">{[r.tag, r.year].filter(Boolean).join(' · ')}</span>
                     <h3>{r.title}</h3>
