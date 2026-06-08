@@ -17,8 +17,28 @@ const LANGUAGES = [
 function TranslatePicker() {
   const [open, setOpen] = useState(false)
 
+  function getOriginalUrl(): string {
+    if (typeof window === 'undefined') return ''
+    const { hostname, pathname, search } = window.location
+    if (hostname.endsWith('.translate.goog')) {
+      // Decode Google Translate proxy hostname back to original
+      // Encoding: hyphens → double-hyphen, dots → single hyphen
+      const encoded = hostname.replace('.translate.goog', '')
+      const original = encoded
+        .replace(/--/g, '\x00')   // protect real hyphens
+        .replace(/-/g, '.')        // single hyphens were dots
+        .replace(/\x00/g, '-')     // restore real hyphens
+      // Strip translation params from query string
+      const params = new URLSearchParams(search)
+      ;['_x_tr_sl', '_x_tr_tl', '_x_tr_hl', '_x_tr_hist', '_x_tr_pto'].forEach(p => params.delete(p))
+      const qs = params.toString() ? `?${params.toString()}` : ''
+      return `https://${original}${pathname}${qs}`
+    }
+    return window.location.href
+  }
+
   function translate(code: string) {
-    const url = typeof window !== 'undefined' ? window.location.href : 'https://train-web-five.vercel.app'
+    const url = getOriginalUrl()
     window.open(`https://translate.google.com/translate?sl=en&tl=${code}&u=${encodeURIComponent(url)}`, '_blank')
     setOpen(false)
   }
