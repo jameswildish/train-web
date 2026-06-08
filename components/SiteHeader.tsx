@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
-const PROJECT_LINKS = [
-  { href: '/projects/data-donation-monitoring-ddm',                  label: 'Data Donation Platform', tag: 'Data infrastructure' },
+type NavProject = { href: string; label: string; tag: string }
+
+const FALLBACK_PROJECT_LINKS: NavProject[] = [
+  { href: '/projects/data-donation-monitoring-ddm', label: 'Data Donation Platform', tag: 'Data infrastructure' },
   { href: '/projects/gen-taad',             label: 'GEN-TAAD',               tag: 'Genomics' },
   { href: '/projects/genie-ta',             label: 'GENIE-TA',               tag: 'Genomics' },
   { href: '/projects/apecx',               label: 'APECx Study',            tag: 'Clinical' },
@@ -47,7 +49,8 @@ function getActiveKey(pathname: string): string {
   return ''
 }
 
-export default function SiteHeader() {
+export default function SiteHeader({ navProjects }: { navProjects?: NavProject[] }) {
+  const PROJECT_LINKS = navProjects && navProjects.length > 0 ? navProjects : FALLBACK_PROJECT_LINKS
   const pathname = usePathname()
   const activeKey = getActiveKey(pathname)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)

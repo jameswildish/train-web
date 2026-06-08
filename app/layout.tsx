@@ -2,13 +2,24 @@ import type { Metadata } from 'next'
 import './globals.css'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
+import { getAllProjects } from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
   title: 'TRAIN — Science-driven, medically grounded lifestyle',
   description: 'TRAIN translates medical and scientific knowledge into practical, daily habits — built by surgeons, grounded in research, designed for how you actually live.',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  let navProjects: { href: string; label: string; tag: string }[] = []
+  try {
+    const projects = await getAllProjects()
+    navProjects = projects.map((p: { title: string; slug: { current: string }; tag: string }) => ({
+      href: `/projects/${p.slug.current}`,
+      label: p.title,
+      tag: p.tag,
+    }))
+  } catch {}
+
   return (
     <html lang="en">
       <head>
@@ -20,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <SiteHeader />
+        <SiteHeader navProjects={navProjects} />
         <main>{children}</main>
         <SiteFooter />
       </body>
