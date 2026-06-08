@@ -2983,7 +2983,7 @@ nav.main a.active::after {
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: rgba(255,255,255,0.5);
+  color: var(--muted);
   background: none;
   border: none;
   cursor: pointer;
@@ -2991,7 +2991,7 @@ nav.main a.active::after {
   transition: color 0.15s;
   font-family: inherit;
 }
-.translate-btn:hover { color: rgba(255,255,255,0.85); }
+.translate-btn:hover { color: var(--ink); }
 
 .translate-dropdown {
   position: absolute;
