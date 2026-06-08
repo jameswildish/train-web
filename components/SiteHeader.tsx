@@ -79,6 +79,7 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
   }, [drawerOpen])
 
   return (
+    <>
     <header className={`nav${drawerOpen ? ' drawer-open' : ''}`}>
       <div className="wrap row">
         <Link href="/" className="logo">
@@ -176,53 +177,54 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
           <span></span><span></span><span></span>
         </button>
       </div>
+    </header>
 
-      {/* Mobile drawer */}
-      <div className="mobile-drawer" aria-hidden={!drawerOpen}>
-        <div className="drawer-inner">
-          {NAV_FLAT.map(item => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className={`m-link${activeKey === item.key ? ' active' : ''}`}
-              onClick={() => setDrawerOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-
-          <details className="m-group" open={activeKey === 'projects' || projectsOpen}>
-            <summary onClick={() => setProjectsOpen(!projectsOpen)}>
-              Projects <span className="caret">▾</span>
-            </summary>
-            <div className="m-links">
-              <Link href="/projects" onClick={() => setDrawerOpen(false)}><strong>View all projects</strong></Link>
-              {PROJECT_LINKS.map(l => (
-                <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
-              ))}
-            </div>
-          </details>
-
-          <details className="m-group" open={activeKey === 'science' || scienceOpen}>
-            <summary onClick={() => setScienceOpen(!scienceOpen)}>
-              Science <span className="caret">▾</span>
-            </summary>
-            <div className="m-links">
-              {SCIENCE_LINKS.map(l => (
-                <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
-              ))}
-            </div>
-          </details>
-
-          <Link href="/contact" className={`m-link${activeKey === 'contact' ? ' active' : ''}`} onClick={() => setDrawerOpen(false)}>
-            Contact
+    {/* Mobile drawer — outside <header> to avoid backdrop-filter containing block */}
+    <div className={`mobile-drawer${drawerOpen ? ' is-open' : ''}`} aria-hidden={!drawerOpen}>
+      <div className="drawer-inner">
+        {NAV_FLAT.map(item => (
+          <Link
+            key={item.key}
+            href={item.href}
+            className={`m-link${activeKey === item.key ? ' active' : ''}`}
+            onClick={() => setDrawerOpen(false)}
+          >
+            {item.label}
           </Link>
+        ))}
 
-          <div className="m-cta">
-            <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
+        <details className="m-group" open={activeKey === 'projects' || projectsOpen}>
+          <summary onClick={() => setProjectsOpen(!projectsOpen)}>
+            Projects <span className="caret">▾</span>
+          </summary>
+          <div className="m-links">
+            <Link href="/projects" onClick={() => setDrawerOpen(false)}><strong>View all projects</strong></Link>
+            {PROJECT_LINKS.map(l => (
+              <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
+            ))}
           </div>
+        </details>
+
+        <details className="m-group" open={activeKey === 'science' || scienceOpen}>
+          <summary onClick={() => setScienceOpen(!scienceOpen)}>
+            Science <span className="caret">▾</span>
+          </summary>
+          <div className="m-links">
+            {SCIENCE_LINKS.map(l => (
+              <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
+            ))}
+          </div>
+        </details>
+
+        <Link href="/contact" className={`m-link${activeKey === 'contact' ? ' active' : ''}`} onClick={() => setDrawerOpen(false)}>
+          Contact
+        </Link>
+
+        <div className="m-cta">
+          <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
         </div>
       </div>
-    </header>
+    </div>
+    </>
   )
 }

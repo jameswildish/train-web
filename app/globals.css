@@ -291,7 +291,7 @@ nav.main .dd-footer .arrow { color: var(--pink); }
   pointer-events: none;
   transition: opacity .25s ease, transform .25s ease;
 }
-.nav.drawer-open .mobile-drawer {
+.mobile-drawer.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
