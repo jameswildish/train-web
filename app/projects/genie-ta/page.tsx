@@ -1,8 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getProjectMainImage } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = { title: 'Genetic & Epigenomic Insights into Thoracic Aortopathy (GENIE-TA) — TRAIN Projects' }
 
-export default function GenieTaPage() {
+export default async function GenieTaPage() {
+  let project: { mainImage?: unknown } | null = null
+  try { project = await getProjectMainImage('genie-ta') } catch {}
   return (
     <>
       <section className="project-hero">
@@ -17,12 +22,24 @@ export default function GenieTaPage() {
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">Genomics · 2025</div>
           <h1>Genetic &amp; Epigenomic Insights into Thoracic Aortopathy (GENIE-TA)</h1>
           <p className="tagline">Uncovering hidden genetic mechanisms behind aortic disease.</p>
-          <div className="media anemone" style={{ filter: 'saturate(.7) brightness(.95)' }}>
-            <div className="badges">
-              <span className="badge"><span className="dot"></span> TARGet Research Group</span>
-              <span className="badge"><span className="dot"></span> Translational</span>
-              <span className="badge"><span className="dot"></span> Peer-reviewed</span>
-            </div>
+          <div className="media">
+            {project?.mainImage ? (
+              <Image
+                src={urlFor(project.mainImage).width(1600).height(700).url()}
+                alt="Genetic & Epigenomic Insights into Thoracic Aortopathy (GENIE-TA)"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            ) : (
+              <div className="anemone" style={{ width: '100%', height: '100%', filter: 'saturate(.7) brightness(.95)' }}>
+                <div className="badges">
+                  <span className="badge"><span className="dot"></span> TARGet Research Group</span>
+                  <span className="badge"><span className="dot"></span> Translational</span>
+                  <span className="badge"><span className="dot"></span> Peer-reviewed</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

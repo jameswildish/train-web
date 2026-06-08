@@ -53,6 +53,14 @@ export async function getAllTeamMembers() {
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
+export async function getProjectMainImage(slug: string) {
+  if (!client) return null
+  return client.fetch(
+    `*[_type == "project" && slug.current == $slug][0] { mainImage }`,
+    { slug }
+  )
+}
+
 export async function getAllProjects() {
   if (!client) return []
   return client.fetch(`

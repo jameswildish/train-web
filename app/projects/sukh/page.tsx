@@ -1,8 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getProjectMainImage } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = { title: 'SUKH Healing Garden — TRAIN Projects' }
 
-export default function SUKHPage() {
+export default async function SUKHPage() {
+  let project: { mainImage?: unknown } | null = null
+  try { project = await getProjectMainImage('sukh') } catch {}
   return (
     <>
       <section className="project-hero">
@@ -17,12 +22,24 @@ export default function SUKHPage() {
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">Wellbeing · 2025</div>
           <h1>SUKH Healing Garden</h1>
           <p className="tagline">Nature-inspired environments for recovery, wellbeing, and resilience.</p>
-          <div className="media anemone" style={{ filter: 'hue-rotate(80deg) brightness(.85)' }}>
-            <div className="badges">
-              <span className="badge"><span className="dot"></span> TARGet Research Group</span>
-              <span className="badge"><span className="dot"></span> Translational</span>
-              <span className="badge"><span className="dot"></span> Peer-reviewed</span>
-            </div>
+          <div className="media">
+            {project?.mainImage ? (
+              <Image
+                src={urlFor(project.mainImage).width(1600).height(700).url()}
+                alt="SUKH Healing Garden"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            ) : (
+              <div className="anemone" style={{ width: '100%', height: '100%', filter: 'hue-rotate(80deg) brightness(.85)' }}>
+                <div className="badges">
+                  <span className="badge"><span className="dot"></span> TARGet Research Group</span>
+                  <span className="badge"><span className="dot"></span> Translational</span>
+                  <span className="badge"><span className="dot"></span> Peer-reviewed</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

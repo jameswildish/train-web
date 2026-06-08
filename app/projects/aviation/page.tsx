@@ -1,8 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getProjectMainImage } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = { title: 'Aviation & Thoracic Aortic Disease — TRAIN Projects' }
 
-export default function AviationPage() {
+export default async function AviationPage() {
+  let project: { mainImage?: unknown } | null = null
+  try { project = await getProjectMainImage('aviation') } catch {}
   return (
     <>
       <section className="project-hero">
@@ -17,12 +22,24 @@ export default function AviationPage() {
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">Clinical · 2026</div>
           <h1>Aviation &amp; Thoracic Aortic Disease</h1>
           <p className="tagline"><em>Understanding the safety of air travel in patients with aortic disease.</em></p>
-          <div className="media anemone" style={{ filter: 'hue-rotate(200deg) brightness(.9)' }}>
-            <div className="badges">
-              <span className="badge"><span className="dot"></span> TARGet Research Group</span>
-              <span className="badge"><span className="dot"></span> Translational</span>
-              <span className="badge"><span className="dot"></span> Peer-reviewed</span>
-            </div>
+          <div className="media">
+            {project?.mainImage ? (
+              <Image
+                src={urlFor(project.mainImage).width(1600).height(700).url()}
+                alt="Aviation & Thoracic Aortic Disease"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            ) : (
+              <div className="anemone" style={{ width: '100%', height: '100%', filter: 'hue-rotate(200deg) brightness(.9)' }}>
+                <div className="badges">
+                  <span className="badge"><span className="dot"></span> TARGet Research Group</span>
+                  <span className="badge"><span className="dot"></span> Translational</span>
+                  <span className="badge"><span className="dot"></span> Peer-reviewed</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

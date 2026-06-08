@@ -1,8 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getProjectMainImage } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 export const metadata = { title: 'APECx Study — TRAIN Projects' }
 
-export default function APECxPage() {
+export default async function APECxPage() {
+  let project: { mainImage?: unknown } | null = null
+  try { project = await getProjectMainImage('apecx') } catch {}
   return (
     <>
       <section className="project-hero">
@@ -17,12 +22,24 @@ export default function APECxPage() {
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">Clinical · 2026</div>
           <h1>APECx Study</h1>
           <p className="tagline">Understanding global cardiac surgery practices to improve outcomes and standardise care worldwide.</p>
-          <div className="media anemone" style={{ filter: 'hue-rotate(60deg) brightness(.85)' }}>
-            <div className="badges">
-              <span className="badge"><span className="dot"></span> TARGet Research Group</span>
-              <span className="badge"><span className="dot"></span> Translational</span>
-              <span className="badge"><span className="dot"></span> Peer-reviewed</span>
-            </div>
+          <div className="media">
+            {project?.mainImage ? (
+              <Image
+                src={urlFor(project.mainImage).width(1600).height(700).url()}
+                alt="APECx Study"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            ) : (
+              <div className="anemone" style={{ width: '100%', height: '100%', filter: 'hue-rotate(60deg) brightness(.85)' }}>
+                <div className="badges">
+                  <span className="badge"><span className="dot"></span> TARGet Research Group</span>
+                  <span className="badge"><span className="dot"></span> Translational</span>
+                  <span className="badge"><span className="dot"></span> Peer-reviewed</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
