@@ -193,10 +193,11 @@ export default async function HomePage() {
           <div className="founders-grid">
             <div className="founders-photo">
               <Image
-                src="/images/nimrat-and-simran-grewal.png"
+                src="/images/nimrat-and-simran-grewal.jpg"
                 alt="Prof. Dr. Nimrat Grewal & Dr. Simran Grewal"
-                width={600}
-                height={700}
+                width={1492}
+                height={850}
+                quality={90}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
               <div className="tag">
