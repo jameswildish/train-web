@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
@@ -23,6 +24,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <div id="google_translate_element" style={{ display: 'none' }} />
+        <Script id="gt-init" strategy="afterInteractive">{`
+          window.googleTranslateElementInit = function() {
+            new window.google.translate.TranslateElement(
+              { pageLanguage: 'en', autoDisplay: false },
+              'google_translate_element'
+            );
+          };
+        `}</Script>
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

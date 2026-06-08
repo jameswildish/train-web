@@ -3022,22 +3022,28 @@ nav.main a.active::after {
   background: rgba(255,255,255,0.1);
   color: #fff;
 }
-.translate-back {
+.translate-back-btn {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 8px 12px;
+  padding: 8px 12px 12px;
   font-size: 13px;
   color: var(--pink);
-  border-radius: 6px;
-  text-decoration: none;
-  font-family: inherit;
+  background: none;
+  border: none;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0;
   margin-bottom: 4px;
-  padding-bottom: 12px;
-  transition: background 0.1s;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.1s;
 }
-.translate-back:hover { background: rgba(255,255,255,0.08); }
+.translate-back-btn:hover { opacity: 0.8; }
+.translate-dropdown button.active { color: #fff; }
+
+/* Hide Google Translate injected toolbar */
+.goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+body { top: 0 !important; }
 
 /* ── Collaborator logo grid (about page) ───────────── */
 .collab-logo-grid {

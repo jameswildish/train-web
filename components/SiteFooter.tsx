@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const LANGUAGES = [
   { code: 'nl', label: 'Nederlands' },
@@ -14,38 +14,41 @@ const LANGUAGES = [
   { code: 'zh-CN', label: '中文' },
 ]
 
+function setCookies(value: string) {
+  const host = window.location.hostname
+  document.cookie = `googtrans=${value}; path=/`
+  document.cookie = `googtrans=${value}; path=/; domain=${host}`
+  // Also set for parent domain
+  const parts = host.split('.')
+  if (parts.length > 2) {
+    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
+  }
+}
+
 function TranslatePicker() {
   const [open, setOpen] = useState(false)
-  const [isTranslated, setIsTranslated] = useState(false)
-  const [originalUrl, setOriginalUrl] = useState('')
+  const [activeLang, setActiveLang] = useState<string | null>(null)
 
-  useState(() => {
-    if (typeof window === 'undefined') return
-    const { hostname, pathname, search } = window.location
-    if (hostname.endsWith('.translate.goog')) {
-      setIsTranslated(true)
-      const encoded = hostname.replace('.translate.goog', '')
-      const original = encoded
-        .replace(/--/g, '\x00')
-        .replace(/-/g, '.')
-        .replace(/\x00/g, '-')
-      const params = new URLSearchParams(search)
-      ;['_x_tr_sl', '_x_tr_tl', '_x_tr_hl', '_x_tr_hist', '_x_tr_pto'].forEach(p => params.delete(p))
-      const qs = params.toString() ? `?${params.toString()}` : ''
-      setOriginalUrl(`https://${original}${pathname}${qs}`)
-    }
-  })
-
-  function getOriginalUrl(): string {
-    if (originalUrl) return originalUrl
-    return typeof window !== 'undefined' ? window.location.href : ''
-  }
+  useEffect(() => {
+    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
+    setActiveLang(match ? match[1] : null)
+  }, [])
 
   function translate(code: string) {
-    const url = getOriginalUrl()
-    window.open(`https://translate.google.com/translate?sl=en&tl=${code}&u=${encodeURIComponent(url)}`, '_blank')
+    setCookies(`/en/${code}`)
+    setActiveLang(code)
     setOpen(false)
+    window.location.reload()
   }
+
+  function resetToEnglish() {
+    setCookies('')
+    setActiveLang(null)
+    setOpen(false)
+    window.location.reload()
+  }
+
+  const activeLabel = LANGUAGES.find(l => l.code === activeLang)?.label
 
   return (
     <div className="translate-picker">
@@ -54,17 +57,17 @@ function TranslatePicker() {
           <circle cx="12" cy="12" r="9"/>
           <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
         </svg>
-        Translate
+        {activeLabel ?? 'Translate'}
       </button>
       {open && (
         <div className="translate-dropdown">
-          {isTranslated && (
-            <a href={originalUrl} className="translate-back">
+          {activeLang && (
+            <button className="translate-back-btn" onClick={resetToEnglish}>
               English (original)
-            </a>
+            </button>
           )}
           {LANGUAGES.map(l => (
-            <button key={l.code} onClick={() => translate(l.code)}>
+            <button key={l.code} onClick={() => translate(l.code)} className={activeLang === l.code ? 'active' : ''}>
               {l.label}
             </button>
           ))}
