@@ -86,7 +86,7 @@ export default async function HomePage() {
                 The science-driven, medically grounded personalised lifestyle app for real life.
               </h1>
               <p className="lead">
-                TRAIN translates medical and scientific knowledge into practical, daily habits — built by surgeons, grounded in research, designed for how you actually live.
+                Built by surgeons, grounded in research. TRAIN turns medical and scientific knowledge into practical daily habits designed for how you actually live.
               </p>
               <div className="actions">
                 <a href="/contact" className="btn-primary btn">TRAIN App — Coming Soon</a>
@@ -136,7 +136,7 @@ export default async function HomePage() {
             <div>
               <h2>The foundation of long-term health.</h2>
             </div>
-            <p>Every habit in TRAIN connects back to one of four scientifically grounded pillars — the systems that, together, determine how you feel, function, and age.</p>
+            <p>Every habit in TRAIN connects to one of four scientifically grounded pillars. Together, they determine how you feel, function, and age.</p>
           </div>
           <div className="pillar-grid">
             <Link href="/sleep" className="pillar">
@@ -156,7 +156,7 @@ export default async function HomePage() {
                 </svg>
               </div>
               <h3>Movement</h3>
-              <p>Strength, energy, and cardiovascular health. Physical activity regulates metabolism, muscle, and brain — the strongest predictor of healthy ageing.</p>
+              <p>Strength, energy, and cardiovascular health. Physical activity regulates metabolism, muscle, and brain. The strongest predictor of healthy ageing.</p>
               <div className="arrow">Learn more →</div>
             </Link>
             <Link href="/mental-health" className="pillar">
@@ -211,7 +211,7 @@ export default async function HomePage() {
                 TRAIN was founded by two surgeon sisters combining clinical care, scientific research, and a mission to improve long-term health.
               </p>
               <div className="quote" style={{ marginTop: '28px' }}>
-                As doctors, we see preventable health risks every day. TRAIN helps you understand your body, improve your daily habits, and stay healthier — using science and data.
+                As doctors, we see preventable health risks every day. TRAIN helps you understand your body, improve your daily habits, and stay healthier using science and data.
               </div>
               <p className="by">
                 — <strong>Prof. Dr. Nimrat Grewal</strong> &amp; <strong>Dr. Simran Grewal</strong>, founders.
@@ -258,7 +258,7 @@ export default async function HomePage() {
                 </svg>
               </div>
               <h4>Built for your health</h4>
-              <p>TRAIN helps you build the lifestyle habits that protect your health — grounded in evidence, designed for real life.</p>
+              <p>TRAIN helps you build the habits that protect your health. Grounded in evidence. Designed for real life.</p>
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ export default async function HomePage() {
               <div className="eyebrow" style={{ marginBottom: '18px' }}>Projects</div>
               <h2>From research to real-world impact.</h2>
             </div>
-            <p>TRAIN builds on years of academic research and clinical experience. Its founders lead the TARGet research group — translating science into prevention, products, and policy.</p>
+            <p>TRAIN builds on years of academic research and clinical experience. Its founders lead the TARGet research group, translating science into prevention, products, and policy.</p>
             <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
           </div>
 
@@ -337,7 +337,7 @@ export default async function HomePage() {
             </div>
             <div className="text-block">
               <h2>Peer-reviewed research in cardiovascular and preventive health.</h2>
-              <p>From genomics and aortic disease to lifestyle medicine and patient experience — published across leading international journals.</p>
+              <p>From genomics and aortic disease to lifestyle medicine and patient experience, published across leading international journals.</p>
               <Link href="/about#publications" className="btn btn-primary" style={{ display: 'inline-flex', marginTop: '8px' }}>
                 View publications <span className="arrow" style={{ marginLeft: '6px' }}>→</span>
               </Link>
@@ -388,7 +388,7 @@ export default async function HomePage() {
       <section className="cta">
         <div className="wrap">
           <div className="cta-card">
-            <h2>Start your journey toward better health — built on science, powered by research.</h2>
+            <h2>Start your journey toward better health. Built on science, powered by research.</h2>
             <div className="right">
               <p>Join thousands of people building lifestyle habits that protect their long-term health. Free to start, science to back it up.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
