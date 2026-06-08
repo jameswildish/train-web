@@ -51,7 +51,7 @@ export default async function HomePage() {
   let collaborators: Collaborator[] = []
   try {
     ;[posts, featuredProjects, collaborators] = await Promise.all([
-      getLatestPosts(5),
+      getLatestPosts(3),
       getFeaturedProjects(9),
       getAllCollaborators(),
     ])
@@ -63,7 +63,6 @@ export default async function HomePage() {
     ? collaborators
     : COLLABS.map((name, i) => ({ _id: String(i), name }))
 
-  const [featured, ...rest] = posts
 
   return (
     <>
@@ -360,39 +359,20 @@ export default async function HomePage() {
             <Link href="/blog" className="all">View all insights <span className="arrow">↗</span></Link>
           </div>
 
-          <div className="insights-grid">
-            {featured && (
-              <article className="article feature">
-                <Link href={`/blog/${featured.slug.current}`} className="thumb">
-                  {featured.mainImage
-                    ? <Image src={urlFor(featured.mainImage).width(800).height(480).url()} alt={featured.title} width={800} height={480} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <div className="anemone" style={{ width: '100%', height: '100%' }}></div>
-                  }
-                </Link>
-                <div className="body">
-                  <div className="meta">
-                    <span className="pill">{featured.category}</span>
-                    <span className="date">{formatDate(featured.publishedAt)}</span>
-                    {featured.readTime && <span className="muted">· {featured.readTime} min read</span>}
-                  </div>
-                  <h3><Link href={`/blog/${featured.slug.current}`}>{featured.title}</Link></h3>
-                  <p>{featured.excerpt}</p>
-                  <Link href={`/blog/${featured.slug.current}`} className="more" style={{ fontFamily: 'IBM Plex Mono', fontSize: '12px', letterSpacing: '.08em', textTransform: 'uppercase', paddingTop: '12px', display: 'block' }}>Read article →</Link>
-                </div>
-              </article>
-            )}
-            {rest.map((post, i) => (
+          <div className="insights-grid three-col">
+            {posts.map((post, i) => (
               <article key={post._id} className="article">
                 <Link href={`/blog/${post.slug.current}`} className="thumb">
                   {post.mainImage
-                    ? <Image src={urlFor(post.mainImage).width(400).height(240).url()} alt={post.title} width={400} height={240} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <div className="anemone" style={{ width: '100%', height: '100%', filter: `hue-rotate(${(i + 1) * 40}deg)` }}></div>
+                    ? <Image src={urlFor(post.mainImage).width(600).height(360).url()} alt={post.title} width={600} height={360} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <div className="anemone" style={{ width: '100%', height: '100%', filter: `hue-rotate(${i * 40}deg)` }}></div>
                   }
                 </Link>
                 <div className="body">
                   <div className="meta">
                     <span className="pill">{post.category}</span>
                     <span className="date">{formatDate(post.publishedAt)}</span>
+                    {post.readTime && <span className="muted">· {post.readTime} min read</span>}
                   </div>
                   <h3><Link href={`/blog/${post.slug.current}`}>{post.title}</Link></h3>
                   <p>{post.excerpt}</p>

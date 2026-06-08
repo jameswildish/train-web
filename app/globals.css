@@ -1076,6 +1076,7 @@ section.tight { padding: 64px 0; }
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: 18px;
 }
+.insights-grid.three-col { grid-template-columns: repeat(3, 1fr); }
 .article {
   border: 1px solid var(--line);
   border-radius: 18px;
