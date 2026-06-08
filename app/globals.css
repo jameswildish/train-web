@@ -1192,7 +1192,7 @@ section.tight { padding: 64px 0; }
   padding: 0 0 96px;
 }
 .cta-card {
-  background: var(--teal-deep);
+  background: linear-gradient(105deg, #5A050F 0%, #A01220 50%, #E13B4E 100%);
   border-radius: 28px;
   padding: 80px 64px;
   display: grid;
@@ -1208,9 +1208,9 @@ section.tight { padding: 64px 0; }
   right: -10%; top: -50%;
   width: 70%; height: 200%;
   background:
-    radial-gradient(60% 50% at 50% 50%, #1F8C99 0%, transparent 60%),
-    radial-gradient(40% 40% at 30% 70%, #0F7B85 0%, transparent 50%);
-  opacity: 0.55;
+    radial-gradient(60% 50% at 50% 50%, rgba(225,59,78,0.5) 0%, transparent 60%),
+    radial-gradient(40% 40% at 30% 70%, rgba(180,20,40,0.4) 0%, transparent 50%);
+  opacity: 0.6;
   filter: blur(4px);
 }
 .cta-card h2 {
