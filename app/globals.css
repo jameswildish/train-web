@@ -3042,7 +3042,10 @@ nav.main a.active::after {
 .translate-dropdown button.active { color: #fff; }
 
 /* Hide Google Translate injected toolbar */
-.goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+iframe.goog-te-banner-frame,
+iframe[src*="translate.google"],
+#goog-gt-tt,
+.goog-te-balloon-frame { display: none !important; }
 body { top: 0 !important; }
 
 /* ── Collaborator logo grid (about page) ───────────── */

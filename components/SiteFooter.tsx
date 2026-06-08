@@ -34,6 +34,20 @@ function TranslatePicker() {
     setActiveLang(match ? match[1] : null)
   }, [])
 
+  useEffect(() => {
+    function hideToolbar() {
+      const frame = document.querySelector<HTMLElement>('iframe.goog-te-banner-frame')
+      if (frame) frame.style.setProperty('display', 'none', 'important')
+      if (document.body.style.top && document.body.style.top !== '0px') {
+        document.body.style.setProperty('top', '0', 'important')
+      }
+    }
+    hideToolbar()
+    const observer = new MutationObserver(hideToolbar)
+    observer.observe(document.body, { childList: true, subtree: false, attributes: true, attributeFilter: ['style'] })
+    return () => observer.disconnect()
+  }, [])
+
   function translate(code: string) {
     setCookies(`/en/${code}`)
     setActiveLang(code)
