@@ -10,15 +10,15 @@
   --muted: #6B6F73;
   --line: #ECE6E2;
   --line-2: #DFD8D3;
-  --pink: #DC5E55;          /* TRAIN primary */
-  --pink-2: #C94B43;
-  --pink-3: #B0382F;
-  --pink-soft: #F3D3CF;
+  --pink: #E13B4E;          /* TRAIN primary */
+  --pink-2: #C8303F;
+  --pink-3: #AD2535;
+  --pink-soft: #F5CDD1;
   --pink-tint: #FCF8F7;     /* subtle warm white for hover/highlights */
   /* aliased to pink so existing accent usages flip without code churn */
-  --teal: #DC5E55;
-  --teal-2: #C94B43;
-  --teal-bright: #DC5E55;
+  --teal: #E13B4E;
+  --teal-2: #C8303F;
+  --teal-bright: #E13B4E;
   --teal-deep: #042B30;     /* deep teal — hero panel + dark accent cards */
   --dark: #042B30;          /* alias for dark accent backgrounds */
   --sage: #C6D2C7;
@@ -112,18 +112,10 @@ header.nav .row {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600; font-size: 22px; letter-spacing: 0.02em;
 }
-.logo-icon { width: 34px; height: 34px; object-fit: contain; }
-.logo .mark {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: var(--ink);
-  display: grid; place-items: center;
-  color: var(--bg);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 13px;
-  font-weight: 700;
-}
-.logo .word { letter-spacing: 0.16em; font-weight: 600; }
+.logo-icon { width: 40px; height: 40px; object-fit: contain; }
+.logo-text { display: flex; flex-direction: column; gap: 1px; line-height: 1; }
+.logo .word { letter-spacing: 0.16em; font-weight: 700; font-size: 20px; }
+.logo-sub { font-size: 10px; letter-spacing: 0.18em; font-weight: 500; color: var(--pink); text-transform: uppercase; }
 
 nav.main { display: flex; gap: 28px; align-items: center; }
 nav.main > a,
@@ -392,7 +384,7 @@ section.tight { padding: 64px 0; }
 .hero-card .bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, rgba(4,43,48,0.88) 0%, rgba(4,43,48,0.65) 55%, rgba(4,43,48,0.45) 100%);
+  background: linear-gradient(105deg, rgba(225,59,78,0.82) 0%, rgba(225,59,78,0.55) 55%, rgba(225,59,78,0.25) 100%);
 }
 .hero-card .panel {
   position: relative;

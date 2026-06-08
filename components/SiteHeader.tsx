@@ -79,8 +79,11 @@ export default function SiteHeader() {
     <header className={`nav${drawerOpen ? ' drawer-open' : ''}`}>
       <div className="wrap row">
         <Link href="/" className="logo">
-          <img src="/images/TRAIN-Icon.png" alt="TRAIN" className="logo-icon" />
-          <span className="word">TRAIN</span>
+          <img src="/images/TRAIN-icon.png" alt="TRAIN" className="logo-icon" />
+          <span className="logo-text">
+            <span className="word">TRAIN</span>
+            <span className="logo-sub">Health Awareness</span>
+          </span>
         </Link>
 
         <nav className="main">
