@@ -384,12 +384,12 @@ section.tight { padding: 64px 0; }
 .hero-card .bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, rgba(225,59,78,0.82) 0%, rgba(225,59,78,0.55) 55%, rgba(225,59,78,0.25) 100%);
+  background: linear-gradient(105deg, rgba(150,12,28,0.88) 0%, rgba(225,59,78,0.72) 50%, rgba(225,59,78,0.35) 100%);
 }
 .hero-card .panel {
   position: relative;
   z-index: 2;
-  background: linear-gradient(95deg, rgba(2,22,25,0.96) 0%, rgba(2,22,25,0.92) 70%, rgba(2,22,25,0.0) 100%);
+  background: linear-gradient(95deg, rgba(140,10,24,0.88) 0%, rgba(200,45,62,0.65) 60%, rgba(225,59,78,0.0) 100%);
   padding: 56px 56px 44px;
   display: flex;
   flex-direction: column;
