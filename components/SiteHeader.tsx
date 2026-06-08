@@ -116,12 +116,10 @@ export default function SiteHeader() {
               Science <span className="caret">▾</span>
             </button>
             <div className="dropdown resources-dd" role="menu">
-              <div className="dd-heading">Research & organisation</div>
               <div className="dd-grid resources-grid">
                 {SCIENCE_LINKS.map(l => (
                   <Link key={l.href} href={l.href} className="dd-item">
                     <span className="dd-label">{l.label}</span>
-                    <span className="dd-tag">{l.tag}</span>
                   </Link>
                 ))}
               </div>
@@ -147,12 +145,10 @@ export default function SiteHeader() {
               Projects <span className="caret">▾</span>
             </button>
             <div className="dropdown projects-dd" role="menu">
-              <div className="dd-heading">Research portfolio</div>
               <div className="dd-grid projects-grid">
                 {PROJECT_LINKS.map(l => (
                   <Link key={l.href} href={l.href} className="dd-item">
                     <span className="dd-label">{l.label}</span>
-                    <span className="dd-tag">{l.tag}</span>
                   </Link>
                 ))}
               </div>
