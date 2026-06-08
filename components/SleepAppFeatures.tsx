@@ -13,17 +13,17 @@ export default function SleepAppFeatures() {
       <div className="feature-grid">
         <div className="feature-card">
           <h3>MySleep</h3>
-          <p>Sync your wearable device to track sleep duration and quality. Build a consistent routine that supports deeper, more restorative sleep — an essential foundation for long-term health and longevity.</p>
+          <p>Sync your wearable device to track sleep duration and quality. Build a consistent routine that supports deeper, more restorative sleep, an essential foundation for long-term health and longevity.</p>
           <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
         </div>
         <div className="feature-card dark">
           <h3>Sound Scapes</h3>
-          <p>A sound-based approach to help you unwind. Steady background sounds — including nature recordings — reduce environmental distractions and create a consistent auditory environment for sleep.</p>
+          <p>A sound-based approach to help you unwind. Steady background sounds, including nature recordings, reduce environmental distractions and create a consistent auditory environment for sleep.</p>
           <button className="feature-cta" onClick={() => setAudioOpen('soundscape')}>Try the Rainforest soundscape <span className="arrow">→</span></button>
         </div>
         <div className="feature-card">
           <h3>Sleep meditation</h3>
-          <p>Audio-based sessions using science-informed relaxation techniques — body scanning, mindful breathing, gratitude — to support downregulation of the nervous system and the transition into sleep.</p>
+          <p>Audio-based sessions using science-informed relaxation techniques including body scanning, mindful breathing, and gratitude to support downregulation of the nervous system and the transition into sleep.</p>
           <button className="feature-cta" onClick={() => setAudioOpen('meditation')}>Start a session <span className="arrow">→</span></button>
         </div>
       </div>
@@ -50,7 +50,7 @@ const AUDIO_CONFIG = {
   meditation: {
     title: 'Sleep Meditation',
     subtitle: 'Body scan & breathing · 20 min',
-    description: 'Science-informed relaxation techniques — body scanning and mindful breathing — to support nervous-system downregulation before sleep.',
+    description: 'Science-informed relaxation techniques including body scanning and mindful breathing to support nervous-system downregulation before sleep.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="5" r="2" />

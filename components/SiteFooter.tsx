@@ -57,7 +57,7 @@ export default function SiteFooter() {
           <div>
             <h5>Newsletter</h5>
             <p style={{ fontSize: '14px', color: 'var(--ink-2)', marginBottom: '14px', maxWidth: '280px' }}>
-              Science, distilled. One short note a month — no spam.
+              Science, distilled. One short note a month. No spam.
             </p>
             <form className="newsletter" onSubmit={(e) => e.preventDefault()}>
               <input type="email" placeholder="you@email.com" />

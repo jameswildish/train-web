@@ -100,7 +100,7 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
                 <div className="eyebrow" style={{ marginBottom: '18px' }}>More articles</div>
                 <h2>The latest from TRAIN.</h2>
               </div>
-              <p>Short, evidence-based pieces — written by surgeons, researchers, and the TRAIN team.</p>
+              <p>Short, evidence-based pieces written by surgeons, researchers, and the TRAIN team.</p>
             </div>
 
             <div className="insights-grid blog-grid">

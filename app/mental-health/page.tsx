@@ -41,7 +41,7 @@ export default function MentalHealthPage() {
             <div>
               <h2>Three tools for a more regulated mind.</h2>
             </div>
-            <p>Grounded in attention science, autonomic regulation, and body-state awareness — each adapted to your wearable data and current physiological state.</p>
+            <p>Grounded in attention science, autonomic regulation, and body-state awareness, each adapted to your wearable data and current physiological state.</p>
           </div>
 
           <div className="feature-grid">
@@ -69,7 +69,7 @@ export default function MentalHealthPage() {
         <div className="wrap">
           <div className="top">
             <div>
-              <h2>The biology of mindfulness — what actually shifts.</h2>
+              <h2>The biology of mindfulness. What actually shifts.</h2>
             </div>
             <p>Mindfulness and meditation are mental-training practices that help regulate attention, emotion, and the body's stress response. Here's what the research actually measures.</p>
           </div>
@@ -122,7 +122,7 @@ export default function MentalHealthPage() {
           <div className="qa">
             <div>
               <h3>What is the key scientific principle behind mindfulness?</h3>
-              <p>Mindfulness works through three main mechanisms — each reinforcing the others over time.</p>
+              <p>Mindfulness works through three main mechanisms, each reinforcing the others over time.</p>
               <ul className="steps">
                 <li><strong>Attention regulation</strong>Training focus and reducing distraction — the foundational skill underlying everything else.</li>
                 <li><strong>Emotion regulation</strong>Reducing automatic reactivity to stress and creating space between trigger and response.</li>

@@ -77,7 +77,7 @@ export default async function AboutPage() {
                 <span className="sep">/</span>
                 <span className="current">About</span>
               </div>
-              <h1 style={{ marginTop: '32px' }}>The art of living healthy — guided by science and medicine.</h1>
+              <h1 style={{ marginTop: '32px' }}>The art of living healthy, guided by science and medicine.</h1>
               <p className="lead">TRAIN is built on years of academic research and clinical experience. Our founders lead the TARGet research group — an international initiative advancing cardiovascular and preventive health through translational science.</p>
             </div>
             <div className="pillar-hero-photo-img">
@@ -123,7 +123,7 @@ export default async function AboutPage() {
             <div className="mva-card">
               <div className="eyebrow">02 / Vision</div>
               <h3>A world of informed, proactive individuals.</h3>
-              <p>A world where individuals are well-informed about their health risks and proactive in managing them — supported by a community of engaged people who can make better health decisions backed by the latest research and technology.</p>
+              <p>A world where individuals are well-informed about their health risks and proactive in managing them, supported by a community of engaged people who can make better health decisions backed by the latest research and technology.</p>
             </div>
             <div className="mva-card">
               <div className="eyebrow">03 / Approach</div>

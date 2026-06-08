@@ -17,7 +17,7 @@ export default function ActivityPage() {
                 <span className="current">Activity</span>
               </div>
               <h1 style={{ marginTop: '32px' }}>
-                Movement is medicine — physical activity is one of the most powerful tools supporting muscle, metabolism, and resilience as we age.
+                Physical activity is one of the most powerful tools for supporting muscle, metabolism, and resilience as we age.
               </h1>
             </div>
             <div className="pillar-hero-photo-img">
@@ -41,13 +41,13 @@ export default function ActivityPage() {
             <div>
               <h2>Three tools for stronger, smarter movement.</h2>
             </div>
-            <p>Grounded in exercise physiology, readiness science, and metabolic research — and built to adapt to your patterns.</p>
+            <p>Grounded in exercise physiology, readiness science, and metabolic research, built to adapt to your patterns.</p>
           </div>
 
           <div className="feature-grid">
             <div className="feature-card">
               <h3>My Activity</h3>
-              <p>Sync any wearable and track daily activity, movement patterns, and recovery. Consistent physical activity supports muscle strength, cardiovascular health, and metabolic function — all strongly linked to healthy ageing.</p>
+              <p>Sync any wearable and track daily activity, movement patterns, and recovery. Consistent physical activity supports muscle strength, cardiovascular health, and metabolic function, all strongly linked to healthy ageing.</p>
               <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card dark">
@@ -71,7 +71,7 @@ export default function ActivityPage() {
             <div>
               <h2>Why movement is the strongest predictor of healthy ageing.</h2>
             </div>
-            <p>Physical activity is not only about fitness — it's a fundamental regulator of long-term physical and cognitive health. Here's what the research actually says.</p>
+            <p>Physical activity is not only about fitness. It is a fundamental regulator of long-term physical and cognitive health. Here is what the research actually says.</p>
           </div>
 
           <div className="qa">
