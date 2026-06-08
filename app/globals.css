@@ -2318,7 +2318,7 @@ nav.main a.active::after {
   border-top: 1px solid var(--line);
 }
 .pillar-cta .card {
-  background: var(--teal-deep);
+  background: linear-gradient(105deg, #5A050F 0%, #A01220 50%, #E13B4E 100%);
   border-radius: 24px;
   padding: 56px 48px;
   display: grid;
@@ -2335,8 +2335,8 @@ nav.main a.active::after {
   inset: -50% -10% auto auto;
   width: 60%; height: 200%;
   background:
-    radial-gradient(60% 50% at 50% 50%, #1F8C99 0%, transparent 60%),
-    radial-gradient(40% 40% at 30% 70%, #0F7B85 0%, transparent 50%);
+    radial-gradient(60% 50% at 50% 50%, rgba(225,59,78,0.5) 0%, transparent 60%),
+    radial-gradient(40% 40% at 30% 70%, rgba(180,20,40,0.4) 0%, transparent 50%);
   opacity: 0.5;
   filter: blur(2px);
 }

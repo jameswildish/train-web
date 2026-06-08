@@ -235,12 +235,12 @@ function MemberGrid({ filtered, counts, activeFilter, setActiveFilter }: {
       <section className="cta">
         <div className="wrap">
           <div className="cta-card">
-            <h2>Want to join the TRAIN team?</h2>
+            <h2>Join a team building the science of better living.</h2>
             <div className="right">
-              <p>We&apos;re always interested in hearing from clinicians, researchers, and data specialists with a passion for translational health science.</p>
+              <p>We&apos;re looking for clinicians, researchers, and data specialists who believe good science should change how people live. Come build something that matters.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/contact" className="btn btn-primary">Get in touch <span className="arrow">→</span></Link>
-                <Link href="/science" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>About the research group</Link>
+                <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>About the research group</Link>
               </div>
             </div>
           </div>

@@ -144,6 +144,7 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
         <div className="wrap">
           <div className="card">
             <h2>Science, distilled. One short note a month.</h2>
+            <p style={{ color: 'rgba(255,255,255,0.75)', marginBottom: '20px', maxWidth: '400px' }}>The best of the research — without the jargon. Join readers building healthier habits grounded in evidence.</p>
             <div className="actions">
               <form className="newsletter inline-newsletter" onSubmit={(e) => e.preventDefault()}>
                 <input type="email" placeholder="you@email.com" />

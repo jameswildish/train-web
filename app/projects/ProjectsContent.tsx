@@ -141,12 +141,12 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
       <section className="cta">
         <div className="wrap">
           <div className="cta-card">
-            <h2>Want to collaborate on a project?</h2>
+            <h2>Collaborate with TRAIN.</h2>
             <div className="right">
-              <p>The TARGet research group welcomes new clinical, academic, and industry partners. Whether you have data, a question, or a co-funded study in mind — get in touch.</p>
+              <p>The TARGet research group welcomes clinical, academic, and industry partners. Whether you have data, a question, or a co-funded study in mind — we&apos;d like to hear from you.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/contact" className="btn btn-primary">Get in touch <span className="arrow">→</span></Link>
-                <Link href="/science" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>About the research group</Link>
+                <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>About TRAIN</Link>
               </div>
             </div>
           </div>

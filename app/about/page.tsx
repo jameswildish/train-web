@@ -292,9 +292,9 @@ export default async function AboutPage() {
       <section className="cta">
         <div className="wrap">
           <div className="cta-card">
-            <h2>Join the TRAIN research community.</h2>
+            <h2>The science is here. The evidence is building.</h2>
             <div className="right">
-              <p>We collaborate with clinicians, researchers, institutions, and patients worldwide. If your work intersects with ours, we&apos;d like to hear from you.</p>
+              <p>TRAIN is a clinician-led group working at the intersection of cardiovascular science, lifestyle medicine, and digital health. If your work intersects with ours, we&apos;d like to collaborate.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Link href="/contact" className="btn btn-primary">Get in touch <span className="arrow">→</span></Link>
                 <Link href="/projects" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Explore projects</Link>
