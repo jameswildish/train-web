@@ -23,7 +23,7 @@ export default function SleepPage() {
             </div>
             <div className="pillar-hero-photo-img">
               <Image
-                src="/images/nutrition-hero.jpg"
+                src="/images/sleep-hero.jpg"
                 alt="Sleep and rest"
                 width={700}
                 height={560}

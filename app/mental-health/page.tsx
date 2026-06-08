@@ -22,7 +22,7 @@ export default function MentalHealthPage() {
             </div>
             <div className="pillar-hero-photo-img">
               <Image
-                src="/images/nutrition-hero.jpg"
+                src="/images/mental-health-hero.jpg"
                 alt="Mindfulness and mental health"
                 width={700}
                 height={560}

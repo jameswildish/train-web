@@ -22,7 +22,7 @@ export default function ActivityPage() {
             </div>
             <div className="pillar-hero-photo-img">
               <Image
-                src="/images/nutrition-hero.jpg"
+                src="/images/activity-hero.jpg"
                 alt="Physical activity and movement"
                 width={700}
                 height={560}
