@@ -206,7 +206,6 @@ export default async function HomePage() {
               </div>
             </div>
             <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>Built by surgeons, driven by science</div>
               <h2>The art of living healthy, guided by science and medicine.</h2>
               <p style={{ marginTop: '20px', maxWidth: '480px', color: 'var(--ink-2)', lineHeight: 1.6 }}>
                 TRAIN was founded by two surgeon sisters combining clinical care, scientific research, and a mission to improve long-term health.
@@ -218,7 +217,7 @@ export default async function HomePage() {
                 — <strong>Prof. Dr. Nimrat Grewal</strong> &amp; <strong>Dr. Simran Grewal</strong>, founders.
               </p>
               <div style={{ display: 'flex', gap: '12px', marginTop: '32px', flexWrap: 'wrap' }}>
-                <Link href="/projects" className="btn btn-primary">Explore our research <span className="arrow">→</span></Link>
+                <Link href="/projects" className="btn btn-primary">Explore our projects <span className="arrow">→</span></Link>
                 <Link href="/about" className="btn btn-ghost">About TRAIN</Link>
               </div>
             </div>
@@ -239,7 +238,7 @@ export default async function HomePage() {
                 </svg>
               </div>
               <h4>20+ years of research</h4>
-              <p>Two decades of clinical experience and translational research in cardiovascular and preventive health.</p>
+              <p>Over two decades of clinical experience and translational research in cardiovascular and preventive health.</p>
             </div>
             <div className="mission-card">
               <div className="ico">
@@ -273,7 +272,7 @@ export default async function HomePage() {
               <div className="eyebrow" style={{ marginBottom: '18px' }}>Projects</div>
               <h2>From research to real-world impact.</h2>
             </div>
-            <p>TRAIN builds on years of academic research and clinical experience. Its founders lead the TARGet research group, translating science into prevention, products, and policy.</p>
+            <p>TRAIN builds on years of academic research and clinical experience. Its founders lead the TARGet research group, an academic initiative focused on advancing cardiovascular and preventive health through collaboration with clinicians, researchers, and institutions worldwide.</p>
             <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
           </div>
 
