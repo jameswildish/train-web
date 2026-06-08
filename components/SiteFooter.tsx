@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <div className="foot-grid">
           <div className="brand-col">
             <Link href="/" className="logo">
-              <span className="mark">T</span>
+              <img src="/images/TRAIN-Icon.png" alt="TRAIN" className="logo-icon" />
               <span className="word">TRAIN</span>
             </Link>
             <p>Science-driven, medically grounded lifestyle. Built by surgeons. Driven by research.</p>

@@ -112,6 +112,7 @@ header.nav .row {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600; font-size: 22px; letter-spacing: 0.02em;
 }
+.logo-icon { width: 34px; height: 34px; object-fit: contain; }
 .logo .mark {
   width: 34px; height: 34px;
   border-radius: 10px;
