@@ -14,52 +14,32 @@ const LANGUAGES = [
   { code: 'zh-CN', label: '中文' },
 ]
 
-function suppressToolbar() {
-  const frame = document.querySelector<HTMLElement>(
-    'iframe.goog-te-banner-frame, iframe[src*="translate.google"]'
-  )
-  if (frame) {
-    frame.style.setProperty('display', 'none', 'important')
-    frame.style.setProperty('visibility', 'hidden', 'important')
-  }
-  if (document.body.style.top && document.body.style.top !== '0px') {
-    document.body.style.setProperty('top', '0px', 'important')
-  }
-  const tt = document.querySelector<HTMLElement>('#goog-gt-tt, .goog-te-balloon-frame')
-  if (tt) tt.style.setProperty('display', 'none', 'important')
+function encodeHost(host: string) {
+  return host.replace(/-/g, '--').replace(/\./g, '-')
 }
 
-function setCookie(value: string) {
-  const host = window.location.hostname
-  document.cookie = `googtrans=${value}; path=/`
-  document.cookie = `googtrans=${value}; path=/; domain=${host}`
-  const parts = host.split('.')
-  if (parts.length > 2) {
-    document.cookie = `googtrans=${value}; path=/; domain=.${parts.slice(-2).join('.')}`
-  }
+function decodeHost(encoded: string) {
+  return encoded.replace(/--/g, '\x00').replace(/-/g, '.').replace(/\x00/g, '-')
 }
 
-function triggerTranslate(langCode: string) {
-  const attempt = () => {
-    const select = document.querySelector<HTMLSelectElement>('.goog-te-combo')
-    if (select) {
-      select.value = langCode
-      select.dispatchEvent(new Event('change'))
-      return true
-    }
-    return false
-  }
+function getOriginalUrl(): string {
+  const { hostname, pathname, search } = window.location
+  if (!hostname.endsWith('.translate.goog')) return window.location.href
+  const original = decodeHost(hostname.replace('.translate.goog', ''))
+  const params = new URLSearchParams(search)
+  params.delete('_x_tr_sl')
+  params.delete('_x_tr_tl')
+  params.delete('_x_tr_hl')
+  params.delete('_x_tr_hist')
+  const qs = params.toString()
+  return `https://${original}${pathname}${qs ? '?' + qs : ''}`
+}
 
-  if (!attempt()) {
-    let tries = 0
-    const iv = setInterval(() => {
-      tries++
-      if (attempt() || tries > 50) {
-        clearInterval(iv)
-        if (tries > 50) window.location.reload()
-      }
-    }, 100)
-  }
+function buildGoogUrl(langCode: string): string {
+  const original = new URL(getOriginalUrl())
+  const encoded = encodeHost(original.hostname)
+  const qs = original.search ? original.search + '&' : '?'
+  return `https://${encoded}.translate.goog${original.pathname}${qs}_x_tr_sl=en&_x_tr_tl=${langCode}&_x_tr_hl=en-GB`
 }
 
 function TranslatePicker() {
@@ -67,38 +47,20 @@ function TranslatePicker() {
   const [activeLang, setActiveLang] = useState<string | null>(null)
 
   useEffect(() => {
-    const match = document.cookie.match(/googtrans=\/en\/([^;]+)/)
-    const lang = match ? match[1] : null
-    if (lang && lang !== 'en') setActiveLang(lang)
-  }, [])
-
-  useEffect(() => {
-    suppressToolbar()
-
-    const styleObserver = new MutationObserver(suppressToolbar)
-    styleObserver.observe(document.body, { attributes: true, attributeFilter: ['style'] })
-
-    const childObserver = new MutationObserver(suppressToolbar)
-    childObserver.observe(document.body, { childList: true, subtree: true })
-
-    return () => {
-      styleObserver.disconnect()
-      childObserver.disconnect()
+    if (window.location.hostname.endsWith('.translate.goog')) {
+      const tl = new URLSearchParams(window.location.search).get('_x_tr_tl')
+      if (tl) setActiveLang(tl)
     }
   }, [])
 
   function translate(code: string) {
-    setCookie(`/en/${code}`)
-    setActiveLang(code)
     setOpen(false)
-    triggerTranslate(code)
+    window.location.href = buildGoogUrl(code)
   }
 
   function resetToEnglish() {
-    setCookie('/en/en')
-    setActiveLang(null)
     setOpen(false)
-    triggerTranslate('en')
+    window.location.href = getOriginalUrl()
   }
 
   const activeLabel = LANGUAGES.find(l => l.code === activeLang)?.label
