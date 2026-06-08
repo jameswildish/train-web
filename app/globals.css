@@ -184,7 +184,7 @@ nav.main .nav-item.has-dd::after {
   height: 22px;
 }
 nav.main .dropdown.projects-dd { min-width: 560px; left: auto; right: -20px; }
-nav.main .dropdown.resources-dd { min-width: 340px; left: auto; right: -20px; }
+nav.main .dropdown.resources-dd { min-width: 200px; left: auto; right: -20px; }
 nav.main .dd-grid.resources-grid { grid-template-columns: 1fr; }
 nav.main .dd-heading {
   font-family: "IBM Plex Mono", monospace;
