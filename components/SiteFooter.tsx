@@ -47,10 +47,30 @@ function TranslatePicker() {
   const [activeLang, setActiveLang] = useState<string | null>(null)
 
   useEffect(() => {
-    if (window.location.hostname.endsWith('.translate.goog')) {
-      const tl = new URLSearchParams(window.location.search).get('_x_tr_tl')
-      if (tl) setActiveLang(tl)
+    const { hostname, search } = window.location
+    if (!hostname.endsWith('.translate.goog')) return
+
+    const tl = new URLSearchParams(search).get('_x_tr_tl')
+    if (tl) setActiveLang(tl)
+
+    // Next.js intercepts link clicks for client-side routing, which breaks the
+    // translate.goog proxy. Capture all internal link clicks first and force
+    // a full page load to the proxy URL instead.
+    function interceptLinks(e: MouseEvent) {
+      const anchor = (e.target as Element).closest('a')
+      if (!anchor) return
+      const href = anchor.getAttribute('href')
+      if (!href || href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('mailto:')) return
+
+      e.preventDefault()
+      e.stopImmediatePropagation()
+
+      const lang = new URLSearchParams(window.location.search).get('_x_tr_tl') || 'en'
+      window.location.href = `https://${hostname}${href}?_x_tr_sl=en&_x_tr_tl=${lang}&_x_tr_hl=en-GB`
     }
+
+    document.addEventListener('click', interceptLinks, true)
+    return () => document.removeEventListener('click', interceptLinks, true)
   }, [])
 
   function translate(code: string) {
