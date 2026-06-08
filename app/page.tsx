@@ -201,8 +201,8 @@ export default async function HomePage() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
               <div className="tag">
-                <strong>Prof. Dr. Nimrat Grewal</strong> · cardiothoracic surgeon (left)<br />
-                <strong>Dr. Simran Grewal</strong> · orthopaedic trauma surgeon (right)
+                <strong>Prof. Dr. Nimrat Grewal</strong> · Cardiothoracic Surgeon (left)<br />
+                <strong>Dr. Simran Grewal</strong> · Orthopaedic Trauma Surgeon (right)
               </div>
             </div>
             <div>
