@@ -140,7 +140,7 @@ export default async function AboutPage() {
           <div className="founders-grid">
             <div className="founders-photo">
               <Image
-                src="/images/founders.jpg"
+                src="/images/nimrat-and-simran-grewal.png"
                 alt="Prof. Dr. Nimrat Grewal & Dr. Simran Grewal"
                 width={600}
                 height={700}
