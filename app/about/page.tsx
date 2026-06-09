@@ -75,6 +75,7 @@ export default async function AboutPage() {
         </div>
       </nav>
 
+
       {/* ============ ABOUT US ============ */}
       <section id="about" style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
         <div className="wrap">
@@ -106,39 +107,8 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* ============ FOUNDERS ============ */}
-      <section className="founders" id="founders">
-        <div className="wrap">
-          <div className="founders-grid">
-            <div className="founders-photo">
-              <Image
-                src="/images/nimrat-and-simran-grewal.jpg"
-                alt="Prof. Dr. Nimrat Grewal & Dr. Simran Grewal"
-                width={1492}
-                height={850}
-                quality={90}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-              />
-              <div className="tag">
-                <strong>Prof. Dr. Nimrat Grewal</strong> · Cardiothoracic Surgeon<br />
-                <strong>Dr. Simran Grewal</strong> · Orthopaedic Trauma Surgeon
-              </div>
-            </div>
-            <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>Built by surgeons</div>
-              <h2>Two sisters. One mission.</h2>
-              <div className="quote">
-                As doctors, we see preventable health risks every day. TRAIN helps you understand your body, improve your daily habits, and stay healthier — using science and data.
-              </div>
-              <p className="by">— Founders, TRAIN Health Awareness.</p>
-              <p style={{ marginTop: '28px', maxWidth: '480px' }}>TRAIN was founded by two surgeon sisters combining clinical care, scientific research, and a mission to improve long-term health.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ============ TARGet ============ */}
-      <section className="target" id="target">
+      <section className="target" id="target" style={{ background: 'var(--bg)' }}>
         <div className="wrap">
           <div className="target-grid">
             <div>
@@ -220,7 +190,7 @@ export default async function AboutPage() {
 
       {/* ============ PUBLICATIONS ============ */}
       {publications.length > 0 && (
-        <section className="pubs" id="publications">
+        <section className="pubs" id="publications" style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
           <div className="wrap">
             <div className="sec-head head">
               <div>
