@@ -173,7 +173,7 @@ export default async function AboutPage() {
               <div className="eyebrow" style={{ marginBottom: '18px' }}>TARGet Research Group</div>
               <div className="target-portrait">
                 <Image
-                  src="/images/nimrat-grewal.jpg"
+                  src="/images/nimrat-grewal-about.jpg"
                   alt="Prof. Dr. Nimrat Grewal"
                   width={80}
                   height={80}
