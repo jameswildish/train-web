@@ -739,6 +739,17 @@ section.tight { padding: 64px 0; }
     radial-gradient(70% 50% at 20% 0%, rgba(255,255,255,0.06), transparent 50%);
 }
 
+/* Pink anemone variant — article/blog card placeholders */
+.article .thumb .anemone,
+.article-hero-img.anemone {
+  background:
+    radial-gradient(28% 22% at 78% 30%, rgba(255, 180, 170, 0.55) 0%, transparent 60%),
+    radial-gradient(35% 28% at 25% 65%, rgba(220, 80, 80, 0.4) 0%, transparent 55%),
+    radial-gradient(50% 40% at 60% 80%, rgba(180, 40, 60, 0.35) 0%, transparent 55%),
+    radial-gradient(70% 60% at 50% 20%, #C0303A 0%, transparent 50%),
+    linear-gradient(135deg, #6B0E14 0%, #A01220 50%, #D94455 100%);
+}
+
 /* Badge pills inside anemone */
 .badges {
   position: absolute; inset: 0;
@@ -1720,15 +1731,19 @@ image-slot[data-has-image="false"]::part(placeholder) {
 .article-toc .share-row {
   display: flex; gap: 10px;
 }
-.article-toc .share-row a {
+.article-toc .share-row a,
+.article-toc .share-row button {
   width: 36px; height: 36px;
   border: 1px solid var(--line);
   border-radius: 50%;
   display: grid; place-items: center;
   color: var(--ink-2);
+  background: transparent;
+  cursor: pointer;
   transition: color .2s ease, border-color .2s ease;
 }
-.article-toc .share-row a:hover { color: var(--pink); border-color: var(--pink); }
+.article-toc .share-row a:hover,
+.article-toc .share-row button:hover { color: var(--pink); border-color: var(--pink); }
 
 .article-prose {
   max-width: 700px;

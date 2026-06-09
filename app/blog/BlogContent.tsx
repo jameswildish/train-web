@@ -19,14 +19,17 @@ type Post = {
   author?: { name: string; role: string; image?: SanityImageSource }
 }
 
-const TABS = ['All', 'Sleep', 'Movement', 'Mental Health', 'Nutrition', 'Clinical', 'Research']
+type Category = { _id: string; title: string; slug: string; count: number }
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-export default function BlogContent({ posts }: { posts: Post[] }) {
+export default function BlogContent({ posts, categories = [] }: { posts: Post[]; categories?: Category[] }) {
   const [activeTab, setActiveTab] = useState('All')
+
+  // Only show categories that have at least one post
+  const activeCats = categories.filter(c => c.count > 0)
 
   const featured = posts.find(p => p.featured) ?? posts[0] ?? null
   const rest = posts.filter(p => p._id !== featured?._id)
@@ -82,14 +85,21 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
         <>
         <nav className="section-anchor-nav">
           <div className="wrap">
-            {TABS.map(tab => (
+            <a
+              href="#articles"
+              className={activeTab === 'All' ? 'active-tab' : ''}
+              onClick={(e) => { e.preventDefault(); setActiveTab('All') }}
+            >
+              All
+            </a>
+            {activeCats.map(cat => (
               <a
-                key={tab}
+                key={cat._id}
                 href="#articles"
-                className={activeTab === tab ? 'active-tab' : ''}
-                onClick={(e) => { e.preventDefault(); setActiveTab(tab) }}
+                className={activeTab === cat.title ? 'active-tab' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveTab(cat.title) }}
               >
-                {tab}
+                {cat.title}
               </a>
             ))}
           </div>

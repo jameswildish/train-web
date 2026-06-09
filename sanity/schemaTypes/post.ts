@@ -12,9 +12,9 @@ export const post = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
+      type: 'reference',
+      to: [{ type: 'category' }],
       validation: r => r.required(),
-      options: { list: ['Sleep', 'Activity', 'Nutrition', 'Mental Health', 'Research', 'Cardiac Health', 'Performance', 'Clinical', 'Movement'] },
     }),
     defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
     defineField({ name: 'readTime', title: 'Read time (minutes)', type: 'number' }),
@@ -50,7 +50,7 @@ export const post = defineType({
     { title: 'Published date, new first', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] },
   ],
   preview: {
-    select: { title: 'title', author: 'author.name', media: 'mainImage', category: 'category' },
+    select: { title: 'title', author: 'author.name', media: 'mainImage', category: 'category.title' },
     prepare({ title, author, media, category }) {
       return { title, subtitle: [category, author ? `by ${author}` : ''].filter(Boolean).join(' · '), media }
     },

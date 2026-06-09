@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getAllPosts } from '@/sanity/lib/queries'
+import { getAllPosts, getAllCategories } from '@/sanity/lib/queries'
 import BlogContent from './BlogContent'
 
 export const revalidate = 0
@@ -8,10 +8,11 @@ export const metadata = { title: 'Blog — TRAIN' }
 
 export default async function BlogPage() {
   let posts: Awaited<ReturnType<typeof getAllPosts>> = []
+  let categories: Awaited<ReturnType<typeof getAllCategories>> = []
   try {
-    posts = await getAllPosts()
+    ;[posts, categories] = await Promise.all([getAllPosts(), getAllCategories()])
   } catch {
-    // Sanity not configured yet — static fallback handled in BlogContent
+    // Sanity not configured yet
   }
 
   return (
@@ -28,7 +29,7 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      <BlogContent posts={posts} />
+      <BlogContent posts={posts} categories={categories} />
     </>
   )
 }

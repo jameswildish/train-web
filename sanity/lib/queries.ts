@@ -7,7 +7,7 @@ const POST_FIELDS = `
   title,
   slug,
   excerpt,
-  category,
+  "category": category->title,
   tags,
   readTime,
   publishedAt,
@@ -32,11 +32,23 @@ export async function getPostBySlug(slug: string) {
     *[_type == "post" && slug.current == $slug][0] {
       ${POST_FIELDS},
       body,
-      "related": *[_type == "post" && category == ^.category && slug.current != $slug] | order(publishedAt desc) [0..2] {
-        _id, title, slug, excerpt, category, readTime, publishedAt, mainImage
+      "related": *[_type == "post" && slug.current != $slug] | order(publishedAt desc) [0..2] {
+        _id, title, slug, excerpt, "category": category->title, readTime, publishedAt, mainImage
       }
     }
   `, { slug })
+}
+
+export async function getAllCategories() {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "category"] | order(order asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      "count": count(*[_type == "post" && references(^._id)])
+    }
+  `)
 }
 
 // ─── Team Members ────────────────────────────────────────────────────────────
