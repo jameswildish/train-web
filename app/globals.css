@@ -1126,11 +1126,11 @@ section.tight { padding: 64px 0; }
 }
 .target h2 { font-size: clamp(32px, 3.4vw, 48px); }
 .target-img {
+  position: relative;
   border-radius: 8px;
   overflow: hidden;
   min-height: 420px;
 }
-.target-img img { display: block; }
 .target p { color: var(--ink-2); margin-top: 18px; max-width: 460px; }
 .target .nums {
   display: grid;

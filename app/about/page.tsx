@@ -201,9 +201,10 @@ export default async function AboutPage() {
               <Image
                 src="/images/nimrat-grewal-about.jpg"
                 alt="Prof. Dr. Nimrat Grewal"
-                width={560}
-                height={680}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
+                quality={90}
               />
             </div>
           </div>
