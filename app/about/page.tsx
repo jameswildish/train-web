@@ -76,7 +76,7 @@ export default async function AboutPage() {
       </nav>
 
       {/* ============ ABOUT US ============ */}
-      <section id="about" style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+      <section id="about" style={{ background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
         <div className="wrap">
           <div className="sec-head" style={{ marginBottom: '16px' }}>
             <div>
