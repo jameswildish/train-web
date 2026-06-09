@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {[
               project.category,
               project.status,
-              project.launchedAt && `Launched ${new Date(project.launchedAt).getFullYear()}`,
+              project.launchedAt && `Launched ${project.launchedAt}`,
             ].filter(Boolean).join(' · ')}
           </div>
           <h1>{project.title}</h1>

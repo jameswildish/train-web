@@ -32,7 +32,7 @@ export const project = defineType({
       options: { list: ['Active', 'Recruiting', 'Completed', 'Upcoming'] },
       group: 'identity',
     }),
-    defineField({ name: 'launchedAt', title: 'Project launched', type: 'date', group: 'identity' }),
+    defineField({ name: 'launchedAt', title: 'Project launched', type: 'string', description: 'e.g. 2023', group: 'identity' }),
     defineField({ name: 'featured', title: 'Featured on homepage', type: 'boolean', initialValue: false, group: 'identity' }),
     defineField({ name: 'order', title: 'Sort order', type: 'number', description: 'Lower numbers appear first', group: 'identity' }),
 
