@@ -34,24 +34,10 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
 
   return (
     <>
-      <nav className="section-anchor-nav">
-        <div className="wrap">
-          {TABS.map(tab => (
-            <a
-              key={tab}
-              href="#"
-              className={activeTab === tab ? 'active-tab' : ''}
-              onClick={(e) => { e.preventDefault(); setActiveTab(tab) }}
-            >
-              {tab}
-            </a>
-          ))}
-        </div>
-      </nav>
-
       {featured && (
-        <section style={{ padding: '64px 0 32px' }}>
+        <section style={{ padding: '64px 0 48px' }}>
           <div className="wrap">
+            <div className="eyebrow" style={{ marginBottom: '20px' }}>Featured</div>
             <Link href={`/blog/${featured.slug.current}`} className="featured-post">
               <div className="thumb">
                 {featured.mainImage
@@ -93,11 +79,27 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
       )}
 
       {rest.length > 0 && (
-        <section style={{ padding: '32px 0 96px' }}>
+        <>
+        <nav className="section-anchor-nav">
+          <div className="wrap">
+            {TABS.map(tab => (
+              <a
+                key={tab}
+                href="#articles"
+                className={activeTab === tab ? 'active-tab' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveTab(tab) }}
+              >
+                {tab}
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        <section id="articles" style={{ padding: '48px 0 96px' }}>
           <div className="wrap">
             <div className="sec-head" style={{ marginBottom: '40px' }}>
               <div>
-                <div className="eyebrow" style={{ marginBottom: '18px' }}>More articles</div>
+                <div className="eyebrow" style={{ marginBottom: '18px' }}>All articles</div>
                 <h2>The latest from TRAIN.</h2>
               </div>
               <p>Short, evidence-based pieces written by surgeons, researchers, and the TRAIN team.</p>
@@ -130,6 +132,7 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
             )}
           </div>
         </section>
+        </>
       )}
 
       {posts.length === 0 && (
