@@ -12,7 +12,6 @@ export const teamMember = defineType({
       title: 'Department',
       type: 'reference',
       to: [{ type: 'department' }],
-      validation: r => r.required(),
     }),
     defineField({ name: 'isFounder', title: 'Show "Founder" badge', type: 'boolean', initialValue: false }),
     defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } }),
