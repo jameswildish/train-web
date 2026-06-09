@@ -1151,7 +1151,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .stats-grid .stat:last-child:nth-child(odd) { grid-column: span 2; }
   .stats-grid .stat { min-height: 160px; padding: 28px 20px; }
   .pillar-grid { grid-template-columns: 1fr; }
-  .projects-grid, .insights-grid { grid-template-columns: 1fr; }
+  .projects-grid, .insights-grid, .insights-grid.three-col { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
   .foot .newsletter { max-width: 100%; }
   .wrap { padding: 0 24px; }
