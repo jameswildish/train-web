@@ -1123,7 +1123,7 @@ section.tight { padding: 64px 0; }
   text-transform: uppercase;
 }
 .article .meta .pill {
-  background: var(--bg-2);
+  background: var(--pink-tint);
   padding: 5px 10px;
   border-radius: 999px;
   color: var(--ink);

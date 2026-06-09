@@ -33,7 +33,7 @@ export default function BlogContent({ posts, categories = [] }: { posts: Post[];
 
   const featured = posts.find(p => p.featured) ?? posts[0] ?? null
   const rest = posts.filter(p => p._id !== featured?._id)
-  const filtered = activeTab === 'All' ? rest : rest.filter(p => p.category === activeTab)
+  const filtered = activeTab === 'All' ? posts : posts.filter(p => p.category === activeTab)
 
   return (
     <>
@@ -81,7 +81,7 @@ export default function BlogContent({ posts, categories = [] }: { posts: Post[];
         </section>
       )}
 
-      {rest.length > 0 && (
+      {posts.length > 0 && (
         <>
         <nav className="section-anchor-nav">
           <div className="wrap">
