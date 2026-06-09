@@ -306,7 +306,7 @@ export default async function HomePage() {
       {/* ============ SCROLLING COLLABORATORS ============ */}
       <section className="collab-ticker-section">
         <div className="wrap" style={{ marginBottom: '24px' }}>
-          <div className="eyebrow" style={{ textAlign: 'center' }}>Global partners</div>
+          <div className="eyebrow" style={{ textAlign: 'center' }}>Our Collaborators</div>
         </div>
         <div className="collab-ticker">
           <div className="collab-ticker-inner">

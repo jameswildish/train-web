@@ -201,7 +201,7 @@ export default async function AboutPage() {
         </div>
 
         <div className="wrap collab" id="collaborate">
-          <div className="label">Collaborators · Academic institutions &amp; public partners</div>
+          <div className="label">Our Collaborators</div>
           {collaborators.length > 0 ? (
             <div className="collab-logo-grid">
               {collaborators.map(c => (
@@ -250,8 +250,7 @@ export default async function AboutPage() {
               <div className="eyebrow" style={{ marginBottom: '18px' }}>Scientific output</div>
               <h2>Selected publications from the TARGet group.</h2>
             </div>
-            <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection — full list available on request.</p>
-            <a href="#" className="all">All publications <span className="arrow">↗</span></a>
+            <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection. Full list available on request.</p>
           </div>
 
           <div className="pubs-grid">
