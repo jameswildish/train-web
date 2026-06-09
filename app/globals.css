@@ -389,7 +389,7 @@ section.tight { padding: 64px 0; }
 .hero-card .panel {
   position: relative;
   z-index: 2;
-  background: linear-gradient(95deg, rgba(90,5,15,0.94) 0%, rgba(160,18,32,0.85) 35%, rgba(180,30,50,0.55) 60%, rgba(200,45,65,0.2) 80%, transparent 100%);
+  background: linear-gradient(95deg, rgba(80,4,12,0.97) 0%, rgba(150,15,28,0.92) 25%, rgba(170,25,42,0.78) 45%, rgba(185,35,55,0.48) 62%, rgba(200,45,65,0.18) 75%, rgba(210,55,75,0.05) 88%, transparent 100%);
   padding: 56px 56px 44px;
   display: flex;
   flex-direction: column;
@@ -683,7 +683,7 @@ section.tight { padding: 64px 0; }
   .hero-card .panel {
     order: 1;
     z-index: 2;
-    background: #042B30;
+    background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
     padding: 40px 28px 36px;
     border-radius: 20px 20px 0 0;
   }
