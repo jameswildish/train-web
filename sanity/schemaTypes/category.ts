@@ -6,8 +6,6 @@ export const category = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: r => r.required() }),
-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' }, validation: r => r.required() }),
-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
     defineField({ name: 'order', title: 'Display order', type: 'number', initialValue: 99 }),
   ],
   orderings: [
