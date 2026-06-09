@@ -341,11 +341,11 @@ export default async function HomePage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>Insights</div>
+              <div className="eyebrow" style={{ marginBottom: '18px' }}>Articles</div>
               <h2>From science to daily life.</h2>
             </div>
             <p>Plain-language explainers, written by clinicians, on what the research actually means for your sleep, energy, stress, and long-term health.</p>
-            <Link href="/blog" className="all">View all insights <span className="arrow">↗</span></Link>
+            <Link href="/blog" className="all">View all articles <span className="arrow">↗</span></Link>
           </div>
 
           <div className="insights-grid three-col">
