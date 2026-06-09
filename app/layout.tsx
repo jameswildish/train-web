@@ -7,7 +7,7 @@ import { getAllProjects } from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
   title: 'TRAIN — Science-driven, medically grounded lifestyle',
-  description: 'TRAIN translates medical and scientific knowledge into practical, daily habits — built by surgeons, grounded in research, designed for how you actually live.',
+  description: 'TRAIN translates medical and scientific knowledge into practical, daily habits — built by surgeons. Driven by science, designed for how you actually live.',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

@@ -68,10 +68,10 @@ export default async function HomePage() {
                 The science-driven, medically grounded personalised lifestyle app for real life.
               </h1>
               <p className="lead">
-                Built by surgeons, grounded in research. TRAIN turns medical and scientific knowledge into practical daily habits designed for how you actually live.
+                Built by surgeons. Driven by science. TRAIN turns medical and scientific knowledge into practical daily habits designed for how you actually live.
               </p>
               <div className="actions">
-                <a href="/contact" className="btn-primary btn">TRAIN App — Coming Soon</a>
+                <a href="/contact" className="btn-primary btn">TRAIN App. Coming Soon</a>
               </div>
             </div>
           </div>
@@ -381,7 +381,7 @@ export default async function HomePage() {
             <div className="right">
               <p>Join thousands of people building lifestyle habits that protect their long-term health. Free to start, science to back it up.</p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+                <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon <span className="arrow">→</span></a>
                 <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Learn about TRAIN</Link>
               </div>
             </div>

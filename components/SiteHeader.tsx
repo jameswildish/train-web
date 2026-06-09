@@ -148,7 +148,7 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
         </nav>
 
         <div className="nav-cta">
-          <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
+          <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon</a>
         </div>
 
         <button
@@ -205,7 +205,7 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
         </Link>
 
         <div className="m-cta">
-          <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon</a>
+          <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon</a>
         </div>
       </div>
     </div>

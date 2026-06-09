@@ -48,17 +48,17 @@ export default function MentalHealthPage() {
             <div className="feature-card">
               <h3>My Mind</h3>
               <p>Connect any wearable to gain a deeper understanding of your internal state. Track stress patterns, sleep quality, and recovery to better interpret how your nervous system responds to daily demands.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card dark">
               <h3>Personalised Practice</h3>
               <p>Guided mindfulness and meditation sessions thoughtfully designed around focused attention, breath awareness, and open monitoring — adapted to your HRV, stress indicators, and sleep quality.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card">
               <h3>Balance &amp; Restoration</h3>
               <p>Breathwork, body scanning, and mindful awareness practices associated with increased parasympathetic activity and reduced stress reactivity — supporting recovery, emotional regulation, and mental wellbeing.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function MentalHealthPage() {
           <div className="card">
             <h2>Start your free trial of TRAIN Health Awareness.</h2>
             <div className="actions">
-              <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+              <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon <span className="arrow">→</span></a>
               <Link href="/nutrition" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Continue to Nutrition →</Link>
             </div>
           </div>

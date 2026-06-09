@@ -48,17 +48,17 @@ export default function ActivityPage() {
             <div className="feature-card">
               <h3>My Activity</h3>
               <p>Sync any wearable and track daily activity, movement patterns, and recovery. Consistent physical activity supports muscle strength, cardiovascular health, and metabolic function, all strongly linked to healthy ageing.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card dark">
               <h3>Personalised work</h3>
               <p>Guided sessions integrating strength, cardiovascular conditioning, and mobility. Using your activity levels, heart rate, and recovery metrics, intensity and volume adjust to your body's readiness.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card">
               <h3>Balance &amp; Recovery</h3>
               <p>Movement regulates energy, stress, and wellbeing through the nervous system. Gentler forms — walking, stretching — release endorphins and serotonin while calming the body and supporting recovery.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function ActivityPage() {
           <div className="card">
             <h2>Start your free trial of TRAIN Health Awareness.</h2>
             <div className="actions">
-              <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+              <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon <span className="arrow">→</span></a>
               <Link href="/mental-health" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Continue to Mental Health →</Link>
             </div>
           </div>

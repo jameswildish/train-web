@@ -135,7 +135,7 @@ export default function SleepPage() {
           <div className="card">
             <h2>Start your free trial of TRAIN Health Awareness.</h2>
             <div className="actions">
-              <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+              <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon <span className="arrow">→</span></a>
               <Link href="/activity" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Continue to Activity →</Link>
             </div>
           </div>

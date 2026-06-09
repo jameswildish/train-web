@@ -14,7 +14,7 @@ export default function SleepAppFeatures() {
         <div className="feature-card">
           <h3>MySleep</h3>
           <p>Sync your wearable device to track sleep duration and quality. Build a consistent routine that supports deeper, more restorative sleep, an essential foundation for long-term health and longevity.</p>
-          <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+          <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
         </div>
         <div className="feature-card dark">
           <h3>Sound Scapes</h3>
@@ -104,7 +104,7 @@ function AudioModal({ type, onClose }: { type: 'soundscape' | 'meditation'; onCl
 
         <div className="audio-coming-soon">
           <p>Full audio library available in the TRAIN app.</p>
-          <Link href="/contact" className="btn btn-primary" style={{ marginTop: '12px' }}>TRAIN App — Coming Soon</Link>
+          <Link href="/contact" className="btn btn-primary" style={{ marginTop: '12px' }}>TRAIN App. Coming Soon</Link>
         </div>
       </div>
     </div>

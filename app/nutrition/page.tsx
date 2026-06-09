@@ -48,17 +48,17 @@ export default function NutritionPage() {
             <div className="feature-card">
               <h3>MyNutrition</h3>
               <p>Track your dietary patterns over time — fruits, vegetables, whole grains, legumes, healthy fats. Built around long-term behaviour rather than calorie counting.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card dark">
               <h3>Heart-healthy Plates</h3>
               <p>Practical, science-aligned meal templates based on the AHA's Life's Essential 8 framework — Mediterranean and plant-rich patterns linked to lower cardiovascular and metabolic risk.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
             <div className="feature-card">
               <h3>Food &amp; You</h3>
               <p>Short, evidence-grounded explainers on how specific foods affect insulin, inflammation, and energy — to help you make more informed choices day-to-day.</p>
-              <Link href="/contact" className="feature-cta">TRAIN App — Coming Soon <span className="arrow">→</span></Link>
+              <Link href="/contact" className="feature-cta">TRAIN App. Coming Soon <span className="arrow">→</span></Link>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function NutritionPage() {
           <div className="card">
             <h2>Start your free trial of TRAIN Health Awareness.</h2>
             <div className="actions">
-              <a href="/contact" className="btn btn-primary">TRAIN App — Coming Soon <span className="arrow">→</span></a>
+              <a href="/contact" className="btn btn-primary">TRAIN App. Coming Soon <span className="arrow">→</span></a>
               <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>Read the science →</Link>
             </div>
           </div>
