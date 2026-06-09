@@ -48,32 +48,6 @@ const GitHubIcon = (
   </svg>
 )
 
-type StaticMember = {
-  name: string
-  role: string
-  bio: string
-  cats: string[]
-  isFounder?: boolean
-  socials: { label: string; icon: React.ReactNode }[]
-}
-
-const STATIC_MEMBERS: StaticMember[] = [
-  { name: 'Prof. Dr. Nimrat Grewal', role: 'Cardiothoracic Surgeon · Co-founder', bio: 'Cardiothoracic surgeon and clinician-scientist leading the TARGet research group. 20+ years in aortic surgery, prevention, and translational research.', cats: ['founders', 'surgeons'], isFounder: true, socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Simran Grewal', role: 'Orthopaedic Trauma Surgeon · Co-founder', bio: 'Orthopaedic trauma surgeon focused on musculoskeletal recovery, longevity, and the intersection of physical activity and chronic disease prevention.', cats: ['founders', 'surgeons'], isFounder: true, socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Joris van der Meulen', role: 'Cardiothoracic Surgeon · Aortic specialist', bio: 'Lead surgeon on the APECx adaptive multicentre study. Focused on perioperative outcomes and global practice variation in adult cardiac surgery.', cats: ['surgeons'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Adeel Khan', role: 'Cardiothoracic Surgeon · International collaboration', bio: 'Cardiac surgery, AIIMS New Delhi. Leading aortic-disease research and clinical trials across South Asia, with a focus on diversity in cardiovascular care.', cats: ['surgeons', 'clinical'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Dr. Eline Vermeer', role: 'Vascular Surgeon · Aortic dissection lead', bio: 'Vascular surgeon and co-investigator on the After the Storm patient-experience programme. Bridging clinical practice with patient-reported outcomes research.', cats: ['surgeons'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Maria Rodrigues', role: 'Senior Researcher · Genetic epidemiology', bio: 'Principal investigator on GEN-TAAD. Leads large-scale GWAS work and polygenic risk score development for thoracic aortic disease.', cats: ['researchers'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Priya Iyer', role: 'Senior Researcher · Diversity & Prevention', bio: 'Public-health researcher leading the Diversity & Prevention community-health programme. Co-creation methodology and cultural sensitivity in cardiovascular care.', cats: ['researchers'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Dr. Tom Bakker', role: 'Senior Researcher · Molecular biology', bio: 'Molecular biologist focused on aortic tissue analysis, single-cell sequencing, and the cellular mechanisms underlying GENIE-TA and GEN-TAAD.', cats: ['researchers'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Dr. Amara Okonkwo', role: 'Postdoctoral Researcher · After the Storm', bio: 'Mixed-methods researcher exploring patient-reported experience after cardiovascular events. Co-leads the artistic-research strand of After the Storm.', cats: ['postdocs', 'researchers'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Dr. Elias Larsson', role: 'Clinical Research Fellow · Sleep & recovery', bio: 'Clinical research fellow studying sleep architecture, autonomic function, and recovery in patients with cardiovascular and metabolic risk factors.', cats: ['postdocs', 'researchers'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'Email', icon: EmailIcon }, { label: 'Publications', icon: PublicationsIcon }] },
-  { name: 'Aarav Shah', role: 'Lead Data Scientist · DDM platform', bio: "Builds the Data Donation Platform's longitudinal data pipelines. Specialises in wearable-derived metrics, privacy-by-design and federated analytics.", cats: ['data-ai'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'GitHub', icon: GitHubIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Dr. Karolina Novak', role: 'ML Engineer · Personalised lifestyle', bio: "Machine-learning engineer designing the personalisation engine for TRAIN's adaptive sessions across sleep, mindfulness, and movement.", cats: ['data-ai'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'GitHub', icon: GitHubIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Anna de Vries', role: 'Lead Research Nurse · Clinical trials', bio: 'Research nurse coordinating patient enrolment, data collection, and follow-up across the TARGet clinical study portfolio in Amsterdam UMC.', cats: ['clinical'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'Email', icon: EmailIcon }] },
-  { name: 'Manpreet Singh', role: 'Clinical Trial Coordinator · International sites', bio: 'Clinical trial coordinator managing global site activation, ethics submissions, and operational delivery across the APECx multicentre study.', cats: ['clinical'], socials: [{ label: 'LinkedIn', icon: LinkedInIcon }, { label: 'X', icon: XIcon }, { label: 'Email', icon: EmailIcon }] },
-]
-
 const DEPT_TO_CATS: Record<string, string[]> = {
   'Founders': ['founders'],
   'Surgeons': ['surgeons'],
@@ -96,85 +70,49 @@ const FILTERS = [
 
 export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMember[] }) {
   const [activeFilter, setActiveFilter] = useState('all')
-  const hasSanity = sanityMembers.length > 0
 
-  if (hasSanity) {
-    const getMemberCats = (m: SanityMember) => {
-      const base = DEPT_TO_CATS[m.department] ?? ['researchers']
-      if (m.isFounder && !base.includes('founders')) return ['founders', ...base]
-      return base
-    }
-    const filtered = activeFilter === 'all'
-      ? sanityMembers
-      : sanityMembers.filter(m => getMemberCats(m).includes(activeFilter))
-
-    const counts: Record<string, number> = { all: sanityMembers.length }
-    FILTERS.slice(1).forEach(f => {
-      counts[f.key] = sanityMembers.filter(m => getMemberCats(m).includes(f.key)).length
-    })
-
+  if (sanityMembers.length === 0) {
     return (
-      <MemberGrid
-        filtered={filtered.map(m => ({
-          name: m.name,
-          role: m.role,
-          bio: m.bio,
-          cats: getMemberCats(m),
-          isFounder: m.isFounder || getMemberCats(m).includes('founders'),
-          image: m.image,
-          linkedin: m.linkedin,
-          twitter: m.twitter,
-          email: m.email,
-          publications: m.publications,
-          github: m.github,
-        }))}
-        counts={counts}
-        activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
-      />
+      <>
+        <section style={{ padding: '64px 0 96px', background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
+          <div className="wrap">
+            <p style={{ color: 'var(--ink-2)', fontSize: '15px' }}>Team coming soon.</p>
+          </div>
+        </section>
+
+        <section className="cta">
+          <div className="wrap">
+            <div className="cta-card">
+              <h2>Join a team building the science of better living.</h2>
+              <div className="right">
+                <p>We&apos;re looking for clinicians, researchers, and data specialists who believe good science should change how people live. Come build something that matters.</p>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  <Link href="/contact" className="btn btn-primary">Get in touch <span className="arrow">→</span></Link>
+                  <Link href="/about" className="btn" style={{ border: '1px solid rgba(244,241,234,0.3)', color: 'var(--bg)' }}>About the research group</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
     )
   }
 
-  const filtered = activeFilter === 'all'
-    ? STATIC_MEMBERS
-    : STATIC_MEMBERS.filter(m => m.cats.includes(activeFilter))
+  const getMemberCats = (m: SanityMember) => {
+    const base = DEPT_TO_CATS[m.department] ?? ['researchers']
+    if (m.isFounder && !base.includes('founders')) return ['founders', ...base]
+    return base
+  }
 
-  const counts: Record<string, number> = { all: STATIC_MEMBERS.length }
+  const filtered = activeFilter === 'all'
+    ? sanityMembers
+    : sanityMembers.filter(m => getMemberCats(m).includes(activeFilter))
+
+  const counts: Record<string, number> = { all: sanityMembers.length }
   FILTERS.slice(1).forEach(f => {
-    counts[f.key] = STATIC_MEMBERS.filter(m => m.cats.includes(f.key)).length
+    counts[f.key] = sanityMembers.filter(m => getMemberCats(m).includes(f.key)).length
   })
 
-  return (
-    <MemberGrid
-      filtered={filtered.map(m => ({ name: m.name, role: m.role, bio: m.bio, cats: m.cats, isFounder: m.isFounder, socials: m.socials }))}
-      counts={counts}
-      activeFilter={activeFilter}
-      setActiveFilter={setActiveFilter}
-    />
-  )
-}
-
-type GridMember = {
-  name: string
-  role: string
-  bio: string
-  cats: string[]
-  isFounder?: boolean
-  image?: unknown
-  linkedin?: string
-  twitter?: string
-  email?: string
-  publications?: string
-  github?: string
-  socials?: { label: string; icon: React.ReactNode }[]
-}
-
-function MemberGrid({ filtered, counts, activeFilter, setActiveFilter }: {
-  filtered: GridMember[]
-  counts: Record<string, number>
-  activeFilter: string
-  setActiveFilter: (f: string) => void
-}) {
   return (
     <>
       <section style={{ padding: '32px 0 96px', background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
@@ -189,7 +127,7 @@ function MemberGrid({ filtered, counts, activeFilter, setActiveFilter }: {
 
           <div className="team-grid">
             {filtered.map(member => (
-              <article key={member.name} className="team-card">
+              <article key={member._id} className="team-card">
                 <div className="portrait">
                   {member.image ? (
                     <Image
@@ -201,25 +139,20 @@ function MemberGrid({ filtered, counts, activeFilter, setActiveFilter }: {
                   ) : (
                     <div className="placeholder-stripe"><span>Photo placeholder</span></div>
                   )}
-                  {member.isFounder && <span className="role-pill">Founder</span>}
+                  {(member.isFounder || getMemberCats(member).includes('founders')) && (
+                    <span className="role-pill">Founder</span>
+                  )}
                 </div>
                 <div className="info">
                   <h3>{member.name}</h3>
                   <div className="role">{member.role}</div>
                   <p>{member.bio}</p>
                   <div className="socials">
-                    {member.socials?.map(social => (
-                      <a key={social.label} href="#" aria-label={social.label}>{social.icon}</a>
-                    ))}
-                    {!member.socials && (
-                      <>
-                        {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{LinkedInIcon}</a>}
-                        {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" aria-label="X">{XIcon}</a>}
-                        {member.email && <a href={`mailto:${member.email}`} aria-label="Email">{EmailIcon}</a>}
-                        {member.publications && <a href={member.publications} target="_blank" rel="noopener noreferrer" aria-label="Publications">{PublicationsIcon}</a>}
-                        {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">{GitHubIcon}</a>}
-                      </>
-                    )}
+                    {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{LinkedInIcon}</a>}
+                    {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" aria-label="X">{XIcon}</a>}
+                    {member.email && <a href={`mailto:${member.email}`} aria-label="Email">{EmailIcon}</a>}
+                    {member.publications && <a href={member.publications} target="_blank" rel="noopener noreferrer" aria-label="Publications">{PublicationsIcon}</a>}
+                    {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">{GitHubIcon}</a>}
                   </div>
                 </div>
               </article>
