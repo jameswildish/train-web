@@ -6,17 +6,6 @@ import { useState, useEffect } from 'react'
 
 type NavProject = { href: string; label: string; tag: string }
 
-const FALLBACK_PROJECT_LINKS: NavProject[] = [
-  { href: '/projects/data-donation-monitoring-ddm', label: 'Data Donation Platform', tag: 'Data infrastructure' },
-  { href: '/projects/gen-taad',             label: 'GEN-TAAD',               tag: 'Genomics' },
-  { href: '/projects/genie-ta',             label: 'GENIE-TA',               tag: 'Genomics' },
-  { href: '/projects/apecx',               label: 'APECx Study',            tag: 'Clinical' },
-  { href: '/projects/after-the-storm',      label: 'After the Storm',        tag: 'Patient experience' },
-  { href: '/projects/sukh',                label: 'SUKH Healing Garden',    tag: 'Wellbeing' },
-  { href: '/projects/diversity-prevention', label: 'Diversity & Prevention', tag: 'Community' },
-  { href: '/projects/trainletic',           label: 'TRAINletic',             tag: 'Performance' },
-  { href: '/projects/aviation',             label: 'Aviation & Aortic',      tag: 'Clinical' },
-]
 
 const SCIENCE_LINKS = [
   { href: '/about',               label: 'About',         tag: 'Mission · vision · approach' },
@@ -50,7 +39,7 @@ function getActiveKey(pathname: string): string {
 }
 
 export default function SiteHeader({ navProjects }: { navProjects?: NavProject[] }) {
-  const PROJECT_LINKS = navProjects && navProjects.length > 0 ? navProjects : FALLBACK_PROJECT_LINKS
+  const PROJECT_LINKS = navProjects ?? []
   const pathname = usePathname()
   const activeKey = getActiveKey(pathname)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)

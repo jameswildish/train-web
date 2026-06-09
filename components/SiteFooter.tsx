@@ -40,15 +40,7 @@ export default function SiteFooter() {
           <div>
             <h5>Projects</h5>
             <ul>
-              <li><Link href="/projects/data-donation-monitoring-ddm">Data Donation Platform</Link></li>
-              <li><Link href="/projects/gen-taad">GEN-TAAD</Link></li>
-              <li><Link href="/projects/genie-ta">GENIE-TA</Link></li>
-              <li><Link href="/projects/apecx">APECx Study</Link></li>
-              <li><Link href="/projects/after-the-storm">After the Storm</Link></li>
-              <li><Link href="/projects/sukh">SUKH Healing Garden</Link></li>
-              <li><Link href="/projects/diversity-prevention">Diversity & Prevention</Link></li>
-              <li><Link href="/projects/trainletic">TRAINletic</Link></li>
-              <li><Link href="/projects/aviation">Aviation & Aortic</Link></li>
+              <li><Link href="/projects">All projects</Link></li>
             </ul>
             <ul style={{ marginTop: '28px' }}>
               <li><Link href="/contact">Contact</Link></li>
