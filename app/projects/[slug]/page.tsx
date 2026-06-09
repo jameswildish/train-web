@@ -51,10 +51,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   const hasOverview = project.overviewHeading || project.overviewBody || project.missionStatement
   const hasWhy = project.whyHeading || project.whyBody
-  const hasWork = project.whatWeDoItems?.length > 0 || project.scienceBody || project.performanceBody
+  const hasWork = project.whatWeDoItems?.length > 0 || project.scienceBody
   const hasImpact = project.impactCells?.length > 0
   const hasStats = project.stats?.length > 0
-  const hasTeam = project.teamMembers?.length > 0
   const hasRelated = related.length > 0
 
   return (
@@ -70,7 +69,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <span className="current">{project.title}</span>
           </div>
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">
-            {[project.category, project.status].filter(Boolean).join(' · ')}
+            {[
+              project.category,
+              project.status,
+              project.launchedAt && `Launched ${new Date(project.launchedAt).getFullYear()}`,
+            ].filter(Boolean).join(' · ')}
           </div>
           <h1>{project.title}</h1>
           {project.tagline && <p className="tagline">{project.tagline}</p>}
@@ -97,13 +100,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="wrap">
             <div className="grid">
               <div>
-                <div className="eyebrow" style={{ marginBottom: '18px' }}>Overview</div>
                 {project.overviewHeading && <h2>{project.overviewHeading}</h2>}
                 {project.overviewBody && paras(project.overviewBody)}
               </div>
               {project.missionStatement && (
                 <aside>
-                  <div className="eyebrow">Our mission</div>
                   <h4>{project.missionStatement}</h4>
                 </aside>
               )}
@@ -118,7 +119,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="wrap">
             <div className="grid">
               <div>
-                <div className="eyebrow" style={{ marginBottom: '18px' }}>Why this matters</div>
                 {project.whyHeading && <h2>{project.whyHeading}</h2>}
               </div>
               <div>
@@ -136,7 +136,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div className="grid">
               {project.whatWeDoItems?.length > 0 && (
                 <div className="block">
-                  <div className="eyebrow">What we do</div>
                   {project.whatWeDoHeading && <h3>{project.whatWeDoHeading}</h3>}
                   <ul>
                     {project.whatWeDoItems.map((item: string, i: number) => (
@@ -147,16 +146,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               )}
               {project.scienceBody && (
                 <div className="block">
-                  <div className="eyebrow">Scientific foundation</div>
                   {project.scienceHeading && <h3>{project.scienceHeading}</h3>}
                   {paras(project.scienceBody)}
-                </div>
-              )}
-              {project.performanceBody && (
-                <div className="block">
-                  <div className="eyebrow">Performance</div>
-                  {project.performanceHeading && <h3>{project.performanceHeading}</h3>}
-                  {paras(project.performanceBody)}
                 </div>
               )}
             </div>
@@ -168,8 +159,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {hasImpact && (
         <section className="proj-impact">
           <div className="wrap">
-            <div className="eyebrow" style={{ marginBottom: '18px' }}>Impact</div>
-            <h2>{project.impactHeading || 'Who benefits — and how.'}</h2>
+            {project.impactHeading && <h2>{project.impactHeading}</h2>}
             <div className="impact-grid" style={{ marginTop: '32px' }}>
               {project.impactCells.map((cell: { tag?: string; heading?: string; body?: string }, i: number) => (
                 <div key={i} className="impact-cell">
@@ -187,39 +177,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {hasStats && (
         <section className="proj-facts">
           <div className="wrap">
-            <div className="eyebrow">Key facts</div>
-            <h2>By the numbers.</h2>
             <div className="facts-grid">
               {project.stats.map((s: { value: string; label: string }, i: number) => (
                 <div key={i} className="fact">
                   <div className="v">{s.value}</div>
                   <div className="l">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ─── Team ─────────────────────────────────────────────────── */}
-      {hasTeam && (
-        <section className="proj-related">
-          <div className="wrap">
-            <div className="eyebrow" style={{ marginBottom: '18px' }}>Team</div>
-            <h2>Project team.</h2>
-            <div className="team-grid" style={{ marginTop: '32px' }}>
-              {project.teamMembers.map((m: { name: string; role: string; image?: SanityImageSource }, i: number) => (
-                <div key={i} className="team-card">
-                  <div className="portrait">
-                    {m.image
-                      ? <Image src={urlFor(m.image).width(300).height(300).url()} alt={m.name} width={300} height={300} />
-                      : <div className="placeholder-stripe" />
-                    }
-                  </div>
-                  <div className="info">
-                    <div className="name">{m.name}</div>
-                    <div className="role">{m.role}</div>
-                  </div>
                 </div>
               ))}
             </div>

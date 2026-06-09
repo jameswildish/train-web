@@ -11,7 +11,6 @@ export const project = defineType({
     { name: 'work', title: 'What we do' },
     { name: 'impact', title: 'Impact' },
     { name: 'facts', title: 'Key facts' },
-    { name: 'team', title: 'Team' },
   ],
   fields: [
     // ─── Identity ────────────────────────────────────────────────────
@@ -34,25 +33,24 @@ export const project = defineType({
       options: { list: ['Active', 'Recruiting', 'Completed', 'Upcoming'] },
       group: 'identity',
     }),
+    defineField({ name: 'launchedAt', title: 'Project launched', type: 'date', group: 'identity' }),
     defineField({ name: 'featured', title: 'Featured on homepage', type: 'boolean', initialValue: false, group: 'identity' }),
     defineField({ name: 'order', title: 'Sort order', type: 'number', description: 'Lower numbers appear first', group: 'identity' }),
 
     // ─── Overview ────────────────────────────────────────────────────
-    defineField({ name: 'overviewHeading', title: 'Heading', description: 'e.g. "What is GEN-TAAD?"', type: 'string', group: 'overview' }),
+    defineField({ name: 'overviewHeading', title: 'Heading', description: 'What is this project?', type: 'string', group: 'overview' }),
     defineField({ name: 'overviewBody', title: 'Body text', description: 'Use a blank line between paragraphs', type: 'text', rows: 5, group: 'overview' }),
     defineField({ name: 'missionStatement', title: 'Our mission (aside pull-quote)', type: 'text', rows: 3, group: 'overview' }),
 
     // ─── Why this matters ────────────────────────────────────────────
-    defineField({ name: 'whyHeading', title: 'Heading', description: 'e.g. "The gap we\'re closing."', type: 'string', group: 'why' }),
+    defineField({ name: 'whyHeading', title: 'Heading', description: 'Why this matters', type: 'string', group: 'why' }),
     defineField({ name: 'whyBody', title: 'Body text', description: 'Use a blank line between paragraphs', type: 'text', rows: 5, group: 'why' }),
 
     // ─── What we do ──────────────────────────────────────────────────
-    defineField({ name: 'whatWeDoHeading', title: 'Heading', description: 'e.g. "The work — in practice."', type: 'string', group: 'work' }),
+    defineField({ name: 'whatWeDoHeading', title: 'Heading', description: 'What we do', type: 'string', group: 'work' }),
     defineField({ name: 'whatWeDoItems', title: 'Bullet points', type: 'array', of: [{ type: 'string' }], group: 'work' }),
-    defineField({ name: 'scienceHeading', title: 'Scientific foundation heading', description: 'e.g. "How the science holds up."', type: 'string', group: 'work' }),
+    defineField({ name: 'scienceHeading', title: 'Scientific foundation heading', description: 'Scientific foundation', type: 'string', group: 'work' }),
     defineField({ name: 'scienceBody', title: 'Scientific foundation text', description: 'Use a blank line between paragraphs', type: 'text', rows: 4, group: 'work' }),
-    defineField({ name: 'performanceHeading', title: 'Performance heading', type: 'string', group: 'work' }),
-    defineField({ name: 'performanceBody', title: 'Performance text', description: 'Use a blank line between paragraphs', type: 'text', rows: 4, group: 'work' }),
 
     // ─── Impact ──────────────────────────────────────────────────────
     defineField({ name: 'impactHeading', title: 'Heading', description: 'e.g. "Who benefits — and how."', type: 'string', group: 'impact' }),
@@ -86,15 +84,6 @@ export const project = defineType({
         ],
         preview: { select: { title: 'value', subtitle: 'label' } },
       }],
-    }),
-
-    // ─── Team ────────────────────────────────────────────────────────
-    defineField({
-      name: 'teamMembers',
-      title: 'Team members',
-      type: 'array',
-      group: 'team',
-      of: [{ type: 'reference', to: [{ type: 'teamMember' }] }],
     }),
   ],
 
