@@ -105,6 +105,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
               {project.missionStatement && (
                 <aside>
+                  <div className="eyebrow">Our mission</div>
                   <h4>{project.missionStatement}</h4>
                 </aside>
               )}
