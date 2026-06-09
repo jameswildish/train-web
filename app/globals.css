@@ -1129,6 +1129,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .stats-grid .stat:nth-child(n+4) { border-top: 1px solid var(--line); }
   .stats-grid .stat { min-height: 180px; }
   .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillars { padding: 96px 0; }
   .mission-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .insights-grid { grid-template-columns: 1fr 1fr; }
@@ -1160,6 +1161,11 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .founders-grid { gap: 40px; }
   .nums { gap: 1px; }
   .target-img { min-height: 300px; }
+  .pillar-hero { padding: 40px 0 48px; }
+  .pillar-hero.pillar-hero-photo { padding: 32px 0 40px; }
+  .science-hero { padding: 40px 0 48px; }
+  .projects-hero { padding: 40px 0 40px; }
+  .project-hero { padding: 40px 0 48px; }
 }
 
 /* === Team page === */
@@ -1585,6 +1591,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
 }
 @media (max-width: 768px) {
   .blog-grid { grid-template-columns: 1fr; }
+  .wrap { padding: 0 28px; }
 }
 @media (max-width: 680px) {
   .collab-cards { grid-template-columns: 1fr 1fr; }
@@ -2472,6 +2479,9 @@ nav.main a.active::after {
   .pillar-cta .card { padding: 40px 24px; }
   .app-features .head { gap: 16px; }
   .feature-grid { gap: 12px; }
+  .science-hero { padding: 40px 0 48px; }
+  .projects-hero { padding: 40px 0 40px; }
+  .project-hero { padding: 40px 0 48px; }
 }
 
 /* === Scrolling collab ticker === */
