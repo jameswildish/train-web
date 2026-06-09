@@ -109,15 +109,10 @@ export default function SleepPage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ============ EIGHT HABITS ============ */}
-      <section className="awareness awareness-alt">
-        <div className="wrap">
-          <div className="qa" style={{ borderTop: 'none' }}>
+          <div className="qa">
             <div>
-              <h3>Eight evidence-based habits to improve your sleep.</h3>
+              <h3>How can I improve my sleep based on science?</h3>
               <p>None of these are theory. Each is grounded in circadian biology, autonomic regulation, or sleep-architecture research. Build them in slowly; consistency beats intensity.</p>
               <ul className="steps">
                 <li><strong>Keep a consistent schedule</strong>Going to bed and waking at the same time keeps the suprachiasmatic clock synchronized. Variable sleep timing is linked to poorer sleep quality.</li>
