@@ -135,7 +135,7 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
       {posts.length === 0 && (
         <section style={{ padding: '64px 0 96px' }}>
           <div className="wrap">
-            <p style={{ color: 'var(--ink-2)', fontSize: '15px' }}>Articles coming soon.</p>
+            <p style={{ color: 'var(--ink-2)', fontSize: '15px' }}>Blog posts coming soon.</p>
           </div>
         </section>
       )}
