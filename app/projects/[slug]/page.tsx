@@ -239,6 +239,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <div className="eyebrow" style={{ marginBottom: '18px' }}>Related projects</div>
                 <h2>Other work from TARGet.</h2>
               </div>
+              <span />
               <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
             </div>
             <div className="projects-grid">

@@ -359,7 +359,7 @@ export default async function HomePage() {
             <Link href="/blog" className="all">View all insights <span className="arrow">↗</span></Link>
           </div>
 
-          <div className="insights-grid three-col">
+          <div className="insights-stack">
             {posts.map((post, i) => (
               <article key={post._id} className="article">
                 <Link href={`/blog/${post.slug.current}`} className="thumb">

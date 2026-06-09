@@ -1102,6 +1102,7 @@ section.tight { padding: 64px 0; }
   gap: 18px;
 }
 .insights-grid.three-col { grid-template-columns: repeat(3, 1fr); }
+.insights-stack { display: flex; flex-direction: column; gap: 18px; }
 .article {
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -2045,8 +2046,11 @@ image-slot[data-has-image="false"]::part(placeholder) {
   padding: 12px 22px;
   font-size: 13px;
 }
+@media (max-width: 680px) {
+  .inline-newsletter { min-width: 0; width: 100%; }
+}
 @media (max-width: 560px) {
-  .inline-newsletter { min-width: 0; flex-direction: column; padding: 8px; border-radius: 14px; }
+  .inline-newsletter { flex-direction: column; padding: 8px; border-radius: 14px; }
   .inline-newsletter input { width: 100%; padding: 10px 16px; }
   .inline-newsletter button.btn { width: 100%; justify-content: center; }
 }
