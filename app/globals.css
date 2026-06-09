@@ -666,14 +666,29 @@ section.tight { padding: 64px 0; }
   .hero-card .featured-article .title { font-size: 13.5px; }
 }
 @media (max-width: 880px) {
-  .hero-card { grid-template-columns: 1fr; min-height: auto; }
+  .hero-card {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+  .hero-card .bg {
+    position: relative;
+    order: 2;
+    height: 220px;
+    flex-shrink: 0;
+  }
+  .hero-card .bg-overlay {
+    background: linear-gradient(180deg, rgba(4,43,48,0.25) 0%, transparent 60%);
+  }
   .hero-card .panel {
-    padding: 36px 28px 28px;
-    background: linear-gradient(180deg, rgba(2,22,25,0.96), rgba(2,22,25,0.92));
+    order: 1;
+    z-index: 2;
+    background: #042B30;
+    padding: 40px 28px 36px;
+    border-radius: 20px 20px 0 0;
   }
   .hero-card .panel h1 { font-size: clamp(30px, 5vw, 42px); }
-  .hero-card .stage { padding: 0 24px 28px; align-items: stretch; }
-  .hero-card .stage > * { max-width: 100%; }
+  .hero-card .stage { display: none; }
   .hero-card .corner-tag { display: none; }
 }
 @media (max-width: 480px) {
@@ -1270,7 +1285,7 @@ footer.foot {
   padding: 6px 6px 6px 18px;
   background: var(--bg);
   align-items: center;
-  max-width: 320px;
+  max-width: 420px;
 }
 .foot .newsletter input {
   flex: 1;
@@ -1341,6 +1356,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .target-grid, .founders-grid, .hero-grid, .hero-media {
     grid-template-columns: 1fr;
   }
+  .pillars .head { grid-template-columns: 1fr; }
   .cta-card { grid-template-columns: 1fr; padding: 56px 36px; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .sec-head { grid-template-columns: 1fr; }
@@ -1354,9 +1370,14 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .pillar-grid { grid-template-columns: 1fr; }
   .projects-grid, .insights-grid { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
+  .foot .newsletter { max-width: 100%; }
   .wrap { padding: 0 20px; }
   .nav-cta .btn-ghost { display: none; }
-  h1 { font-size: 44px; }
+  h1 { font-size: clamp(34px, 8vw, 44px); }
+  .pillars { padding: 80px 0; }
+  .founders-grid { gap: 40px; }
+  .nums { gap: 1px; }
+  .target-img { min-height: 300px; }
 }
 
 /* === Team page === */
@@ -2898,6 +2919,10 @@ nav.main a.active::after {
   .proj-intro .grid,
   .proj-why .grid,
   .proj-do .grid { grid-template-columns: 1fr; }
+  .pillar-hero-photo-inner { grid-template-columns: 1fr; }
+  .pillar-hero-photo-text { padding-bottom: 0; }
+  .science-hero-inner { grid-template-columns: 1fr; }
+  .science-hero-image { order: -1; }
   .awareness .qa { padding: 32px 0; }
   .awareness .qa .steps { grid-template-columns: 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
@@ -2911,6 +2936,10 @@ nav.main a.active::after {
 @media (max-width: 680px) {
   .impact-grid, .facts-grid, .pubs-grid { grid-template-columns: 1fr; }
   .section-anchor-nav { display: none; }
+  .pillar-hero-photo-img { max-height: 280px; }
+  .pillar-cta .card { padding: 40px 24px; }
+  .app-features .head { gap: 16px; }
+  .feature-grid { gap: 12px; }
 }
 
 /* === Scrolling collab ticker === */
