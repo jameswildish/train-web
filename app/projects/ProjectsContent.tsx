@@ -17,30 +17,13 @@ type SanityProject = {
   featured: boolean
 }
 
-const FILTERS = [
-  { label: 'All', value: 'all' },
-  { label: 'Data & AI', value: 'data' },
-  { label: 'Genomics', value: 'genomics' },
-  { label: 'Clinical', value: 'clinical' },
-  { label: 'Patient experience', value: 'patient' },
-  { label: 'Community', value: 'community' },
-  { label: 'Performance', value: 'performance' },
-  { label: 'Wellbeing', value: 'wellbeing' },
-]
-
-const TAG_TO_CAT: Record<string, string> = {
-  'Data infrastructure': 'data',
-  'Genomics': 'genomics',
-  'Clinical': 'clinical',
-  'Patient experience': 'patient',
-  'Wellbeing': 'wellbeing',
-  'Community': 'community',
-  'Performance': 'performance',
-}
-
 export default function ProjectsContent({ sanityProjects }: { sanityProjects: SanityProject[] }) {
   const [activeFilter, setActiveFilter] = useState('all')
   const hasSanity = sanityProjects.length > 0
+
+  const tags = hasSanity
+    ? Array.from(new Set(sanityProjects.map(p => p.tag).filter(Boolean)))
+    : []
 
   return (
     <>
@@ -55,11 +38,12 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
           <h1>From research to real-world impact.</h1>
           <p className="lead">A portfolio of academic, clinical, and community-based initiatives — led by the TARGet research group in collaboration with clinicians, researchers, and institutions worldwide.</p>
 
-          {hasSanity && (
+          {hasSanity && tags.length > 1 && (
             <div className="projects-filter">
-              {FILTERS.map(({ label, value }) => (
-                <button key={value} data-filter={value} className={activeFilter === value ? 'active' : undefined} onClick={() => setActiveFilter(value)}>
-                  {label}
+              <button className={activeFilter === 'all' ? 'active' : undefined} onClick={() => setActiveFilter('all')}>All</button>
+              {tags.map(tag => (
+                <button key={tag} className={activeFilter === tag ? 'active' : undefined} onClick={() => setActiveFilter(tag)}>
+                  {tag}
                 </button>
               ))}
             </div>
@@ -72,7 +56,7 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
           <div className="wrap">
             <div className="projects-grid">
               {sanityProjects
-                .filter(p => activeFilter === 'all' || TAG_TO_CAT[p.tag] === activeFilter)
+                .filter(p => activeFilter === 'all' || p.tag === activeFilter)
                 .map(p => (
                   <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
                     <div className="thumb">

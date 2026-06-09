@@ -28,19 +28,6 @@ type Post = {
   mainImage?: Parameters<typeof urlFor>[0]
 }
 
-const COLLABS = [
-  'Amsterdam UMC', 'Leiden University Medical Center', 'Erasmus MC',
-  'AIIMS New Delhi', 'KEM Hospital Mumbai', 'KNCB',
-  'European Society of Cardiology', 'American Heart Association',
-  'Oxford Cardiovascular', 'Karolinska Institutet', 'Mayo Clinic',
-  'Cleveland Clinic', 'Johns Hopkins', 'Yale School of Medicine',
-  'University of Cambridge', 'Cardiothoracic Surgery Network',
-  'World Heart Federation', 'Society of Thoracic Surgeons',
-  'Public Health NL', 'Cricket Netherlands',
-  'Sukh Community Foundation', 'Centre for Diversity in Health',
-  'Patient Advisory Network', 'European Association for Cardio-Thoracic Surgery',
-]
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
@@ -58,11 +45,6 @@ export default async function HomePage() {
   } catch {
     // Sanity not configured
   }
-
-  const tickerItems: Collaborator[] = collaborators.length > 0
-    ? collaborators
-    : COLLABS.map((name, i) => ({ _id: String(i), name }))
-
 
   return (
     <>
@@ -309,28 +291,30 @@ export default async function HomePage() {
       </section>
 
       {/* ============ SCROLLING COLLABORATORS ============ */}
-      <section className="collab-ticker-section">
-        <div className="wrap" style={{ marginBottom: '24px' }}>
-          <div className="eyebrow" style={{ textAlign: 'center' }}>Our Collaborators</div>
-        </div>
-        <div className="collab-ticker">
-          <div className="collab-ticker-inner">
-            {[...tickerItems, ...tickerItems].map((c, i) => (
-              <div key={i} className={`collab-chip${c.logo ? ' chip-logo' : ''}`}>
-                {c.logo ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={urlFor(c.logo as SanityImageSource).width(480).auto('format').url()}
-                    alt={c.name}
-                  />
-                ) : (
-                  <><span className="dot" />{c.name}</>
-                )}
-              </div>
-            ))}
+      {collaborators.length > 0 && (
+        <section className="collab-ticker-section">
+          <div className="wrap" style={{ marginBottom: '24px' }}>
+            <div className="eyebrow" style={{ textAlign: 'center' }}>Our Collaborators</div>
           </div>
-        </div>
-      </section>
+          <div className="collab-ticker">
+            <div className="collab-ticker-inner">
+              {[...collaborators, ...collaborators].map((c, i) => (
+                <div key={i} className={`collab-chip${c.logo ? ' chip-logo' : ''}`}>
+                  {c.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={urlFor(c.logo as SanityImageSource).width(480).auto('format').url()}
+                      alt={c.name}
+                    />
+                  ) : (
+                    <><span className="dot" />{c.name}</>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ============ PUBLICATIONS ============ */}
       <section className="pubs-band">

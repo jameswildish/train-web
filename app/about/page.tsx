@@ -19,13 +19,6 @@ type Collaborator = {
   location?: string
 }
 
-const STATIC_COLLABS = [
-  'Amsterdam UMC', 'Leiden University Medical Center', 'Erasmus MC',
-  'AIIMS New Delhi', 'KEM Hospital Mumbai', 'KNCB',
-  'European Society of Cardiology', 'American Heart Association',
-  'Oxford Cardiovascular', 'Karolinska Institutet', 'Mayo Clinic', 'Cleveland Clinic',
-]
-
 type Publication = {
   _id: string
   title: string
@@ -34,21 +27,6 @@ type Publication = {
   externalUrl?: string
   downloadUrl?: string
 }
-
-const STATIC_PUBS = [
-  { _id: 's1', title: 'Mendelian Randomization Suggests a Causal Link Between Glycemic Traits and Thoracic Aortic Structures and Diseases.' },
-  { _id: 's2', title: 'Establishing reference values for aortic dimensions in the general Indian population — implications for global standards.' },
-  { _id: 's3', title: 'Beyond the tear: the enduring role of aortic pathology in the era of genomic medicine.' },
-  { _id: 's4', title: 'APECx — Anaesthesia, Perfusion and Surgical Practices in Cardiac Surgery: a modular multiphase prospective international observational study.' },
-  { _id: 's5', title: 'Diversity and Representation in Cardiovascular Research: Evidence Gaps, Emerging Models, and Policy Implications.' },
-  { _id: 's6', title: 'Aortic wall lamellar structure in phylogeny and in humans — insights from bicuspid and tricuspid aortic valve morphology.' },
-  { _id: 's7', title: 'Comparison of cardiovascular risk profiles of patients with type A aortic dissection and thoracic aortic aneurysm.' },
-  { _id: 's8', title: 'The TRAIN Health Awareness Clinical Trial — Baseline Findings and Cardiovascular Risk Management in Aortic Dissection Patients.' },
-  { _id: 's9', title: 'From Survival to Recovery: Understanding the Life Impact of an Acute Aortic Dissection through Activity, Sleep, and Quality of Life.' },
-  { _id: 's10', title: 'Sex Differences in the Histopathology of Acute Type A Aortic Dissections.' },
-  { _id: 's11', title: 'Aortic root replacement for bicuspid aortic valve dysfunction does not impair survival rates.' },
-  { _id: 's12', title: 'Wall Shear Stress Directional Abnormalities in BAV Aortas — Toward a New Hemodynamic Predictor of Aortopathy?' },
-]
 
 export default async function AboutPage() {
   let publications: Publication[] = []
@@ -61,7 +39,6 @@ export default async function AboutPage() {
   } catch {
     // Sanity not configured yet
   }
-  const pubs: Publication[] = publications.length > 0 ? publications : STATIC_PUBS as Publication[]
   return (
     <>
       <section className="pillar-hero pillar-hero-photo science-hero">
@@ -206,9 +183,9 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        <div className="wrap collab" id="collaborate">
-          <div className="label">Our Collaborators</div>
-          {collaborators.length > 0 ? (
+        {collaborators.length > 0 && (
+          <div className="wrap collab" id="collaborate">
+            <div className="label">Our Collaborators</div>
             <div className="collab-logo-grid">
               {collaborators.map(c => (
                 c.website ? (
@@ -238,60 +215,56 @@ export default async function AboutPage() {
                 )
               ))}
             </div>
-          ) : (
-            <div className="collab-row">
-              {STATIC_COLLABS.map(name => (
-                <div key={name} className="collab-chip"><span className="dot"></span>{name}</div>
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
 
       {/* ============ PUBLICATIONS ============ */}
-      <section className="pubs" id="publications">
-        <div className="wrap">
-          <div className="sec-head head">
-            <div>
-              <div className="eyebrow" style={{ marginBottom: '18px' }}>Scientific output</div>
-              <h2>Selected publications from the TARGet group.</h2>
+      {publications.length > 0 && (
+        <section className="pubs" id="publications">
+          <div className="wrap">
+            <div className="sec-head head">
+              <div>
+                <div className="eyebrow" style={{ marginBottom: '18px' }}>Scientific output</div>
+                <h2>Selected publications from the TARGet group.</h2>
+              </div>
+              <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection. Full list available on request.</p>
             </div>
-            <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection. Full list available on request.</p>
-          </div>
 
-          <div className="pubs-grid">
-            {pubs.map(pub => {
-              const href = pub.externalUrl || pub.downloadUrl
-              const label = pub.downloadUrl && !pub.externalUrl ? 'Download' : 'Read the paper'
-              const card = (
-                <>
-                  {pub.coverImage && (
-                    <div className="pub-cover">
-                      <Image
-                        src={urlFor(pub.coverImage as SanityImageSource).width(120).height(160).url()}
-                        alt={pub.title}
-                        width={120}
-                        height={160}
-                        style={{ objectFit: 'cover', borderRadius: '4px' }}
-                      />
-                    </div>
-                  )}
-                  <h4>{pub.title}</h4>
-                  {pub.year && <span className="pub-authors">{pub.year}</span>}
-                  {href && <span className="read">{label} <span className="arrow">→</span></span>}
-                </>
-              )
-              return href ? (
-                <a key={pub._id} href={href} target="_blank" rel="noopener noreferrer" className="pub-card">
-                  {card}
-                </a>
-              ) : (
-                <div key={pub._id} className="pub-card">{card}</div>
-              )
-            })}
+            <div className="pubs-grid">
+              {publications.map(pub => {
+                const href = pub.externalUrl || pub.downloadUrl
+                const label = pub.downloadUrl && !pub.externalUrl ? 'Download' : 'Read the paper'
+                const card = (
+                  <>
+                    {pub.coverImage && (
+                      <div className="pub-cover">
+                        <Image
+                          src={urlFor(pub.coverImage as SanityImageSource).width(120).height(160).url()}
+                          alt={pub.title}
+                          width={120}
+                          height={160}
+                          style={{ objectFit: 'cover', borderRadius: '4px' }}
+                        />
+                      </div>
+                    )}
+                    <h4>{pub.title}</h4>
+                    {pub.year && <span className="pub-authors">{pub.year}</span>}
+                    {href && <span className="read">{label} <span className="arrow">→</span></span>}
+                  </>
+                )
+                return href ? (
+                  <a key={pub._id} href={href} target="_blank" rel="noopener noreferrer" className="pub-card">
+                    {card}
+                  </a>
+                ) : (
+                  <div key={pub._id} className="pub-card">{card}</div>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ============ CTA ============ */}
       <section className="cta">
