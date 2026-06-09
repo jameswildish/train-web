@@ -134,7 +134,7 @@ export default function BlogArticlePage() {
 
           <div className="insights-grid blog-grid">
             <article className="article">
-              <Link href="/blog/article" className="thumb anemone" style={{ filter: 'hue-rotate(-40deg)' }}></Link>
+              <Link href="/blog/article" className="thumb anemone"></Link>
               <div className="body">
                 <div className="meta"><span className="pill">Sleep</span><span className="date">Mar 14, 2026</span></div>
                 <h3><Link href="/blog/article">The truth about caffeine — when it stops being useful.</Link></h3>
@@ -142,7 +142,7 @@ export default function BlogArticlePage() {
               </div>
             </article>
             <article className="article">
-              <Link href="/blog/article" className="thumb anemone" style={{ filter: 'hue-rotate(40deg)' }}></Link>
+              <Link href="/blog/article" className="thumb anemone" ></Link>
               <div className="body">
                 <div className="meta"><span className="pill">Mental Health</span><span className="date">May 04, 2026</span></div>
                 <h3><Link href="/blog/article">Stress less, live more — managing stress for heart health.</Link></h3>
@@ -150,7 +150,7 @@ export default function BlogArticlePage() {
               </div>
             </article>
             <article className="article">
-              <Link href="/blog/article" className="thumb anemone" style={{ filter: 'hue-rotate(80deg)' }}></Link>
+              <Link href="/blog/article" className="thumb anemone" ></Link>
               <div className="body">
                 <div className="meta"><span className="pill">Movement</span><span className="date">Feb 28, 2026</span></div>
                 <h3><Link href="/blog/article">Why muscle is medicine — strength and healthy ageing.</Link></h3>

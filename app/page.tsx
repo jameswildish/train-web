@@ -354,7 +354,7 @@ export default async function HomePage() {
                 <Link href={`/blog/${post.slug.current}`} className="thumb">
                   {post.mainImage
                     ? <Image src={urlFor(post.mainImage).width(600).height(360).url()} alt={post.title} width={600} height={360} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <div className="anemone" style={{ width: '100%', height: '100%', filter: `hue-rotate(${i * 40}deg)` }}></div>
+                    : <div className="anemone" style={{ width: '100%', height: '100%' }}></div>
                   }
                 </Link>
                 <div className="body">
