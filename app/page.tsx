@@ -265,7 +265,7 @@ export default async function HomePage() {
       </section>
 
       {/* ============ PROJECTS ============ */}
-      <section id="projects">
+      <section id="projects" className="projects-band">
         <div className="wrap">
           <div className="sec-head">
             <div>

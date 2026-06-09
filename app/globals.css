@@ -1033,6 +1033,14 @@ section.tight { padding: 64px 0; }
 }
 .sec-head .all:hover { background: var(--ink); color: var(--bg); }
 
+/* === Projects band (homepage) === */
+.projects-band {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 96px 0;
+}
+
 /* === Projects === */
 .projects-grid {
   display: grid;
@@ -1349,6 +1357,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   nav.main { display: none; }
   .stats-grid { grid-template-columns: repeat(3, 1fr); }
   .stats-grid .stat:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .stats-grid .stat { min-height: 180px; }
   .pillar-grid { grid-template-columns: repeat(2, 1fr); }
   .mission-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1367,6 +1376,8 @@ image-slot[data-has-image="false"]::part(placeholder) {
   section { padding: 64px 0; }
   nav.main { display: none; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .stats-grid .stat { min-height: 160px; padding: 28px 20px; }
   .pillar-grid { grid-template-columns: 1fr; }
   .projects-grid, .insights-grid { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
@@ -2856,7 +2867,7 @@ nav.main a.active::after {
 /* Publications grid (science page) */
 .pubs {
   padding: 96px 0;
-  background: var(--bg-2);
+  background: var(--bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -2949,7 +2960,9 @@ nav.main a.active::after {
 }
 .collab-ticker-section {
   padding: 56px 0;
+  background: var(--bg);
   border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 .collab-ticker {
