@@ -125,8 +125,8 @@ export async function getProjectBySlug(slug: string) {
 export async function getAllPublications() {
   if (!client) return []
   return client.fetch(`
-    *[_type == "publication"] | order(order asc, year desc) {
-      _id, title, year, coverImage,
+    *[_type == "publication"] | order(order asc) {
+      _id, title, coverImage,
       externalUrl,
       "downloadUrl": downloadFile.asset->url
     }

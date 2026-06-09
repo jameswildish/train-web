@@ -6,7 +6,6 @@ export const publication = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string', validation: r => r.required() }),
-    defineField({ name: 'year', title: 'Year', type: 'string' }),
     defineField({
       name: 'coverImage',
       title: 'Cover image (book cover or journal)',
@@ -29,9 +28,8 @@ export const publication = defineType({
   ],
   orderings: [
     { title: 'Sort order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] },
-    { title: 'Year (newest first)', name: 'yearDesc', by: [{ field: 'year', direction: 'desc' }] },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'year', media: 'coverImage' },
+    select: { title: 'title', media: 'coverImage' },
   },
 })

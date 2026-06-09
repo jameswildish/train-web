@@ -22,7 +22,6 @@ type Collaborator = {
 type Publication = {
   _id: string
   title: string
-  year?: string
   coverImage?: unknown
   externalUrl?: string
   downloadUrl?: string
@@ -249,7 +248,6 @@ export default async function AboutPage() {
                       </div>
                     )}
                     <h4>{pub.title}</h4>
-                    {pub.year && <span className="pub-authors">{pub.year}</span>}
                     {href && <span className="read">{label} <span className="arrow">→</span></span>}
                   </>
                 )
