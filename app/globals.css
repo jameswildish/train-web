@@ -922,7 +922,7 @@ section.tight { padding: 64px 0; }
 
 /* === Founders / About === */
 .founders {
-  background: var(--bg-2);
+  background: var(--bg);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
