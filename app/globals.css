@@ -2086,7 +2086,7 @@ nav.main a.active::after {
 
 /* === Project pages === */
 .project-hero {
-  padding: 32px 0 80px;
+  padding: 56px 0 80px;
 }
 .project-hero h1 {
   font-size: clamp(36px, 4.6vw, 66px);
@@ -2300,7 +2300,7 @@ nav.main a.active::after {
 
 /* Projects index page */
 .projects-hero {
-  padding: 64px 0 56px;
+  padding: 56px 0 56px;
 }
 .projects-hero h1 {
   font-size: clamp(36px, 4.6vw, 66px);
