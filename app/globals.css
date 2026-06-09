@@ -1310,8 +1310,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   background: var(--pink-tint);
   padding: 5px 10px;
   border-radius: 999px;
-  color: var(--pink);
-  font-weight: 500;
+  color: var(--ink);
 }
 .featured-post .meta .date { color: var(--muted); }
 .featured-post h2 {
