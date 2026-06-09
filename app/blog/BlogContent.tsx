@@ -38,7 +38,7 @@ export default function BlogContent({ posts, categories = [] }: { posts: Post[];
   return (
     <>
       {featured && (
-        <section style={{ padding: '64px 0 48px' }}>
+        <section style={{ padding: '0 0 48px' }}>
           <div className="wrap">
             <div className="eyebrow" style={{ marginBottom: '20px' }}>Featured</div>
             <Link href={`/blog/${featured.slug.current}`} className="featured-post">
@@ -146,7 +146,7 @@ export default function BlogContent({ posts, categories = [] }: { posts: Post[];
       )}
 
       {posts.length === 0 && (
-        <section style={{ padding: '64px 0 96px' }}>
+        <section style={{ padding: '0 0 96px' }}>
           <div className="wrap">
             <p style={{ color: 'var(--ink-2)', fontSize: '15px' }}>Articles coming soon.</p>
           </div>

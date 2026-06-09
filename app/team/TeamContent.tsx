@@ -46,7 +46,7 @@ export default function TeamContent({ sanityMembers, departments = [] }: { sanit
   if (sanityMembers.length === 0) {
     return (
       <>
-        <section style={{ padding: '64px 0 96px', background: 'var(--bg)', borderTop: '1px solid var(--line)' }}>
+        <section style={{ padding: '0 0 96px', background: 'var(--bg)', borderTop: '1px solid var(--line)' }}>
           <div className="wrap">
             <p style={{ color: 'var(--ink-2)', fontSize: '15px' }}>Team coming soon.</p>
           </div>
