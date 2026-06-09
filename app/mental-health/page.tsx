@@ -131,6 +131,19 @@ export default function MentalHealthPage() {
               <p>Together, these mechanisms help reduce chronic stress load and improve mental and physical wellbeing over time.</p>
             </div>
           </div>
+
+          <div className="qa">
+            <div>
+              <h3>How does physical activity regulate mental health?</h3>
+              <p>Exercise influences the autonomic nervous system by increasing acute sympathetic activation during activity, followed by enhanced parasympathetic rebound in the recovery phase. It also stimulates:</p>
+              <ul className="steps">
+                <li><strong>Endorphins</strong>Pain modulation and mood elevation.</li>
+                <li><strong>Serotonin</strong>Mood stability.</li>
+                <li><strong>Dopamine</strong>Motivation and reward regulation.</li>
+              </ul>
+              <p>Regular movement is associated with reduced symptoms of anxiety and depression, likely due to both neurochemical and anti-inflammatory effects.</p>
+            </div>
+          </div>
         </div>
       </section>
 
