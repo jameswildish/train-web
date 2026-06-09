@@ -1147,9 +1147,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   section { padding: 64px 0; }
   nav.main { display: none; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
-  .stats-grid .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .stats-grid .stat:last-child:nth-child(odd) { grid-column: span 2; }
-  .stats-grid .stat { min-height: 160px; padding: 28px 20px; }
+  .stats-grid .stat { min-height: 160px; padding: 28px 20px; border-right: none; border-top: none; }
   .pillar-grid { grid-template-columns: 1fr; }
   .projects-grid, .insights-grid, .insights-grid.three-col { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
@@ -1161,11 +1159,12 @@ image-slot[data-has-image="false"]::part(placeholder) {
   .founders-grid { gap: 40px; }
   .nums { gap: 1px; }
   .target-img { min-height: 300px; }
-  .pillar-hero { padding: 40px 0 48px; }
+  .pillar-hero { padding: 32px 0 48px; }
   .pillar-hero.pillar-hero-photo { padding: 32px 0 40px; }
-  .science-hero { padding: 40px 0 48px; }
-  .projects-hero { padding: 40px 0 40px; }
-  .project-hero { padding: 40px 0 48px; }
+  .science-hero { padding: 32px 0 48px; }
+  .projects-hero { padding: 32px 0 40px; }
+  .project-hero { padding: 32px 0 48px; }
+  .article-hero { padding: 32px 0 48px; }
 }
 
 /* === Team page === */
@@ -1361,8 +1360,8 @@ image-slot[data-has-image="false"]::part(placeholder) {
 .blog-grid .article h3 a:hover { color: var(--pink); }
 
 /* === Article page === */
-.article-page { padding-top: 24px; }
-.article-hero { padding: 24px 0 48px; }
+.article-page { padding-top: 0; }
+.article-hero { padding: 40px 0 48px; }
 .article-meta {
   margin: 32px 0 24px;
   display: flex; gap: 14px; align-items: center;
@@ -2095,7 +2094,7 @@ nav.main a.active::after {
 
 /* === Project pages === */
 .project-hero {
-  padding: 56px 0 80px;
+  padding: 40px 0 80px;
 }
 .project-hero h1 {
   font-size: clamp(36px, 4.6vw, 66px);
@@ -2309,7 +2308,7 @@ nav.main a.active::after {
 
 /* Projects index page */
 .projects-hero {
-  padding: 56px 0 56px;
+  padding: 40px 0 56px;
 }
 .projects-hero h1 {
   font-size: clamp(36px, 4.6vw, 66px);
@@ -2328,7 +2327,7 @@ nav.main a.active::after {
 
 /* === Science page === */
 .science-hero {
-  padding: 56px 0 80px;
+  padding: 40px 0 80px;
 }
 .science-hero-inner {
   display: grid;
