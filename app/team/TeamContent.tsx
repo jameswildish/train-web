@@ -76,19 +76,19 @@ export default function TeamContent({ sanityMembers, departments = [] }: { sanit
 
   return (
     <>
-      <section style={{ padding: '32px 0 96px', background: 'var(--bg)', borderTop: '1px solid var(--line)' }}>
+      <nav className="section-anchor-nav">
         <div className="wrap">
-          <div className="team-filter" role="tablist">
-            <button className={activeFilter === 'All' ? 'active' : ''} onClick={() => setActiveFilter('All')}>
-              All <span className="count">{sanityMembers.length}</span>
-            </button>
-            {activeDepts.map(dept => (
-              <button key={dept._id} className={activeFilter === dept.title ? 'active' : ''} onClick={() => setActiveFilter(dept.title)}>
-                {dept.title} <span className="count">{dept.count}</span>
-              </button>
-            ))}
-          </div>
+          <a href="#team" className={activeFilter === 'All' ? 'active-tab' : ''} onClick={(e) => { e.preventDefault(); setActiveFilter('All') }}>All</a>
+          {activeDepts.map(dept => (
+            <a key={dept._id} href="#team" className={activeFilter === dept.title ? 'active-tab' : ''} onClick={(e) => { e.preventDefault(); setActiveFilter(dept.title) }}>
+              {dept.title}
+            </a>
+          ))}
+        </div>
+      </nav>
 
+      <section id="team" style={{ padding: '48px 0 96px', background: 'var(--bg)' }}>
+        <div className="wrap">
           <div className="team-grid">
             {filtered.map(member => (
               <article key={member._id} className="team-card">

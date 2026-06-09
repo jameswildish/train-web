@@ -831,7 +831,6 @@ section.tight { padding: 64px 0; }
   line-height: 1.4;
   max-width: 800px;
   padding: 48px 0 32px;
-  border-top: 1px solid var(--line);
 }
 .preventable-text em {
   font-style: normal;
