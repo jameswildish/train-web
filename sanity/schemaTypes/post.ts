@@ -14,7 +14,6 @@ export const post = defineType({
       title: 'Category',
       type: 'reference',
       to: [{ type: 'category' }],
-      validation: r => r.required(),
     }),
     defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
     defineField({ name: 'readTime', title: 'Read time (minutes)', type: 'number' }),
