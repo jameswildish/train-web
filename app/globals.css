@@ -1374,8 +1374,7 @@ image-slot[data-has-image="false"]::part(placeholder) {
   background: var(--pink-tint);
   padding: 5px 10px;
   border-radius: 999px;
-  color: var(--pink);
-  font-weight: 500;
+  color: var(--ink);
 }
 .article-meta .date { color: var(--muted); }
 .article-page h1 {
