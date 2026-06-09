@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getAllTeamMembers } from '@/sanity/lib/queries'
+import { getAllTeamMembers, getAllDepartments } from '@/sanity/lib/queries'
 import TeamContent from './TeamContent'
 
 export const revalidate = 0
@@ -8,10 +8,11 @@ export const metadata = { title: 'Team — TRAIN' }
 
 export default async function TeamPage() {
   let members: Awaited<ReturnType<typeof getAllTeamMembers>> = []
+  let departments: Awaited<ReturnType<typeof getAllDepartments>> = []
   try {
-    members = await getAllTeamMembers()
+    ;[members, departments] = await Promise.all([getAllTeamMembers(), getAllDepartments()])
   } catch {
-    // Sanity not configured yet — static fallback handled in TeamContent
+    // Sanity not configured yet
   }
 
   return (
@@ -34,7 +35,7 @@ export default async function TeamPage() {
         </div>
       </section>
 
-      <TeamContent sanityMembers={members} />
+      <TeamContent sanityMembers={members} departments={departments} />
     </>
   )
 }

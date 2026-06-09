@@ -57,8 +57,18 @@ export async function getAllTeamMembers() {
   if (!client) return []
   return client.fetch(`
     *[_type == "teamMember"] | order(order asc) {
-      _id, name, role, department, isFounder, bio, image,
-      linkedin, twitter, email, publications, github
+      _id, name, role, "department": department->title, isFounder, bio, image,
+      linkedin, twitter, email
+    }
+  `)
+}
+
+export async function getAllDepartments() {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "department"] | order(order asc) {
+      _id, title,
+      "count": count(*[_type == "teamMember" && references(^._id)])
     }
   `)
 }
@@ -116,18 +126,7 @@ export async function getAllPublications() {
   if (!client) return []
   return client.fetch(`
     *[_type == "publication"] | order(order asc, year desc) {
-      _id, title, authors, journal, year, category, coverImage, abstract,
-      externalUrl,
-      "downloadUrl": downloadFile.asset->url
-    }
-  `)
-}
-
-export async function getFeaturedPublications() {
-  if (!client) return []
-  return client.fetch(`
-    *[_type == "publication" && featured == true] | order(order asc) {
-      _id, title, authors, journal, year, category, coverImage, abstract,
+      _id, title, year, coverImage,
       externalUrl,
       "downloadUrl": downloadFile.asset->url
     }

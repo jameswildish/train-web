@@ -16,8 +16,6 @@ type SanityMember = {
   linkedin?: string
   twitter?: string
   email?: string
-  publications?: string
-  github?: string
 }
 
 const LinkedInIcon = (
@@ -36,40 +34,14 @@ const EmailIcon = (
     <path d="m3 7 9 6 9-6" />
   </svg>
 )
-const PublicationsIcon = (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-    <path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4V4Z" />
-    <path d="M4 4v12a4 4 0 0 0 4 4" />
-  </svg>
-)
-const GitHubIcon = (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.57.1.78-.25.78-.55v-2.03c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18A11 11 0 0 1 12 6.8c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.66.78.55 4.57-1.52 7.86-5.83 7.86-10.92C23.5 5.65 18.35.5 12 .5Z" />
-  </svg>
-)
 
-const DEPT_TO_CATS: Record<string, string[]> = {
-  'Founders': ['founders'],
-  'Surgeons': ['surgeons'],
-  'Researchers': ['researchers'],
-  'Postdocs': ['postdocs'],
-  'Technology': ['data-ai'],
-  'Clinical': ['clinical'],
-  'Advisory': ['clinical'],
-}
+type Department = { _id: string; title: string; count: number }
 
-const FILTERS = [
-  { key: 'all', label: 'All' },
-  { key: 'founders', label: 'Founders' },
-  { key: 'surgeons', label: 'Surgeons' },
-  { key: 'researchers', label: 'Researchers' },
-  { key: 'postdocs', label: 'Postdocs & Fellows' },
-  { key: 'data-ai', label: 'Data & AI' },
-  { key: 'clinical', label: 'Clinical staff' },
-]
+export default function TeamContent({ sanityMembers, departments = [] }: { sanityMembers: SanityMember[]; departments?: Department[] }) {
+  const [activeFilter, setActiveFilter] = useState('All')
 
-export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMember[] }) {
-  const [activeFilter, setActiveFilter] = useState('all')
+  // Only show departments that have members
+  const activeDepts = departments.filter(d => d.count > 0)
 
   if (sanityMembers.length === 0) {
     return (
@@ -98,29 +70,21 @@ export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMe
     )
   }
 
-  const getMemberCats = (m: SanityMember) => {
-    const base = DEPT_TO_CATS[m.department] ?? ['researchers']
-    if (m.isFounder && !base.includes('founders')) return ['founders', ...base]
-    return base
-  }
-
-  const filtered = activeFilter === 'all'
+  const filtered = activeFilter === 'All'
     ? sanityMembers
-    : sanityMembers.filter(m => getMemberCats(m).includes(activeFilter))
-
-  const counts: Record<string, number> = { all: sanityMembers.length }
-  FILTERS.slice(1).forEach(f => {
-    counts[f.key] = sanityMembers.filter(m => getMemberCats(m).includes(f.key)).length
-  })
+    : sanityMembers.filter(m => m.department === activeFilter)
 
   return (
     <>
       <section style={{ padding: '32px 0 96px', background: 'var(--bg-2)', borderTop: '1px solid var(--line)' }}>
         <div className="wrap">
           <div className="team-filter" role="tablist">
-            {FILTERS.map(({ key, label }) => (
-              <button key={key} className={activeFilter === key ? 'active' : ''} onClick={() => setActiveFilter(key)}>
-                {label} <span className="count">{counts[key] ?? 0}</span>
+            <button className={activeFilter === 'All' ? 'active' : ''} onClick={() => setActiveFilter('All')}>
+              All <span className="count">{sanityMembers.length}</span>
+            </button>
+            {activeDepts.map(dept => (
+              <button key={dept._id} className={activeFilter === dept.title ? 'active' : ''} onClick={() => setActiveFilter(dept.title)}>
+                {dept.title} <span className="count">{dept.count}</span>
               </button>
             ))}
           </div>
@@ -139,9 +103,7 @@ export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMe
                   ) : (
                     <div className="placeholder-stripe"><span>Photo placeholder</span></div>
                   )}
-                  {(member.isFounder || getMemberCats(member).includes('founders')) && (
-                    <span className="role-pill">Founder</span>
-                  )}
+                  {member.isFounder && <span className="role-pill">Founder</span>}
                 </div>
                 <div className="info">
                   <h3>{member.name}</h3>
@@ -151,8 +113,6 @@ export default function TeamContent({ sanityMembers }: { sanityMembers: SanityMe
                     {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{LinkedInIcon}</a>}
                     {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" aria-label="X">{XIcon}</a>}
                     {member.email && <a href={`mailto:${member.email}`} aria-label="Email">{EmailIcon}</a>}
-                    {member.publications && <a href={member.publications} target="_blank" rel="noopener noreferrer" aria-label="Publications">{PublicationsIcon}</a>}
-                    {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">{GitHubIcon}</a>}
                   </div>
                 </div>
               </article>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getFeaturedPublications, getAllCollaborators } from '@/sanity/lib/queries'
+import { getAllPublications, getAllCollaborators } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
 
@@ -29,29 +29,25 @@ const STATIC_COLLABS = [
 type Publication = {
   _id: string
   title: string
-  authors?: string
-  journal?: string
   year?: string
-  category?: string
   coverImage?: unknown
-  abstract?: string
   externalUrl?: string
   downloadUrl?: string
 }
 
 const STATIC_PUBS = [
-  { _id: 's1', title: 'Mendelian Randomization Suggests a Causal Link Between Glycemic Traits and Thoracic Aortic Structures and Diseases.', category: 'Genomics' },
-  { _id: 's2', title: 'Establishing reference values for aortic dimensions in the general Indian population — implications for global standards.', category: 'Population' },
-  { _id: 's3', title: 'Beyond the tear: the enduring role of aortic pathology in the era of genomic medicine.', category: 'Review' },
-  { _id: 's4', title: 'APECx — Anaesthesia, Perfusion and Surgical Practices in Cardiac Surgery: a modular multiphase prospective international observational study.', category: 'Multi-centre' },
-  { _id: 's5', title: 'Diversity and Representation in Cardiovascular Research: Evidence Gaps, Emerging Models, and Policy Implications.', category: 'Equity' },
-  { _id: 's6', title: 'Aortic wall lamellar structure in phylogeny and in humans — insights from bicuspid and tricuspid aortic valve morphology.', category: 'Histopathology' },
-  { _id: 's7', title: 'Comparison of cardiovascular risk profiles of patients with type A aortic dissection and thoracic aortic aneurysm.', category: 'Risk factors' },
-  { _id: 's8', title: 'The TRAIN Health Awareness Clinical Trial — Baseline Findings and Cardiovascular Risk Management in Aortic Dissection Patients.', category: 'Clinical trial' },
-  { _id: 's9', title: 'From Survival to Recovery: Understanding the Life Impact of an Acute Aortic Dissection through Activity, Sleep, and Quality of Life.', category: 'Patient experience' },
-  { _id: 's10', title: 'Sex Differences in the Histopathology of Acute Type A Aortic Dissections.', category: 'Sex differences' },
-  { _id: 's11', title: 'Aortic root replacement for bicuspid aortic valve dysfunction does not impair survival rates.', category: 'Outcomes' },
-  { _id: 's12', title: 'Wall Shear Stress Directional Abnormalities in BAV Aortas — Toward a New Hemodynamic Predictor of Aortopathy?', category: 'Hemodynamics' },
+  { _id: 's1', title: 'Mendelian Randomization Suggests a Causal Link Between Glycemic Traits and Thoracic Aortic Structures and Diseases.' },
+  { _id: 's2', title: 'Establishing reference values for aortic dimensions in the general Indian population — implications for global standards.' },
+  { _id: 's3', title: 'Beyond the tear: the enduring role of aortic pathology in the era of genomic medicine.' },
+  { _id: 's4', title: 'APECx — Anaesthesia, Perfusion and Surgical Practices in Cardiac Surgery: a modular multiphase prospective international observational study.' },
+  { _id: 's5', title: 'Diversity and Representation in Cardiovascular Research: Evidence Gaps, Emerging Models, and Policy Implications.' },
+  { _id: 's6', title: 'Aortic wall lamellar structure in phylogeny and in humans — insights from bicuspid and tricuspid aortic valve morphology.' },
+  { _id: 's7', title: 'Comparison of cardiovascular risk profiles of patients with type A aortic dissection and thoracic aortic aneurysm.' },
+  { _id: 's8', title: 'The TRAIN Health Awareness Clinical Trial — Baseline Findings and Cardiovascular Risk Management in Aortic Dissection Patients.' },
+  { _id: 's9', title: 'From Survival to Recovery: Understanding the Life Impact of an Acute Aortic Dissection through Activity, Sleep, and Quality of Life.' },
+  { _id: 's10', title: 'Sex Differences in the Histopathology of Acute Type A Aortic Dissections.' },
+  { _id: 's11', title: 'Aortic root replacement for bicuspid aortic valve dysfunction does not impair survival rates.' },
+  { _id: 's12', title: 'Wall Shear Stress Directional Abnormalities in BAV Aortas — Toward a New Hemodynamic Predictor of Aortopathy?' },
 ]
 
 export default async function AboutPage() {
@@ -59,7 +55,7 @@ export default async function AboutPage() {
   let collaborators: Collaborator[] = []
   try {
     ;[publications, collaborators] = await Promise.all([
-      getFeaturedPublications(),
+      getAllPublications(),
       getAllCollaborators(),
     ])
   } catch {
@@ -280,9 +276,8 @@ export default async function AboutPage() {
                       />
                     </div>
                   )}
-                  {pub.category && <span className="tag">{pub.category}</span>}
                   <h4>{pub.title}</h4>
-                  {pub.authors && <span className="pub-authors">{pub.authors}{pub.year ? ` · ${pub.year}` : ''}</span>}
+                  {pub.year && <span className="pub-authors">{pub.year}</span>}
                   {href && <span className="read">{label} <span className="arrow">→</span></span>}
                 </>
               )
