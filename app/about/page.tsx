@@ -116,17 +116,17 @@ export default async function AboutPage() {
 
           <div className="mva-grid">
             <div className="mva-card">
-              <div className="eyebrow">01 / Mission</div>
+              <div className="eyebrow">Mission</div>
               <h3>Bridge the gap between science and habits.</h3>
               <p>To bridge the gap between advanced medical research and everyday health practices. We provide comprehensive information on risk factors, ongoing research projects, and the latest scientific findings to support a healthier lifestyle.</p>
             </div>
             <div className="mva-card">
-              <div className="eyebrow">02 / Vision</div>
+              <div className="eyebrow">Vision</div>
               <h3>A world of informed, proactive individuals.</h3>
               <p>A world where individuals are well-informed about their health risks and proactive in managing them, supported by a community of engaged people who can make better health decisions backed by the latest research and technology.</p>
             </div>
             <div className="mva-card">
-              <div className="eyebrow">03 / Approach</div>
+              <div className="eyebrow">Approach</div>
               <h3>Cutting-edge research, practical health advice.</h3>
               <p>We integrate clinical and scientific insight with everyday application — through the TRAIN Health app and our website, covering cardiovascular and musculoskeletal health, risk-factor management, and ongoing research studies.</p>
             </div>
@@ -171,6 +171,16 @@ export default async function AboutPage() {
           <div className="target-grid">
             <div>
               <div className="eyebrow" style={{ marginBottom: '18px' }}>TARGet Research Group</div>
+              <div className="target-portrait">
+                <Image
+                  src="/images/nimrat-grewal.jpg"
+                  alt="Prof. Dr. Nimrat Grewal"
+                  width={80}
+                  height={80}
+                  style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }}
+                />
+                <span>Prof. Dr. Nimrat Grewal</span>
+              </div>
               <h2>Advancing knowledge in cardiovascular &amp; preventive health.</h2>
               <p>An internationally active academic research initiative led by clinician-scientists — bringing together surgeons, physicians, data scientists, and researchers across disciplines to translate science into clinical and societal impact.</p>
               <p>Our work spans genetic and molecular research, real-world data collection, and lifestyle-based prevention — bridging the gap between science and everyday health.</p>
