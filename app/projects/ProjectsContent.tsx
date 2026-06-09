@@ -38,7 +38,6 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
             <span className="sep">/</span>
             <span className="current">Projects</span>
           </div>
-          <div style={{ margin: '40px 0 24px' }} className="eyebrow">Projects</div>
           <h1>From research to real-world impact.</h1>
           <p className="lead">A portfolio of academic, clinical, and community-based initiatives — led by the TARGet research group in collaboration with clinicians, researchers, and institutions worldwide.</p>
         </div>
