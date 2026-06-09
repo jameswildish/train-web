@@ -82,7 +82,7 @@ export default async function AboutPage() {
             </div>
             <div className="pillar-hero-photo-img">
               <Image
-                src="/images/nutrition-hero.jpg"
+                src="/images/about-hero.jpg"
                 alt="Science and medicine"
                 width={700}
                 height={560}
