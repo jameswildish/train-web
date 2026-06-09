@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import './globals.css'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
@@ -10,15 +11,21 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') ?? ''
+  const isStudio = pathname.startsWith('/studio')
+
   let navProjects: { href: string; label: string; tag: string }[] = []
-  try {
-    const projects = await getAllProjects()
-    navProjects = projects.map((p: { title: string; slug: { current: string }; tag: string }) => ({
-      href: `/projects/${p.slug.current}`,
-      label: p.title,
-      tag: p.tag,
-    }))
-  } catch {}
+  if (!isStudio) {
+    try {
+      const projects = await getAllProjects()
+      navProjects = projects.map((p: { title: string; slug: { current: string }; tag: string }) => ({
+        href: `/projects/${p.slug.current}`,
+        label: p.title,
+        tag: p.tag,
+      }))
+    } catch {}
+  }
 
   return (
     <html lang="en">
@@ -31,9 +38,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body>
-        <SiteHeader navProjects={navProjects} />
+        {!isStudio && <SiteHeader navProjects={navProjects} />}
         <main>{children}</main>
-        <SiteFooter />
+        {!isStudio && <SiteFooter />}
       </body>
     </html>
   )
