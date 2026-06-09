@@ -157,7 +157,7 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
                 ))}
               </div>
               <Link href="/projects" className="dd-footer">
-                View all projects <span className="arrow">→</span>
+                All projects <span className="arrow">→</span>
               </Link>
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
             Projects <span className="caret">▾</span>
           </summary>
           <div className="m-links">
-            <Link href="/projects" onClick={() => setDrawerOpen(false)}><strong>View all projects</strong></Link>
+            <Link href="/projects" onClick={() => setDrawerOpen(false)}><strong>All projects</strong></Link>
             {PROJECT_LINKS.map(l => (
               <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
             ))}

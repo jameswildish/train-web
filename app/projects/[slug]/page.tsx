@@ -37,13 +37,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let project: any = null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let allProjects: any[] = []
   try {
-    project = await getProjectBySlug(slug)
+    ;[project, allProjects] = await Promise.all([getProjectBySlug(slug), getAllProjects()])
   } catch {
     // Sanity not configured
   }
 
   if (!project) notFound()
+
+  // Next 3 projects in CMS order, wrapping around
+  const currentIdx = allProjects.findIndex((p: { slug: { current: string } }) => p.slug.current === slug)
+  const related = currentIdx === -1 ? [] : [1, 2, 3].map(offset => allProjects[(currentIdx + offset) % allProjects.length])
 
   const hasOverview = project.overviewHeading || project.overviewBody || project.missionStatement
   const hasWhy = project.whyHeading || project.whyBody
@@ -51,7 +57,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const hasImpact = project.impactCells?.length > 0
   const hasStats = project.stats?.length > 0
   const hasTeam = project.teamMembers?.length > 0
-  const hasRelated = project.related?.length > 0
+  const hasRelated = related.length > 0
 
   return (
     <>
@@ -233,11 +239,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <div className="eyebrow" style={{ marginBottom: '18px' }}>Related projects</div>
                 <h2>Other work from TARGet.</h2>
               </div>
-              <p>Each project sits within a connected research portfolio.</p>
               <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
             </div>
             <div className="projects-grid">
-              {project.related.map((r: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: SanityImageSource }) => (
+              {related.map((r: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: SanityImageSource }) => (
                 <Link key={r._id} href={`/projects/${r.slug.current}`} className="project">
                   <div className="thumb">
                     {r.mainImage
