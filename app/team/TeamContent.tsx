@@ -101,7 +101,7 @@ export default function TeamContent({ sanityMembers, departments = [] }: { sanit
                       height={400}
                     />
                   ) : (
-                    <div className="placeholder-stripe"><span>Photo placeholder</span></div>
+                    <div className="placeholder-stripe"></div>
                   )}
                   {member.isFounder && <span className="role-pill">Founder</span>}
                 </div>
