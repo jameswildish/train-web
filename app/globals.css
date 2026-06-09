@@ -1122,17 +1122,15 @@ section.tight { padding: 64px 0; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  align-items: start;
+  align-items: stretch;
 }
 .target h2 { font-size: clamp(32px, 3.4vw, 48px); }
-.target-portrait {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+.target-img {
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 420px;
 }
-.target-portrait img { flex-shrink: 0; }
-.target-portrait span { font-size: 13px; color: var(--ink-2); line-height: 1.3; }
+.target-img img { display: block; }
 .target p { color: var(--ink-2); margin-top: 18px; max-width: 460px; }
 .target .nums {
   display: grid;

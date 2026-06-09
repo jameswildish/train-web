@@ -171,16 +171,6 @@ export default async function AboutPage() {
           <div className="target-grid">
             <div>
               <div className="eyebrow" style={{ marginBottom: '18px' }}>TARGet Research Group</div>
-              <div className="target-portrait">
-                <Image
-                  src="/images/nimrat-grewal-about.jpg"
-                  alt="Prof. Dr. Nimrat Grewal"
-                  width={80}
-                  height={80}
-                  style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }}
-                />
-                <span>Prof. Dr. Nimrat Grewal</span>
-              </div>
               <h2>Advancing knowledge in cardiovascular &amp; preventive health.</h2>
               <p>An internationally active academic research initiative led by clinician-scientists — bringing together surgeons, physicians, data scientists, and researchers across disciplines to translate science into clinical and societal impact.</p>
               <p>Our work spans genetic and molecular research, real-world data collection, and lifestyle-based prevention — bridging the gap between science and everyday health.</p>
@@ -188,24 +178,33 @@ export default async function AboutPage() {
                 <a href="#publications" className="btn btn-primary">View publications <span className="arrow">→</span></a>
                 <a href="#collaborate" className="btn btn-ghost">Join as collaborator</a>
               </div>
+              <div className="nums" style={{ marginTop: '40px' }}>
+                <div className="n">
+                  <div className="v">20+</div>
+                  <div className="l"><strong>PhDs</strong><br />driving translational and clinical research</div>
+                </div>
+                <div className="n">
+                  <div className="v">5+</div>
+                  <div className="l"><strong>Postdocs</strong><br />advancing genetic, clinical, and data-driven insights</div>
+                </div>
+                <div className="n">
+                  <div className="v">100+</div>
+                  <div className="l"><strong>Publications</strong><br />contributing to international research and innovation</div>
+                </div>
+                <div className="n">
+                  <div className="v">50+</div>
+                  <div className="l"><strong>Collaborations</strong><br />with leading academic and clinical institutions worldwide</div>
+                </div>
+              </div>
             </div>
-            <div className="nums">
-              <div className="n">
-                <div className="v">20+</div>
-                <div className="l"><strong>PhDs</strong><br />driving translational and clinical research</div>
-              </div>
-              <div className="n">
-                <div className="v">5+</div>
-                <div className="l"><strong>Postdocs</strong><br />advancing genetic, clinical, and data-driven insights</div>
-              </div>
-              <div className="n">
-                <div className="v">100+</div>
-                <div className="l"><strong>Publications</strong><br />contributing to international research and innovation</div>
-              </div>
-              <div className="n">
-                <div className="v">50+</div>
-                <div className="l"><strong>Collaborations</strong><br />with leading academic and clinical institutions worldwide</div>
-              </div>
+            <div className="target-img">
+              <Image
+                src="/images/nimrat-grewal-about.jpg"
+                alt="Prof. Dr. Nimrat Grewal"
+                width={560}
+                height={680}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
+              />
             </div>
           </div>
         </div>
