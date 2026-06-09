@@ -137,6 +137,30 @@ nav.main .nav-trigger {
 }
 nav.main > a:hover,
 nav.main .nav-trigger:hover { color: var(--pink); }
+.nav-trigger-split {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav-trigger-split > a {
+  font-size: 14px;
+  color: var(--ink-2);
+  font-weight: 400;
+  transition: color .2s ease;
+  white-space: nowrap;
+}
+.nav-trigger-split > a:hover { color: var(--pink); }
+.nav-trigger-split .caret-btn {
+  font-size: 10px;
+  color: var(--ink-2);
+  background: transparent;
+  border: 0;
+  padding: 2px 2px 0;
+  cursor: pointer;
+  transition: color .2s ease;
+  line-height: 1;
+}
+.nav-trigger-split .caret-btn:hover { color: var(--pink); }
 nav.main > a.active,
 nav.main .nav-item.active > .nav-trigger { color: var(--pink); }
 nav.main .nav-trigger .caret {

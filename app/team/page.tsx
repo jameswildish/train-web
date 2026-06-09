@@ -22,8 +22,6 @@ export default async function TeamPage() {
           <div className="crumbs">
             <Link href="/">Home</Link>
             <span className="sep">/</span>
-            <Link href="/science">Science</Link>
-            <span className="sep">/</span>
             <span className="current">Team</span>
           </div>
           <h1 style={{ marginTop: '40px' }}>The people behind TRAIN.</h1>
