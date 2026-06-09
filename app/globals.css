@@ -389,7 +389,7 @@ section.tight { padding: 64px 0; }
 .hero-card .panel {
   position: relative;
   z-index: 2;
-  background: linear-gradient(95deg, rgba(90,5,15,0.94) 0%, rgba(160,18,32,0.85) 45%, rgba(225,59,78,0.0) 100%);
+  background: linear-gradient(95deg, rgba(90,5,15,0.94) 0%, rgba(160,18,32,0.85) 35%, rgba(180,30,50,0.55) 60%, rgba(200,45,65,0.2) 80%, transparent 100%);
   padding: 56px 56px 44px;
   display: flex;
   flex-direction: column;
