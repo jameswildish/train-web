@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 type NavProject = { href: string; label: string; tag: string }
@@ -41,6 +41,7 @@ function getActiveKey(pathname: string): string {
 export default function SiteHeader({ navProjects }: { navProjects?: NavProject[] }) {
   const PROJECT_LINKS = navProjects ?? []
   const pathname = usePathname()
+  const router = useRouter()
   const activeKey = getActiveKey(pathname)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -96,16 +97,15 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
             onMouseEnter={() => setOpenDropdown('science')}
             onMouseLeave={() => setOpenDropdown(null)}
           >
-            <div className="nav-trigger-split">
-              <Link href="/about">Science</Link>
-              <button
-                type="button"
-                className="caret-btn"
-                aria-expanded={openDropdown === 'science'}
-                aria-haspopup="true"
-                onClick={(e) => { e.stopPropagation(); setOpenDropdown(openDropdown === 'science' ? null : 'science') }}
-              >▾</button>
-            </div>
+            <button
+              className="nav-trigger"
+              type="button"
+              aria-expanded={openDropdown === 'science'}
+              aria-haspopup="true"
+              onClick={() => router.push('/about')}
+            >
+              Science <span className="caret" onClick={(e) => { e.stopPropagation(); setOpenDropdown(openDropdown === 'science' ? null : 'science') }}>▾</span>
+            </button>
             <div className="dropdown resources-dd" role="menu">
               <div className="dd-grid resources-grid">
                 {SCIENCE_LINKS.map(l => (
@@ -123,16 +123,15 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
             onMouseEnter={() => setOpenDropdown('projects')}
             onMouseLeave={() => setOpenDropdown(null)}
           >
-            <div className="nav-trigger-split">
-              <Link href="/projects">Projects</Link>
-              <button
-                type="button"
-                className="caret-btn"
-                aria-expanded={openDropdown === 'projects'}
-                aria-haspopup="true"
-                onClick={(e) => { e.stopPropagation(); setOpenDropdown(openDropdown === 'projects' ? null : 'projects') }}
-              >▾</button>
-            </div>
+            <button
+              className="nav-trigger"
+              type="button"
+              aria-expanded={openDropdown === 'projects'}
+              aria-haspopup="true"
+              onClick={() => router.push('/projects')}
+            >
+              Projects <span className="caret" onClick={(e) => { e.stopPropagation(); setOpenDropdown(openDropdown === 'projects' ? null : 'projects') }}>▾</span>
+            </button>
             <div className="dropdown projects-dd" role="menu">
               <div className="dd-grid projects-grid">
                 {PROJECT_LINKS.map(l => (
