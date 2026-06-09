@@ -9,7 +9,7 @@ type SanityProject = {
   _id: string
   title: string
   slug: { current: string }
-  tag: string
+  category?: string
   tagline: string
   summary: string
   status: string
@@ -18,12 +18,16 @@ type SanityProject = {
 }
 
 export default function ProjectsContent({ sanityProjects }: { sanityProjects: SanityProject[] }) {
-  const [activeFilter, setActiveFilter] = useState('all')
+  const [activeFilter, setActiveFilter] = useState('All')
   const hasSanity = sanityProjects.length > 0
 
-  const tags = hasSanity
-    ? Array.from(new Set(sanityProjects.map(p => p.tag).filter(Boolean)))
+  const categories = hasSanity
+    ? Array.from(new Set(sanityProjects.map(p => p.category).filter(Boolean))) as string[]
     : []
+
+  const filtered = activeFilter === 'All'
+    ? sanityProjects
+    : sanityProjects.filter(p => p.category === activeFilter)
 
   return (
     <>
@@ -37,48 +41,59 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
           <div style={{ margin: '40px 0 24px' }} className="eyebrow">Projects</div>
           <h1>From research to real-world impact.</h1>
           <p className="lead">A portfolio of academic, clinical, and community-based initiatives — led by the TARGet research group in collaboration with clinicians, researchers, and institutions worldwide.</p>
-
-          {hasSanity && tags.length > 1 && (
-            <div className="projects-filter">
-              <button className={activeFilter === 'all' ? 'active' : undefined} onClick={() => setActiveFilter('all')}>All</button>
-              {tags.map(tag => (
-                <button key={tag} className={activeFilter === tag ? 'active' : undefined} onClick={() => setActiveFilter(tag)}>
-                  {tag}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
+      {hasSanity && categories.length > 1 && (
+        <nav className="section-anchor-nav">
+          <div className="wrap">
+            <a
+              href="#projects"
+              className={activeFilter === 'All' ? 'active-tab' : ''}
+              onClick={(e) => { e.preventDefault(); setActiveFilter('All') }}
+            >
+              All
+            </a>
+            {categories.map(cat => (
+              <a
+                key={cat}
+                href="#projects"
+                className={activeFilter === cat ? 'active-tab' : ''}
+                onClick={(e) => { e.preventDefault(); setActiveFilter(cat) }}
+              >
+                {cat}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
+
       {hasSanity ? (
-        <section style={{ padding: '0 0 96px' }}>
+        <section id="projects" style={{ padding: '0 0 96px' }}>
           <div className="wrap">
             <div className="projects-grid">
-              {sanityProjects
-                .filter(p => activeFilter === 'all' || p.tag === activeFilter)
-                .map(p => (
-                  <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
-                    <div className="thumb">
-                      {p.mainImage ? (
-                        <Image
-                          src={urlFor(p.mainImage).width(800).height(480).url()}
-                          alt={p.title}
-                          fill
-                          style={{ objectFit: 'cover' }}
-                        />
-                      ) : (
-                        <div className="anemone" style={{ width: '100%', height: '100%' }} />
-                      )}
-                    </div>
-                    <div className="body">
-                      <span className="tag">{p.tag} · {p.status}</span>
-                      <h3>{p.title}</h3>
-                      <p>{p.summary}</p>
-                      <span className="more">Learn more <span className="arrow">→</span></span>
-                    </div>
-                  </Link>
-                ))}
+              {filtered.map(p => (
+                <Link key={p._id} href={`/projects/${p.slug.current}`} className="project">
+                  <div className="thumb">
+                    {p.mainImage ? (
+                      <Image
+                        src={urlFor(p.mainImage).width(800).height(480).url()}
+                        alt={p.title}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    ) : (
+                      <div className="anemone" style={{ width: '100%', height: '100%' }} />
+                    )}
+                  </div>
+                  <div className="body">
+                    <span className="tag">{[p.category, p.status].filter(Boolean).join(' · ')}</span>
+                    <h3>{p.title}</h3>
+                    <p>{p.summary}</p>
+                    <span className="more">Learn more <span className="arrow">→</span></span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

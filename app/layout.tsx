@@ -19,10 +19,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   if (!isStudio) {
     try {
       const projects = await getAllProjects()
-      navProjects = projects.map((p: { title: string; slug: { current: string }; tag: string }) => ({
+      navProjects = projects.map((p: { title: string; slug: { current: string }; category: string }) => ({
         href: `/projects/${p.slug.current}`,
         label: p.title,
-        tag: p.tag,
+        tag: p.category,
       }))
     } catch {}
   }
