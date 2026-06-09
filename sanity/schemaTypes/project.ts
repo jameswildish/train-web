@@ -23,8 +23,7 @@ export const project = defineType({
       to: [{ type: 'projectCategory' }],
       group: 'identity',
     }),
-    defineField({ name: 'tagline', title: 'Tagline (hero subtitle)', type: 'string', group: 'identity' }),
-    defineField({ name: 'summary', title: 'Short summary (card & SEO)', type: 'text', rows: 3, validation: r => r.required(), group: 'identity' }),
+    defineField({ name: 'tagline', title: 'Tagline', type: 'string', validation: r => r.required(), group: 'identity' }),
     defineField({ name: 'mainImage', title: 'Hero image', type: 'image', options: { hotspot: true }, group: 'identity' }),
     defineField({
       name: 'status',

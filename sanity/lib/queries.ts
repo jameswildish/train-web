@@ -87,7 +87,7 @@ export async function getAllProjects() {
   if (!client) return []
   return client.fetch(`
     *[_type == "project"] | order(order asc) {
-      _id, title, slug, "category": category->title, tagline, summary, status, mainImage, featured
+      _id, title, slug, "category": category->title, tagline, status, mainImage, featured
     }
   `)
 }
@@ -96,7 +96,7 @@ export async function getFeaturedProjects() {
   if (!client) return []
   return client.fetch(
     `*[_type == "project" && featured == true] | order(order asc) {
-      _id, title, slug, "category": category->title, summary, mainImage
+      _id, title, slug, "category": category->title, tagline, mainImage
     }`
   )
 }
@@ -105,7 +105,7 @@ export async function getProjectBySlug(slug: string) {
   if (!client) return null
   return client.fetch(`
     *[_type == "project" && slug.current == $slug][0] {
-      _id, title, slug, "category": category->title, tagline, summary, status, launchedAt, mainImage,
+      _id, title, slug, "category": category->title, tagline, status, launchedAt, mainImage,
       overviewHeading, overviewBody, missionStatement,
       whyHeading, whyBody,
       whatWeDoHeading, whatWeDoItems,
@@ -113,7 +113,7 @@ export async function getProjectBySlug(slug: string) {
       impactHeading, impactCells,
       stats,
       "related": *[_type == "project" && slug.current != $slug] | order(order asc) [0..3] {
-        _id, title, slug, "category": category->title, summary, mainImage
+        _id, title, slug, "category": category->title, tagline, mainImage
       }
     }
   `, { slug })

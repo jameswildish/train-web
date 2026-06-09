@@ -11,7 +11,6 @@ type SanityProject = {
   slug: { current: string }
   category?: string
   tagline: string
-  summary: string
   status: string
   mainImage?: unknown
   featured: boolean
@@ -88,7 +87,7 @@ export default function ProjectsContent({ sanityProjects }: { sanityProjects: Sa
                   <div className="body">
                     <span className="tag">{[p.category, p.status].filter(Boolean).join(' · ')}</span>
                     <h3>{p.title}</h3>
-                    <p>{p.summary}</p>
+                    <p>{p.tagline}</p>
                     <span className="more">Learn more <span className="arrow">→</span></span>
                   </div>
                 </Link>

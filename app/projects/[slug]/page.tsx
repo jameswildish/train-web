@@ -202,7 +202,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <Link href="/projects" className="all">All projects <span className="arrow">↗</span></Link>
             </div>
             <div className="projects-grid">
-              {related.map((r: { _id: string; title: string; slug: { current: string }; category?: string; summary?: string; mainImage?: SanityImageSource }) => (
+              {related.map((r: { _id: string; title: string; slug: { current: string }; category?: string; tagline?: string; mainImage?: SanityImageSource }) => (
                 <Link key={r._id} href={`/projects/${r.slug.current}`} className="project">
                   <div className="thumb">
                     {r.mainImage
@@ -213,7 +213,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   <div className="body">
                     <span className="tag">{r.category}</span>
                     <h3>{r.title}</h3>
-                    {r.summary && <p>{r.summary}</p>}
+                    {r.tagline && <p>{r.tagline}</p>}
                     <span className="more">Learn more <span className="arrow">→</span></span>
                   </div>
                 </Link>
