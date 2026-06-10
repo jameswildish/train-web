@@ -102,16 +102,6 @@ export default function ContactPage() {
                 </span>
               </a>
 
-              <div className="contact-card static">
-                <span className="ico">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 22s8-7 8-13a8 8 0 0 0-16 0c0 6 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></svg>
-                </span>
-                <span className="body">
-                  <span className="title">Office</span>
-                  <span className="val">Amsterdam UMC<br />Meibergdreef 9, 1105 AZ<br />Amsterdam, the Netherlands</span>
-                </span>
-              </div>
-
               <div className="contact-card socials-card">
                 <span className="title">Follow us</span>
                 <div className="socials-row">
