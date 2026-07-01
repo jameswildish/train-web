@@ -6,5 +6,6 @@ import { project } from './project'
 import { projectCategory } from './projectCategory'
 import { collaborator } from './collaborator'
 import { publication } from './publication'
+import { siteSettings } from './siteSettings'
 
-export const schemaTypes = [post, category, teamMember, department, project, projectCategory, collaborator, publication]
+export const schemaTypes = [post, category, teamMember, department, project, projectCategory, collaborator, publication, siteSettings]

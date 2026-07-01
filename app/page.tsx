@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getLatestPosts, getFeaturedProjects, getAllCollaborators } from '@/sanity/lib/queries'
+import { getLatestPosts, getFeaturedProjects, getAllCollaborators, getSiteSettings } from '@/sanity/lib/queries'
 import type { SanityImageSource } from '@sanity/image-url'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -36,12 +36,15 @@ export default async function HomePage() {
   let posts: Post[] = []
   let featuredProjects: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: unknown }[] = []
   let collaborators: Collaborator[] = []
+  let heroVideoUrl: string | null = null
   try {
     ;[posts, featuredProjects, collaborators] = await Promise.all([
       getLatestPosts(3),
       getFeaturedProjects(),
       getAllCollaborators(),
     ])
+    const settings = await getSiteSettings()
+    heroVideoUrl = settings?.heroVideoUrl ?? null
   } catch {
     // Sanity not configured
   }
@@ -74,6 +77,16 @@ export default async function HomePage() {
                 <a href="/contact" className="btn-primary btn">TRAIN App. Coming Soon</a>
               </div>
             </div>
+
+            {heroVideoUrl && (
+              <div className="stage">
+                <div className="hero-video-frame">
+                  <video autoPlay muted loop playsInline>
+                    <source src={heroVideoUrl} type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

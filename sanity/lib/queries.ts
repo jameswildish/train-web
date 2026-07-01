@@ -135,6 +135,13 @@ export async function getAllPublications() {
   `)
 }
 
+// ─── Site Settings ───────────────────────────────────────────────────────────
+
+export async function getSiteSettings() {
+  if (!client) return null
+  return client.fetch(`*[_type == "siteSettings"][0] { "heroVideoUrl": heroVideo.asset->url }`)
+}
+
 // ─── Collaborators ───────────────────────────────────────────────────────────
 
 export async function getAllCollaborators() {
