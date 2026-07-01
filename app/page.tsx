@@ -235,7 +235,7 @@ export default async function HomePage() {
                 </svg>
               </div>
               <h4>Worldwide collaboration</h4>
-              <p>Partnerships with leading medical and research institutions across academia, hospitals, and industry.</p>
+              <p>Partnerships with leading medical and research institutions across academic medical centers.</p>
             </div>
             <div className="mission-card">
               <div className="ico">
