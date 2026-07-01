@@ -96,7 +96,7 @@ const doc = {
       heading: 'Who benefits — and how.',
       cells: [
         { _key: 'c1', tag: '01 — For individuals', heading: 'For individuals', body: 'Empowering people to contribute to science and gain personalised insights into their health.' },
-        { _key: 'c2', tag: '02 — For researchers', heading: 'For researchers', body: 'Enabling high-quality, diverse data for breakthrough discoveries and better risk prediction.' },
+        { _key: 'c2', tag: '02 — For researchers', heading: 'For researchers', body: 'Supporting the development of more accurate risk prediction models through diverse, high-quality data.' },
         { _key: 'c3', tag: '03 — For healthcare', heading: 'For healthcare', body: 'Supporting the development of more effective, targeted, and equitable interventions.' },
         { _key: 'c4', tag: '04 — For society', heading: 'For society', body: 'Driving data-driven policies and preventive strategies that reduce the global burden of disease.' },
       ],
