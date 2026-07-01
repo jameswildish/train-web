@@ -11,8 +11,8 @@ export default async function BlogPage() {
   let categories: Awaited<ReturnType<typeof getAllCategories>> = []
   try {
     ;[posts, categories] = await Promise.all([getAllPosts(), getAllCategories()])
-  } catch {
-    // Sanity not configured yet
+  } catch (e) {
+    console.error('Blog fetch error:', e)
   }
 
   return (
