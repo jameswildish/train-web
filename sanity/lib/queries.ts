@@ -31,7 +31,10 @@ export async function getPostBySlug(slug: string) {
   return client.fetch(`
     *[_type == "post" && slug.current == $slug][0] {
       ${POST_FIELDS},
-      body,
+      body[] {
+        ...,
+        _type == "file" => { ..., "asset": asset-> }
+      },
       "related": *[_type == "post" && slug.current != $slug] | order(publishedAt desc) [0..2] {
         _id, title, slug, excerpt, "category": category->title, readTime, publishedAt, mainImage
       }

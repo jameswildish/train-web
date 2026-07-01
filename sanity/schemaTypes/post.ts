@@ -42,6 +42,7 @@ export const post = defineType({
           },
         },
         { type: 'image', options: { hotspot: true } },
+        { type: 'file', title: 'Video', options: { accept: 'video/*' } },
       ],
     }),
   ],

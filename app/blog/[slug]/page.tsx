@@ -74,6 +74,14 @@ const ptComponents: any = {
         />
       </figure>
     ),
+    file: ({ value }: { value: { asset?: { url?: string } } }) =>
+      value?.asset?.url ? (
+        <figure className="article-video">
+          <video controls playsInline style={{ width: '100%', borderRadius: '8px' }}>
+            <source src={value.asset.url} />
+          </video>
+        </figure>
+      ) : null,
   },
 }
 
