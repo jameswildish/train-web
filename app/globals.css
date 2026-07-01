@@ -609,6 +609,7 @@ section.tight { padding: 64px 0; }
     display: flex;
     flex-direction: column;
     min-height: auto;
+    background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
   }
   .hero-card .bg {
     position: relative;
@@ -622,7 +623,7 @@ section.tight { padding: 64px 0; }
   .hero-card .panel {
     order: 1;
     z-index: 2;
-    background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
+    background: transparent;
     padding: 40px 28px 24px;
     border-radius: 20px 20px 0 0;
   }
@@ -630,12 +631,12 @@ section.tight { padding: 64px 0; }
   .hero-card .stage {
     display: block;
     order: 2;
-    background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
+    background: transparent;
     padding: 0 28px 28px;
     z-index: 2;
   }
   .hero-card .stage > * { max-width: 100%; }
-  .hero-video-thumb { box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  .hero-video-thumb { box-shadow: 0 12px 32px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); }
   .hero-video-card { gap: 10px; }
 }
 
