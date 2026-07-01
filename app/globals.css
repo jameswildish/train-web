@@ -201,6 +201,24 @@ nav.main .dd-item {
   transition: background .15s ease;
 }
 nav.main .dd-item:hover { background: var(--pink-tint); }
+nav.main .dd-item-muted { cursor: default; opacity: 0.5; }
+nav.main .dd-item-muted:hover { background: none; }
+.cs-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 7px;
+  vertical-align: middle;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+.m-link-muted { color: var(--muted); cursor: default; }
+.foot-link-muted { color: inherit; opacity: 0.5; cursor: default; }
 nav.main .dd-item .dd-label {
   font-size: 15px;
   font-weight: 500;

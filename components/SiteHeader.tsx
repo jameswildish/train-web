@@ -8,11 +8,11 @@ type NavProject = { href: string; label: string; tag: string }
 
 
 const SCIENCE_LINKS = [
-  { href: '/about',               label: 'About',         tag: 'Mission · vision · approach' },
-  { href: '/about#publications',  label: 'Publications',  tag: 'Peer-reviewed research' },
-  { href: '/about#collaborate',   label: 'Collaborators', tag: 'Partners & institutions' },
-  { href: '/team',                label: 'Team',          tag: 'Founders & researchers' },
-  { href: '/blog',                label: 'Blog',          tag: 'Insights & articles' },
+  { href: '/about',               label: 'About',         tag: 'Mission · vision · approach', comingSoon: false },
+  { href: '/about#publications',  label: 'Publications',  tag: 'Peer-reviewed research',      comingSoon: false },
+  { href: '/about#collaborate',   label: 'Collaborators', tag: 'Partners & institutions',     comingSoon: false },
+  { href: '/team',                label: 'Team',          tag: 'Founders & researchers',      comingSoon: true  },
+  { href: '/blog',                label: 'Blog',          tag: 'Insights & articles',         comingSoon: false },
 ]
 
 const NAV_FLAT = [
@@ -109,9 +109,14 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
             <div className="dropdown resources-dd" role="menu">
               <div className="dd-grid resources-grid">
                 {SCIENCE_LINKS.map(l => (
-                  <Link key={l.href} href={l.href} className="dd-item">
-                    <span className="dd-label">{l.label}</span>
-                  </Link>
+                  l.comingSoon
+                    ? <span key={l.href} className="dd-item dd-item-muted">
+                        <span className="dd-label">{l.label}</span>
+                        <span className="cs-pill">Coming soon</span>
+                      </span>
+                    : <Link key={l.href} href={l.href} className="dd-item">
+                        <span className="dd-label">{l.label}</span>
+                      </Link>
                 ))}
               </div>
             </div>
@@ -183,7 +188,9 @@ export default function SiteHeader({ navProjects }: { navProjects?: NavProject[]
           </summary>
           <div className="m-links">
             {SCIENCE_LINKS.map(l => (
-              <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
+              l.comingSoon
+                ? <span key={l.href} className="m-link-muted">{l.label} <span className="cs-pill">Coming soon</span></span>
+                : <Link key={l.href} href={l.href} onClick={() => setDrawerOpen(false)}>{l.label}</Link>
             ))}
           </div>
         </details>

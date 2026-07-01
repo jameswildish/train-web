@@ -33,7 +33,7 @@ export default function SiteFooter() {
               <li><Link href="/about#target">TARGet group</Link></li>
               <li><Link href="/about#publications">Publications</Link></li>
               <li><Link href="/about#collaborate">Collaborators</Link></li>
-              <li><Link href="/team">Team</Link></li>
+              <li><span className="foot-link-muted">Team <span className="cs-pill">Coming soon</span></span></li>
               <li><Link href="/blog">Blog</Link></li>
             </ul>
           </div>
