@@ -612,7 +612,7 @@ section.tight { padding: 64px 0; }
   }
   .hero-card .bg {
     position: relative;
-    order: 2;
+    order: 3;
     height: 220px;
     flex-shrink: 0;
   }
@@ -623,11 +623,20 @@ section.tight { padding: 64px 0; }
     order: 1;
     z-index: 2;
     background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
-    padding: 40px 28px 36px;
+    padding: 40px 28px 24px;
     border-radius: 20px 20px 0 0;
   }
   .hero-card .panel h1 { font-size: clamp(30px, 5vw, 42px); }
-  .hero-card .stage { display: none; }
+  .hero-card .stage {
+    display: block;
+    order: 2;
+    background: linear-gradient(160deg, #5A050F 0%, #8C0F1E 45%, #B01E35 80%, #C8303A 100%);
+    padding: 0 28px 28px;
+    z-index: 2;
+  }
+  .hero-card .stage > * { max-width: 100%; }
+  .hero-video-thumb { box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  .hero-video-card { gap: 10px; }
 }
 
 /* Anemone — flowing organic teal texture with bubble-like detail */
