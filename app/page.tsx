@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getLatestPosts, getFeaturedProjects, getAllCollaborators, getSiteSettings } from '@/sanity/lib/queries'
+import HeroVideoCard from '@/components/HeroVideoCard'
 import type { SanityImageSource } from '@sanity/image-url'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -37,6 +38,7 @@ export default async function HomePage() {
   let featuredProjects: { _id: string; title: string; slug: { current: string }; tag?: string; year?: string; summary?: string; mainImage?: unknown }[] = []
   let collaborators: Collaborator[] = []
   let heroVideoUrl: string | null = null
+  let heroVideoMeta: { posterImage?: unknown; label?: string; title?: string; ctaText?: string; ctaHref?: string } = {}
   try {
     ;[posts, featuredProjects, collaborators] = await Promise.all([
       getLatestPosts(3),
@@ -45,6 +47,13 @@ export default async function HomePage() {
     ])
     const settings = await getSiteSettings()
     heroVideoUrl = settings?.heroVideoUrl ?? null
+    heroVideoMeta = {
+      posterImage: settings?.heroVideoPoster,
+      label: settings?.heroVideoLabel,
+      title: settings?.heroVideoTitle,
+      ctaText: settings?.heroVideoCtaText,
+      ctaHref: settings?.heroVideoCtaHref,
+    }
   } catch {
     // Sanity not configured
   }
@@ -79,13 +88,14 @@ export default async function HomePage() {
             </div>
 
             {heroVideoUrl && (
-              <div className="stage">
-                <div className="hero-video-frame">
-                  <video autoPlay muted loop playsInline>
-                    <source src={heroVideoUrl} type="video/mp4" />
-                  </video>
-                </div>
-              </div>
+              <HeroVideoCard
+                videoUrl={heroVideoUrl}
+                posterImage={heroVideoMeta.posterImage}
+                label={heroVideoMeta.label}
+                title={heroVideoMeta.title}
+                ctaText={heroVideoMeta.ctaText}
+                ctaHref={heroVideoMeta.ctaHref}
+              />
             )}
           </div>
         </div>

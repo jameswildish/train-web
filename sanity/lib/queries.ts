@@ -139,7 +139,14 @@ export async function getAllPublications() {
 
 export async function getSiteSettings() {
   if (!client) return null
-  return client.fetch(`*[_type == "siteSettings"][0] { "heroVideoUrl": heroVideo.asset->url }`)
+  return client.fetch(`*[_type == "siteSettings"][0] {
+    "heroVideoUrl": heroVideo.asset->url,
+    "heroVideoPoster": heroVideoPoster,
+    heroVideoLabel,
+    heroVideoTitle,
+    heroVideoCtaText,
+    heroVideoCtaHref
+  }`)
 }
 
 // ─── Collaborators ───────────────────────────────────────────────────────────
