@@ -84,7 +84,7 @@ export default async function AboutPage() {
               <div className="eyebrow" style={{ marginBottom: '18px' }}>About us</div>
               <h2>Bridging advanced medical research and everyday health.</h2>
             </div>
-            <p>Dr Nimrat Grewal and Dr Simran Grewal founded TRAIN Health Awareness to translate clinical insight into practical, daily habits. We empower individuals with the knowledge and tools to take control of their health and prevent non-communicable diseases.</p>
+            <p>Prof Nimrat Grewal and Dr Simran Grewal founded TRAIN Health Awareness to translate clinical insight into practical, daily habits. We empower individuals with the knowledge and tools to take control of their health and prevent non-communicable diseases.</p>
           </div>
 
           <div className="mva-grid">
@@ -197,7 +197,7 @@ export default async function AboutPage() {
                 <div className="eyebrow" style={{ marginBottom: '18px' }}>Scientific output</div>
                 <h2>Selected publications from the TARGet group.</h2>
               </div>
-              <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection. Full list available on request.</p>
+              <p>100+ peer-reviewed contributions across cardiovascular and preventive health. A representative selection.</p>
             </div>
 
             <div className="pubs-grid">
