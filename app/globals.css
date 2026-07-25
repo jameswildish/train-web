@@ -2651,14 +2651,14 @@ nav.main a.active::after {
   max-width: 240px;
   white-space: normal;
 }
-.map-tooltip-inst {
+.map-tooltip .map-tooltip-inst {
   font-size: 13px;
   font-weight: 600;
   color: #fff;
   margin: 0 0 2px;
   line-height: 1.4;
 }
-.map-tooltip-loc {
+.map-tooltip .map-tooltip-loc {
   font-size: 12px;
   color: rgba(255,255,255,0.55);
   margin: 0;
@@ -2682,12 +2682,12 @@ nav.main a.active::after {
 }
 @media (prefers-color-scheme: dark) {
   .map-tooltip { background: #1a1a2e; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-  .map-tooltip-inst { color: #fff; }
-  .map-tooltip-loc { color: rgba(255,255,255,0.5); }
+  .map-tooltip .map-tooltip-inst { color: #fff; }
+  .map-tooltip .map-tooltip-loc { color: rgba(255,255,255,0.5); }
 }
 :root[data-theme="dark"] .map-tooltip { background: #1a1a2e; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-:root[data-theme="dark"] .map-tooltip-inst { color: #fff; }
-:root[data-theme="dark"] .map-tooltip-loc { color: rgba(255,255,255,0.5); }
+:root[data-theme="dark"] .map-tooltip .map-tooltip-inst { color: #fff; }
+:root[data-theme="dark"] .map-tooltip .map-tooltip-loc { color: rgba(255,255,255,0.5); }
 
 /* Downloads */
 .proj-downloads {
