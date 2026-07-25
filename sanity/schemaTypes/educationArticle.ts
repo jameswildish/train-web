@@ -31,7 +31,7 @@ export const educationArticle = defineType({
           { title: 'Mental Health', value: 'mental-health' },
           { title: 'Nutrition', value: 'nutrition' },
         ],
-        layout: 'tags',
+        layout: 'grid',
       },
       validation: r => r.required().min(1),
     }),
