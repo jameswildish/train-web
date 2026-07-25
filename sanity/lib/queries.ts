@@ -116,6 +116,7 @@ export async function getProjectBySlug(slug: string) {
       impactHeading, impactCells,
       stats,
       mapEnabled, mapContributors,
+      "downloads": downloads[] { title, description, "url": file.asset->url, "filename": file.asset->originalFilename },
       "related": *[_type == "project" && slug.current != $slug] | order(order asc) [0..3] {
         _id, title, slug, "category": category->title, tagline, mainImage
       }

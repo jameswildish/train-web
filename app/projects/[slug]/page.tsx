@@ -59,6 +59,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const hasStats = project.stats?.length > 0
   const hasRelated = related.length > 0
   const hasMap = project.mapEnabled && project.mapContributors?.length > 0
+  const hasDownloads = project.downloads?.length > 0
 
   return (
     <>
@@ -203,6 +204,42 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               heading="Global contributors"
               subheading="Academics and universities contributing to this research."
             />
+          </div>
+        </section>
+      )}
+
+      {/* ─── Downloads ───────────────────────────────────────────── */}
+      {hasDownloads && (
+        <section className="proj-downloads">
+          <div className="wrap">
+            <div className="eyebrow" style={{ marginBottom: '16px' }}>Downloads</div>
+            <h2>Resources &amp; materials</h2>
+            <div className="downloads-grid">
+              {project.downloads.map((d: { title: string; description?: string; url?: string; filename?: string }, i: number) => (
+                <div key={i} className="download-card">
+                  <div className="download-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M10 2v10m0 0l-3-3m3 3l3-3M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="download-info">
+                    <p className="download-title">{d.title}</p>
+                    {d.description && <p className="download-desc">{d.description}</p>}
+                  </div>
+                  {d.url && (
+                    <a
+                      href={d.url}
+                      download={d.filename ?? d.title}
+                      className="btn btn-ghost download-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

@@ -12,6 +12,7 @@ export const project = defineType({
     { name: 'impact', title: 'Impact' },
     { name: 'facts', title: 'Key facts' },
     { name: 'map', title: 'Contributor map' },
+    { name: 'downloads', title: 'Downloads' },
   ],
   fields: [
     // ─── Identity ────────────────────────────────────────────────────
@@ -115,6 +116,26 @@ export const project = defineType({
           prepare(v: any) {
             return { title: v.institution, subtitle: [v.city, v.country].filter(Boolean).join(', ') }
           },
+        },
+      }],
+    }),
+
+    // ─── Downloads ────────────────────────────────────────────────────
+    defineField({
+      name: 'downloads',
+      title: 'Downloadable files',
+      description: 'Files visitors can download from this project page (PDFs, Word docs, etc.).',
+      type: 'array',
+      group: 'downloads',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'title', title: 'File title', type: 'string', validation: r => r.required() }),
+          defineField({ name: 'description', title: 'Description (optional)', type: 'string' }),
+          defineField({ name: 'file', title: 'File', type: 'file', validation: r => r.required() }),
+        ],
+        preview: {
+          select: { title: 'title', subtitle: 'description' },
         },
       }],
     }),
