@@ -90,7 +90,16 @@ export async function getAllProjects() {
   if (!client) return []
   return client.fetch(`
     *[_type == "project"] | order(order asc) {
-      _id, title, slug, "category": category->title, tagline, status, mainImage, featured
+      _id, title, slug, "category": category->title, tagline, status, mainImage, logo, featured, contactEmail
+    }
+  `)
+}
+
+export async function getProjectsForContact() {
+  if (!client) return []
+  return client.fetch(`
+    *[_type == "project"] | order(order asc) {
+      _id, title, "slug": slug.current, contactEmail
     }
   `)
 }
@@ -108,7 +117,7 @@ export async function getProjectBySlug(slug: string) {
   if (!client) return null
   return client.fetch(`
     *[_type == "project" && slug.current == $slug][0] {
-      _id, title, slug, "category": category->title, tagline, status, launchedAt, mainImage,
+      _id, title, slug, "category": category->title, tagline, status, launchedAt, mainImage, logo,
       overviewHeading, overviewBody, missionStatement,
       whyHeading, whyBody,
       whatWeDoHeading, whatWeDoItems,

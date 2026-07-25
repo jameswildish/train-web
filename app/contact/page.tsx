@@ -1,8 +1,26 @@
 'use client'
 
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+
+type ProjectOption = { _id: string; title: string; slug: string; contactEmail?: string }
 
 export default function ContactPage() {
+  const [subject, setSubject] = useState('')
+  const [projects, setProjects] = useState<ProjectOption[]>([])
+  const [selectedProject, setSelectedProject] = useState('')
+
+  useEffect(() => {
+    if (subject === 'Projects') {
+      fetch('/api/projects-for-contact')
+        .then(r => r.json())
+        .then(setProjects)
+        .catch(() => setProjects([]))
+    } else {
+      setSelectedProject('')
+    }
+  }, [subject])
+
   return (
     <>
       <section className="science-hero" data-screen-label="01 Contact Hero">
@@ -50,15 +68,29 @@ export default function ContactPage() {
 
               <label>
                 <span className="lbl">What's this about?</span>
-                <select>
+                <select value={subject} onChange={e => setSubject(e.target.value)}>
+                  <option value="">Select a topic…</option>
                   <option>General enquiry</option>
                   <option>Research collaboration</option>
                   <option>Press &amp; media</option>
                   <option>Partnership &amp; institutional</option>
+                  <option>Projects</option>
                   <option>App support</option>
                   <option>Patient enquiry</option>
                 </select>
               </label>
+
+              {subject === 'Projects' && (
+                <label>
+                  <span className="lbl">Which project?</span>
+                  <select value={selectedProject} onChange={e => setSelectedProject(e.target.value)}>
+                    <option value="">Select a project…</option>
+                    {projects.map(p => (
+                      <option key={p._id} value={p._id}>{p.title}</option>
+                    ))}
+                  </select>
+                </label>
+              )}
 
               <label>
                 <span className="lbl">Message</span>

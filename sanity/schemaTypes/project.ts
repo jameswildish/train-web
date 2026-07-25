@@ -26,7 +26,9 @@ export const project = defineType({
       group: 'identity',
     }),
     defineField({ name: 'tagline', title: 'Tagline', type: 'string', validation: r => r.required(), group: 'identity' }),
+    defineField({ name: 'logo', title: 'Project logo', description: 'Optional — shown in the hero alongside the title', type: 'image', options: { hotspot: true }, group: 'identity' }),
     defineField({ name: 'mainImage', title: 'Hero image', type: 'image', options: { hotspot: true }, group: 'identity' }),
+    defineField({ name: 'contactEmail', title: 'Contact email', description: 'Where contact form enquiries for this project are sent', type: 'string', group: 'identity' }),
     defineField({
       name: 'status',
       title: 'Status',

@@ -80,6 +80,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               project.launchedAt && `Launched ${project.launchedAt}`,
             ].filter(Boolean).join(' · ')}
           </div>
+          {project.logo && (
+            <div className="project-hero-logo">
+              <Image
+                src={urlFor(project.logo as SanityImageSource).height(80).url()}
+                alt={`${project.title} logo`}
+                width={160}
+                height={80}
+                style={{ objectFit: 'contain', objectPosition: 'left' }}
+              />
+            </div>
+          )}
           <h1>{project.title}</h1>
           {project.tagline && <p className="tagline">{project.tagline}</p>}
 

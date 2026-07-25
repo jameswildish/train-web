@@ -2377,6 +2377,9 @@ nav.main a.active::after {
 .project-hero {
   padding: 40px 0 80px;
 }
+.project-hero-logo {
+  margin: 0 0 20px;
+}
 .project-hero h1 {
   font-size: clamp(36px, 4.6vw, 66px);
   font-weight: 500;
