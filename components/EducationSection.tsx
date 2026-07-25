@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getEducationArticlesByPillar } from '@/sanity/lib/queries'
+import { getEducationArticlesByPillar, getEducationIntro } from '@/sanity/lib/queries'
 
 interface Block {
   _type: string
@@ -36,13 +36,17 @@ function getReadTime(body: Block[] | undefined): number {
 
 interface Props {
   pillar: string
-  heading?: string
 }
 
-export default async function EducationSection({ pillar, heading = 'Education' }: Props) {
+export default async function EducationSection({ pillar }: Props) {
   let articles: EducationArticle[] = []
+  let intro: { title?: string; body?: string } | null = null
+
   try {
-    articles = await getEducationArticlesByPillar(pillar)
+    ;[articles, intro] = await Promise.all([
+      getEducationArticlesByPillar(pillar),
+      getEducationIntro(pillar),
+    ])
   } catch {
     return null
   }
@@ -53,11 +57,9 @@ export default async function EducationSection({ pillar, heading = 'Education' }
     <section className="education-section">
       <div className="wrap">
         <div className="education-head">
-          <div>
-            <p className="eyebrow">Education</p>
-            <h2>{heading}</h2>
-          </div>
-          <p>In-depth guides grounded in the latest research.</p>
+          <p className="eyebrow">Education</p>
+          {intro?.title && <h2>{intro.title}</h2>}
+          {intro?.body && <p className="education-intro-body">{intro.body}</p>}
         </div>
 
         <div className="education-grid">
@@ -70,7 +72,7 @@ export default async function EducationSection({ pillar, heading = 'Education' }
                   <span className="edu-card-time">{readTime} min read</span>
                   <h3>{article.title}</h3>
                   {excerpt && <p>{excerpt}</p>}
-                  <span className="edu-card-cta">Read guide <span className="arrow">→</span></span>
+                  <span className="edu-card-cta">Read <span className="arrow">→</span></span>
                 </div>
               </Link>
             )

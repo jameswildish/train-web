@@ -64,6 +64,11 @@ function extractHeadings(body: PortableTextBlock[]) {
     }))
 }
 
+function getYouTubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
+  return m?.[1] ?? null
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ptComponents: any = {
   block: {
@@ -90,6 +95,21 @@ const ptComponents: any = {
           </video>
         </figure>
       ) : null,
+    youtube: ({ value }: { value: { url?: string } }) => {
+      const id = value?.url ? getYouTubeId(value.url) : null
+      return id ? (
+        <figure className="article-video">
+          <div className="youtube-embed">
+            <iframe
+              src={`https://www.youtube.com/embed/${id}`}
+              title="YouTube video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </figure>
+      ) : null
+    },
   },
 }
 

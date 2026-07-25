@@ -149,7 +149,7 @@ export default function MentalHealthPage() {
       </section>
 
       {/* ============ EDUCATION ============ */}
-      <EducationSection pillar="mental-health" heading="Learn more about mental health" />
+      <EducationSection pillar="mental-health" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">

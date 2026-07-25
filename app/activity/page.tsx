@@ -138,7 +138,7 @@ export default function ActivityPage() {
       </section>
 
       {/* ============ EDUCATION ============ */}
-      <EducationSection pillar="activity" heading="Learn more about physical activity" />
+      <EducationSection pillar="activity" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">

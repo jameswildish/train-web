@@ -6,6 +6,7 @@ export const siteSettings = defineType({
   type: 'document',
   groups: [
     { name: 'heroVideo', title: 'Hero video' },
+    { name: 'education', title: 'Education intros' },
   ],
   fields: [
     defineField({
@@ -52,6 +53,42 @@ export const siteSettings = defineType({
       description: 'e.g. /blog/my-post or https://...',
       type: 'string',
       group: 'heroVideo',
+    }),
+    defineField({
+      name: 'educationIntros',
+      title: 'Education section introductions',
+      description: 'Intro title and text shown above the education cards on each pillar page.',
+      type: 'array',
+      group: 'education',
+      of: [{
+        type: 'object',
+        name: 'pillarIntro',
+        fields: [
+          defineField({
+            name: 'pillar',
+            title: 'Pillar page',
+            type: 'string',
+            options: {
+              list: [
+                { title: 'Activity', value: 'activity' },
+                { title: 'Sleep', value: 'sleep' },
+                { title: 'Mental Health', value: 'mental-health' },
+                { title: 'Nutrition', value: 'nutrition' },
+              ],
+            },
+            validation: r => r.required(),
+          }),
+          defineField({ name: 'title', title: 'Title', type: 'string', validation: r => r.required() }),
+          defineField({ name: 'body', title: 'Introduction text', type: 'text', rows: 5 }),
+        ],
+        preview: {
+          select: { pillar: 'pillar', title: 'title' },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          prepare(value: any) {
+            return { title: value.title ?? 'Untitled', subtitle: value.pillar }
+          },
+        },
+      }],
     }),
   ],
   preview: { prepare: () => ({ title: 'Site Settings' }) },

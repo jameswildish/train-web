@@ -69,7 +69,19 @@ export const educationArticle = defineType({
             ],
           },
         },
-        { type: 'file', title: 'Video', options: { accept: 'video/*' } },
+        { type: 'file', title: 'Video file', options: { accept: 'video/*' } },
+        {
+          type: 'object',
+          name: 'youtube',
+          title: 'YouTube video',
+          fields: [
+            { name: 'url', title: 'YouTube URL', type: 'url', description: 'e.g. https://www.youtube.com/watch?v=abc123' },
+          ],
+          preview: {
+            select: { url: 'url' },
+            prepare({ url }: { url?: string }) { return { title: 'YouTube', subtitle: url } },
+          },
+        },
       ],
     }),
   ],

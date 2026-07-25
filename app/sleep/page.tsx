@@ -131,7 +131,7 @@ export default function SleepPage() {
       </section>
 
       {/* ============ EDUCATION ============ */}
-      <EducationSection pillar="sleep" heading="Learn more about sleep" />
+      <EducationSection pillar="sleep" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">

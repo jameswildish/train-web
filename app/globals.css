@@ -2238,10 +2238,7 @@ nav.main a.active::after {
   background: var(--surface);
 }
 .education-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: end;
+  max-width: 760px;
   margin-bottom: 48px;
 }
 .education-head .eyebrow {
@@ -2250,18 +2247,18 @@ nav.main a.active::after {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--pink);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .education-head h2 {
-  font-size: clamp(28px, 3vw, 40px);
-  margin: 0;
+  font-size: clamp(24px, 2.8vw, 36px);
+  margin: 0 0 16px;
+  line-height: 1.2;
 }
-.education-head p {
-  color: var(--muted);
+.education-intro-body {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: var(--muted);
   margin: 0;
-  align-self: end;
 }
 .education-grid {
   display: grid;
@@ -2352,12 +2349,26 @@ nav.main a.active::after {
   flex-wrap: wrap;
 }
 
+.youtube-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.youtube-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* === Education responsive === */
 @media (max-width: 1024px) {
   .education-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-  .education-head { grid-template-columns: 1fr; gap: 12px; }
   .education-grid { grid-template-columns: 1fr; }
   .education-section { padding: 60px 0; }
 }

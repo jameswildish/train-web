@@ -115,7 +115,7 @@ export default function NutritionPage() {
       </section>
 
       {/* ============ EDUCATION ============ */}
-      <EducationSection pillar="nutrition" heading="Learn more about nutrition" />
+      <EducationSection pillar="nutrition" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">

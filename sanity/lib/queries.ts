@@ -149,6 +149,14 @@ export async function getSiteSettings() {
   }`)
 }
 
+export async function getEducationIntro(pillar: string) {
+  if (!client) return null
+  return client.fetch(
+    `*[_type == "siteSettings"][0].educationIntros[pillar == $pillar][0] { title, body }`,
+    { pillar }
+  )
+}
+
 // ─── Education Articles ──────────────────────────────────────────────────────
 
 const EDUCATION_FIELDS = `
