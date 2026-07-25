@@ -1,11 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PortableText } from 'next-sanity'
 import type { PortableTextBlock } from '@portabletext/types'
 import { getEducationArticleBySlug, getAllEducationArticles } from '@/sanity/lib/queries'
-import { urlFor } from '@/sanity/lib/image'
-import type { SanityImageSource } from '@sanity/image-url'
 
 export const revalidate = 0
 
@@ -39,6 +36,22 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
+function extractPlainText(body: PortableTextBlock[]): string {
+  return body
+    .filter((b): b is PortableTextBlock & { children: Array<{ text?: string }> } =>
+      b._type === 'block' && Array.isArray((b as { children?: unknown }).children)
+    )
+    .flatMap(b => b.children.map(c => c.text ?? ''))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function getReadTime(body: PortableTextBlock[]): number {
+  const words = extractPlainText(body).split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
+}
+
 function extractHeadings(body: PortableTextBlock[]) {
   return body
     .filter((b): b is PortableTextBlock & { style: string; _key: string; children: Array<{ text: string }> } =>
@@ -69,17 +82,6 @@ const ptComponents: any = {
     sup: ({ children }: { children: React.ReactNode }) => <sup>{children}</sup>,
   },
   types: {
-    image: ({ value }: { value: { alt?: string } }) => (
-      <figure>
-        <Image
-          src={urlFor(value as SanityImageSource).width(900).url()}
-          alt={value.alt ?? ''}
-          width={900}
-          height={500}
-          style={{ width: '100%', height: 'auto', borderRadius: '6px' }}
-        />
-      </figure>
-    ),
     file: ({ value }: { value: { asset?: { url?: string } } }) =>
       value?.asset?.url ? (
         <figure className="article-video">
@@ -96,13 +98,16 @@ export default async function EducationArticlePage({ params }: { params: Promise
   const article = await getEducationArticleBySlug(slug)
   if (!article) notFound()
 
-  const headings = article.body ? extractHeadings(article.body as PortableTextBlock[]) : []
+  const body = (article.body ?? []) as PortableTextBlock[]
+  const headings = extractHeadings(body)
+  const readTime = getReadTime(body)
   const pillars: string[] = article.pillars ?? []
+  const hasToc = headings.length > 2
 
   return (
     <>
       {/* ── Header ── */}
-      <section className="edu-article-hero">
+      <section className="article-hero edu-article-hero">
         <div className="wrap">
           <div className="crumbs">
             <Link href="/">Home</Link>
@@ -116,40 +121,26 @@ export default async function EducationArticlePage({ params }: { params: Promise
             <span className="current">Education</span>
           </div>
 
-          <div className="edu-article-header">
-            <div className="edu-article-pills">
-              {pillars.map(p => PILLAR_LABELS[p] ? (
-                <Link key={p} href={PILLAR_LABELS[p].href} className="pill">{PILLAR_LABELS[p].label}</Link>
-              ) : null)}
-            </div>
-            <h1>{article.title}</h1>
-            {article.excerpt && <p className="edu-article-excerpt">{article.excerpt}</p>}
-            <div className="edu-article-meta">
-              {article.publishedAt && <span>{formatDate(article.publishedAt)}</span>}
-              {article.readTime && <span>{article.readTime} min read</span>}
-            </div>
+          <div className="edu-article-pills">
+            {pillars.map(p => PILLAR_LABELS[p] ? (
+              <Link key={p} href={PILLAR_LABELS[p].href} className="pill">{PILLAR_LABELS[p].label}</Link>
+            ) : null)}
           </div>
 
-          {article.mainImage && (
-            <div className="edu-article-cover">
-              <Image
-                src={urlFor(article.mainImage as SanityImageSource).width(1200).url()}
-                alt={article.title}
-                width={1200}
-                height={500}
-                style={{ width: '100%', height: 'auto', borderRadius: '10px' }}
-                priority
-              />
-            </div>
-          )}
+          <h1 className="edu-article-title">{article.title}</h1>
+
+          <div className="article-meta">
+            {article.publishedAt && <span className="date">{formatDate(article.publishedAt)}</span>}
+            <span>{readTime} min read</span>
+          </div>
         </div>
       </section>
 
       {/* ── Body ── */}
-      <section className="edu-article-body">
+      <section className="article-body edu-article-body">
         <div className="wrap">
-          <div className="article-layout">
-            {headings.length > 2 && (
+          {hasToc ? (
+            <div className="article-layout">
               <aside className="article-toc">
                 <p className="toc-label">Contents</p>
                 <ol>
@@ -160,13 +151,17 @@ export default async function EducationArticlePage({ params }: { params: Promise
                   ))}
                 </ol>
               </aside>
-            )}
-            <div className="article-content">
-              {article.body && (
-                <PortableText value={article.body as PortableTextBlock[]} components={ptComponents} />
-              )}
+              <div className="article-prose">
+                <PortableText value={body} components={ptComponents} />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="edu-prose-center">
+              <div className="article-prose">
+                <PortableText value={body} components={ptComponents} />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

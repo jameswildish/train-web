@@ -43,25 +43,6 @@ export const educationArticle = defineType({
       initialValue: 10,
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      description: 'Short summary shown on the pillar page card (2–3 sentences).',
-      type: 'text',
-      rows: 3,
-      validation: r => r.required(),
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Cover image',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'readTime',
-      title: 'Read time (minutes)',
-      type: 'number',
-    }),
-    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
@@ -88,7 +69,6 @@ export const educationArticle = defineType({
             ],
           },
         },
-        { type: 'image', options: { hotspot: true } },
         { type: 'file', title: 'Video', options: { accept: 'video/*' } },
       ],
     }),
@@ -98,10 +78,10 @@ export const educationArticle = defineType({
     { title: 'Published date, new first', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] },
   ],
   preview: {
-    select: { title: 'title', pillars: 'pillars', media: 'mainImage' },
-    prepare({ title, pillars, media }) {
+    select: { title: 'title', pillars: 'pillars' },
+    prepare({ title, pillars }) {
       const labels = (pillars ?? []).join(', ')
-      return { title, subtitle: labels || 'No pillar assigned', media }
+      return { title, subtitle: labels || 'No pillar assigned' }
     },
   },
 })

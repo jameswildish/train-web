@@ -157,10 +157,8 @@ const EDUCATION_FIELDS = `
   slug,
   pillars,
   order,
-  excerpt,
-  readTime,
   publishedAt,
-  mainImage
+  body
 `
 
 export async function getEducationArticlesByPillar(pillar: string) {
@@ -175,7 +173,7 @@ export async function getEducationArticleBySlug(slug: string) {
   if (!client) return null
   return client.fetch(`
     *[_type == "educationArticle" && slug.current == $slug][0] {
-      ${EDUCATION_FIELDS},
+      _id, title, slug, pillars, publishedAt,
       body[] {
         ...,
         _type == "file" => { ..., "asset": asset-> }

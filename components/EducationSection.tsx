@@ -1,16 +1,37 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { getEducationArticlesByPillar } from '@/sanity/lib/queries'
-import { urlFor } from '@/sanity/lib/image'
-import type { SanityImageSource } from '@sanity/image-url'
+
+interface Block {
+  _type: string
+  children?: Array<{ text?: string }>
+}
 
 interface EducationArticle {
   _id: string
   title: string
   slug: { current: string }
-  excerpt: string
-  readTime?: number
-  mainImage?: SanityImageSource
+  body?: Block[]
+}
+
+function extractPlainText(body: Block[]): string {
+  return body
+    .filter(b => b._type === 'block' && Array.isArray(b.children))
+    .flatMap(b => (b.children ?? []).map(c => c.text ?? ''))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function getExcerpt(body: Block[] | undefined): string {
+  if (!body) return ''
+  const text = extractPlainText(body)
+  return text.length > 120 ? text.slice(0, 120).trimEnd() + '...' : text
+}
+
+function getReadTime(body: Block[] | undefined): number {
+  if (!body) return 1
+  const words = extractPlainText(body).split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
 }
 
 interface Props {
@@ -40,31 +61,20 @@ export default async function EducationSection({ pillar, heading = 'Education' }
         </div>
 
         <div className="education-grid">
-          {articles.map((article, i) => (
-            <Link key={article._id} href={`/education/${article.slug.current}`} className="edu-card">
-              <div className="edu-card-img">
-                {article.mainImage ? (
-                  <Image
-                    src={urlFor(article.mainImage).width(600).height(340).url()}
-                    alt={article.title}
-                    width={600}
-                    height={340}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                ) : (
-                  <div className="edu-card-placeholder" data-index={i % 4} />
-                )}
-              </div>
-              <div className="edu-card-body">
-                {article.readTime && (
-                  <span className="edu-card-time">{article.readTime} min read</span>
-                )}
-                <h3>{article.title}</h3>
-                <p>{article.excerpt}</p>
-                <span className="edu-card-cta">Read guide <span className="arrow">→</span></span>
-              </div>
-            </Link>
-          ))}
+          {articles.map(article => {
+            const excerpt = getExcerpt(article.body)
+            const readTime = getReadTime(article.body)
+            return (
+              <Link key={article._id} href={`/education/${article.slug.current}`} className="edu-card">
+                <div className="edu-card-body">
+                  <span className="edu-card-time">{readTime} min read</span>
+                  <h3>{article.title}</h3>
+                  {excerpt && <p>{excerpt}</p>}
+                  <span className="edu-card-cta">Read guide <span className="arrow">→</span></span>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
