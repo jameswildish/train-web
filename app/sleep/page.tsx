@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import SleepAppFeatures from '@/components/SleepAppFeatures'
+import EducationSection from '@/components/EducationSection'
 
 export const metadata = { title: 'Sleep — TRAIN' }
 
@@ -128,6 +129,9 @@ export default function SleepPage() {
           </div>
         </div>
       </section>
+
+      {/* ============ EDUCATION ============ */}
+      <EducationSection pillar="sleep" heading="Learn more about sleep" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">

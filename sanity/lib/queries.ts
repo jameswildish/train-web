@@ -149,6 +149,46 @@ export async function getSiteSettings() {
   }`)
 }
 
+// ─── Education Articles ──────────────────────────────────────────────────────
+
+const EDUCATION_FIELDS = `
+  _id,
+  title,
+  slug,
+  pillars,
+  order,
+  excerpt,
+  readTime,
+  publishedAt,
+  mainImage
+`
+
+export async function getEducationArticlesByPillar(pillar: string) {
+  if (!client) return []
+  return client.fetch(
+    `*[_type == "educationArticle" && $pillar in pillars] | order(order asc, publishedAt desc) { ${EDUCATION_FIELDS} }`,
+    { pillar }
+  )
+}
+
+export async function getEducationArticleBySlug(slug: string) {
+  if (!client) return null
+  return client.fetch(`
+    *[_type == "educationArticle" && slug.current == $slug][0] {
+      ${EDUCATION_FIELDS},
+      body[] {
+        ...,
+        _type == "file" => { ..., "asset": asset-> }
+      }
+    }
+  `, { slug })
+}
+
+export async function getAllEducationArticles() {
+  if (!client) return []
+  return client.fetch(`*[_type == "educationArticle"] | order(order asc) { ${EDUCATION_FIELDS} }`)
+}
+
 // ─── Collaborators ───────────────────────────────────────────────────────────
 
 export async function getAllCollaborators() {

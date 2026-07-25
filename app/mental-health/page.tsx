@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import EducationSection from '@/components/EducationSection'
 
 export const metadata = { title: 'Mental Health — TRAIN' }
 
@@ -146,6 +147,9 @@ export default function MentalHealthPage() {
           </div>
         </div>
       </section>
+
+      {/* ============ EDUCATION ============ */}
+      <EducationSection pillar="mental-health" heading="Learn more about mental health" />
 
       {/* ============ CTA ============ */}
       <section className="pillar-cta">
