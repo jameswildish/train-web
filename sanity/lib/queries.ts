@@ -115,6 +115,7 @@ export async function getProjectBySlug(slug: string) {
       scienceHeading, scienceBody,
       impactHeading, impactCells,
       stats,
+      mapEnabled, mapContributors,
       "related": *[_type == "project" && slug.current != $slug] | order(order asc) [0..3] {
         _id, title, slug, "category": category->title, tagline, mainImage
       }
@@ -203,7 +204,7 @@ export async function getAllCollaborators() {
     *[_type == "collaborator"] | order(order asc) {
       _id, name, type, location, description,
       "logo": logo { ..., asset-> },
-      website
+      website, lat, lng
     }
   `)
 }

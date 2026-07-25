@@ -11,6 +11,7 @@ export const project = defineType({
     { name: 'work', title: 'What we do' },
     { name: 'impact', title: 'Impact' },
     { name: 'facts', title: 'Key facts' },
+    { name: 'map', title: 'Contributor map' },
   ],
   fields: [
     // ─── Identity ────────────────────────────────────────────────────
@@ -82,6 +83,39 @@ export const project = defineType({
           { name: 'label', title: 'Label', type: 'string' },
         ],
         preview: { select: { title: 'value', subtitle: 'label' } },
+      }],
+    }),
+
+    // ─── Contributor map ──────────────────────────────────────────────
+    defineField({
+      name: 'mapEnabled',
+      title: 'Show contributor map',
+      type: 'boolean',
+      initialValue: false,
+      group: 'map',
+    }),
+    defineField({
+      name: 'mapContributors',
+      title: 'Contributing institutions',
+      description: 'Each entry appears as a dot on the world map. Find lat/lng at maps.google.com (right-click a location).',
+      type: 'array',
+      group: 'map',
+      of: [{
+        type: 'object',
+        fields: [
+          defineField({ name: 'institution', title: 'Institution name', type: 'string', validation: r => r.required() }),
+          defineField({ name: 'country', title: 'Country', type: 'string', validation: r => r.required() }),
+          defineField({ name: 'city', title: 'City (optional)', type: 'string' }),
+          defineField({ name: 'lat', title: 'Latitude', type: 'number', validation: r => r.required() }),
+          defineField({ name: 'lng', title: 'Longitude', type: 'number', validation: r => r.required() }),
+        ],
+        preview: {
+          select: { institution: 'institution', city: 'city', country: 'country' },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          prepare(v: any) {
+            return { title: v.institution, subtitle: [v.city, v.country].filter(Boolean).join(', ') }
+          },
+        },
       }],
     }),
   ],

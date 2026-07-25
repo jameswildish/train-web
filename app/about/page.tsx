@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import WorldMapDynamic from '@/components/WorldMapDynamic'
 import { getAllPublications, getAllCollaborators } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
+
+
 
 export const revalidate = 0
 
@@ -17,6 +20,8 @@ type Collaborator = {
   website?: string
   type?: string
   location?: string
+  lat?: number
+  lng?: number
 }
 
 type Publication = {
@@ -184,6 +189,24 @@ export default async function AboutPage() {
                 )
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Collaborator world map */}
+        {collaborators.some(c => c.lat != null && c.lng != null) && (
+          <div className="wrap" style={{ paddingBottom: '80px' }}>
+            <WorldMapDynamic
+              markers={collaborators
+                .filter(c => c.lat != null && c.lng != null)
+                .map(c => ({
+                  institution: c.name,
+                  country: '',
+                  lat: c.lat as number,
+                  lng: c.lng as number,
+                }))}
+              heading="Our global network"
+              subheading="Institutions and research partners contributing to TRAIN programmes worldwide."
+            />
           </div>
         )}
       </section>

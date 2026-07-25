@@ -15,6 +15,8 @@ export const collaborator = defineType({
     }),
     defineField({ name: 'website', title: 'Website URL', type: 'url' }),
     defineField({ name: 'order', title: 'Sort order', type: 'number' }),
+    defineField({ name: 'lat', title: 'Latitude (for map)', type: 'number', description: 'Right-click in Google Maps to copy coordinates.' }),
+    defineField({ name: 'lng', title: 'Longitude (for map)', type: 'number' }),
   ],
   preview: {
     select: { title: 'name', media: 'logo' },

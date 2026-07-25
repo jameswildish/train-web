@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import WorldMapDynamic from '@/components/WorldMapDynamic'
 import { getProjectBySlug, getAllProjects } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import type { SanityImageSource } from '@sanity/image-url'
+
+
 
 export const revalidate = 0
 
@@ -55,6 +58,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const hasImpact = project.impactCells?.length > 0
   const hasStats = project.stats?.length > 0
   const hasRelated = related.length > 0
+  const hasMap = project.mapEnabled && project.mapContributors?.length > 0
 
   return (
     <>
@@ -186,6 +190,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ─── Contributor map ─────────────────────────────────────── */}
+      {hasMap && (
+        <section className="proj-map">
+          <div className="wrap">
+            <WorldMapDynamic
+              markers={project.mapContributors}
+              heading="Global contributors"
+              subheading="Academics and universities contributing to this research."
+            />
           </div>
         </section>
       )}
