@@ -54,6 +54,7 @@ export default function WorldMap({ markers, heading, subheading }: Props) {
     ({ coordinates, zoom: z }: { coordinates: [number, number]; zoom: number }) => {
       setCenter(coordinates)
       setZoom(z)
+      setIsDragging(false)
     },
     []
   )

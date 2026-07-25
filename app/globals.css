@@ -3003,8 +3003,8 @@ nav.main a.active::after {
   margin-top: 24px;
 }
 .collab-logo-item {
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: #16213E;
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
   padding: 20px 24px;
   display: flex;
@@ -3015,8 +3015,8 @@ nav.main a.active::after {
   text-decoration: none;
 }
 a.collab-logo-item:hover {
-  border-color: var(--line-2);
-  box-shadow: 0 4px 16px rgba(20,24,28,0.07);
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
 }
 .collab-logo-item img {
   width: 100%;
@@ -3026,7 +3026,7 @@ a.collab-logo-item:hover {
 .collab-logo-item span {
   font-size: 13px;
   font-weight: 500;
-  color: var(--ink-2);
+  color: #fff;
   text-align: center;
   line-height: 1.4;
 }
