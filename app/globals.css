@@ -2640,7 +2640,7 @@ nav.main a.active::after {
 .map-tooltip {
   position: absolute;
   pointer-events: none;
-  background: #fff;
+  background: #1a2850;
   border-radius: 8px;
   padding: 10px 14px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.24);
@@ -2651,13 +2651,13 @@ nav.main a.active::after {
 .map-tooltip-inst {
   font-size: 13px;
   font-weight: 600;
-  color: #0B1120;
+  color: #fff;
   margin: 0 0 2px;
   line-height: 1.4;
 }
 .map-tooltip-loc {
   font-size: 12px;
-  color: #666;
+  color: rgba(255,255,255,0.55);
   margin: 0;
 }
 .map-legend {
@@ -3003,8 +3003,8 @@ nav.main a.active::after {
   margin-top: 24px;
 }
 .collab-logo-item {
-  background: #16213E;
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 14px;
   padding: 20px 24px;
   display: flex;
@@ -3015,8 +3015,8 @@ nav.main a.active::after {
   text-decoration: none;
 }
 a.collab-logo-item:hover {
-  border-color: rgba(255,255,255,0.2);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  border-color: var(--line-2);
+  box-shadow: 0 4px 16px rgba(20,24,28,0.07);
 }
 .collab-logo-item img {
   width: 100%;
@@ -3026,7 +3026,7 @@ a.collab-logo-item:hover {
 .collab-logo-item span {
   font-size: 13px;
   font-weight: 500;
-  color: #fff;
+  color: var(--ink-2);
   text-align: center;
   line-height: 1.4;
 }
