@@ -2586,24 +2586,25 @@ nav.main a.active::after {
   background: var(--surface);
 }
 .world-map-section {
-  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
 }
 .world-map-head {
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 .world-map-head h2 {
-  font-size: clamp(24px, 2.8vw, 36px);
-  margin: 0 0 10px;
+  font-size: clamp(22px, 2.4vw, 32px);
+  margin: 0 0 8px;
 }
 .world-map-head p {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
   margin: 0;
 }
 .world-map-container {
   position: relative;
   background: #0B1120;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid #1E2D5A;
   line-height: 0;
@@ -2612,6 +2613,30 @@ nav.main a.active::after {
   display: block;
   width: 100%;
 }
+.map-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.map-btn {
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s;
+}
+.map-btn:hover:not(:disabled) { background: rgba(255,255,255,0.2); }
+.map-btn:disabled { opacity: 0.3; cursor: default; }
 .map-tooltip {
   position: absolute;
   pointer-events: none;
